@@ -1,0 +1,3 @@
+IMAGE_SIZE = (224, 224)
+MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10 MB
+ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp"}
