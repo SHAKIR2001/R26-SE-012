@@ -41,8 +41,10 @@ def predict_vision(model_name: str):
         return jsonify({"error": f"Reference data missing: {str(e)}"}), 503
     except EnvironmentError as e:
         return jsonify({"error": str(e)}), 503
-    except Exception as e:
-        return jsonify({"error": f"OpenAI prediction failed: {str(e)}"}), 500
+    except Exception:
+        return jsonify({
+            "error": "Could not recognize the image. Please upload a clear, relevant pepper image.",
+        }), 400
 
 
 @bp.get("/<model_name>/info")
