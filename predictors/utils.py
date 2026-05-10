@@ -25,5 +25,9 @@ def run_prediction(predictor: BasePredictor, model_name: str):
     try:
         result = predictor.predict(image_bytes)
         return jsonify({"model": model_name, "description": predictor.description, **result}), 200
+    except ValueError:
+        return jsonify({
+            "error": "Could not recognize the image. Please upload a clear, relevant pepper image.",
+        }), 400
     except Exception as e:
         return jsonify({"error": f"Prediction failed: {str(e)}"}), 500

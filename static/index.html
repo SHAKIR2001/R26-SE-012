@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PEPPER Vision Demo</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --accent: #2f6b3f;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 24px;
+    }
+    p {
+      margin: 0 0 16px 0;
+      color: var(--muted);
+    }
+    label { display: block; margin: 12px 0 6px; font-weight: 600; }
+    select, input[type="file"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+    }
+    button {
+      margin-top: 16px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .result {
+      margin-top: 20px;
+      background: #0b1220;
+      color: #e5e7eb;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: Consolas, "Courier New", monospace;
+      white-space: pre-wrap;
+    }
+    .status { margin-top: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>PEPPER Vision Demo</h1>
+      <p>Upload a pepper image, choose a model, and get the prediction.</p>
+
+      <form id="predict-form">
+        <label for="model">Model</label>
+        <select id="model" name="model">
+          <option value="berry">Berry (Healthy vs Lace Bug Damage)</option>
+          <option value="leaf">Leaf (4 Disease Classes)</option>
+          <option value="pest">Pest (4 Pest Classes)</option>
+        </select>
+
+        <label for="image">Image</label>
+        <input id="image" type="file" accept="image/*" />
+
+        <button id="submit" type="submit">Predict</button>
+      </form>
+
+      <div class="status" id="status">Waiting for input...</div>
+      <div class="result" id="result">{}</div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("predict-form");
+    const modelSelect = document.getElementById("model");
+    const imageInput = document.getElementById("image");
+    const statusEl = document.getElementById("status");
+    const resultEl = document.getElementById("result");
+    const submitBtn = document.getElementById("submit");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const file = imageInput.files[0];
+
+      if (!file) {
+        statusEl.textContent = "Please choose an image file.";
+        return;
+      }
+
+      const model = modelSelect.value;
+      const formData = new FormData();
+      formData.append("target", file);
+
+      statusEl.textContent = "Running prediction...";
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(`/vision/${model}`, {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+        resultEl.textContent = JSON.stringify(data, null, 2);
+        statusEl.textContent = response.ok ? "Done." : "Error from server.";
+      } catch (err) {
+        resultEl.textContent = JSON.stringify({ error: err.message }, null, 2);
+        statusEl.textContent = "Request failed.";
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

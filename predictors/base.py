@@ -6,7 +6,7 @@ from PIL import Image
 import tensorflow as tf
 from tensorflow.keras.applications.efficientnet_v2 import preprocess_input
 
-from config import IMAGE_SIZE
+from config import IMAGE_SIZE, MIN_CONFIDENCE
 
 
 # Keras resolves built-in layers by module path, bypassing custom_objects.
@@ -58,6 +58,8 @@ class BasePredictor:
             probs = [round(float(v), 4) for v in raw]
 
         predicted_index = int(np.argmax(probs))
+        if probs[predicted_index] < MIN_CONFIDENCE:
+            raise ValueError("Low confidence prediction")
         return {
             "predicted_class": self.classes[predicted_index],
             "confidence": probs[predicted_index],
