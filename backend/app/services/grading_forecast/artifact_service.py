@@ -50,6 +50,11 @@ class UrlArtifactConfig:
 _runtime_artifacts: RuntimeArtifacts | None = None
 
 
+def _repo_root() -> Path:
+    # backend/app/services/grading_forecast/artifact_service.py -> repo root
+    return Path(__file__).resolve().parents[4]
+
+
 def _required_env(name: str) -> str:
     value = os.getenv(name, "").strip()
     if not value:
@@ -187,11 +192,68 @@ def _download_url_artifacts() -> RuntimeArtifacts:
     )
 
 
+def _bundled_runtime_artifacts() -> RuntimeArtifacts:
+    root = _repo_root()
+    return RuntimeArtifacts(
+        grading_model_path=root
+        / "ml"
+        / "grading_forecast"
+        / "berry_grading"
+        / "models"
+        / "v2"
+        / "berry_mobilenetv2_v2_best.onnx",
+        class_names_path=root
+        / "ml"
+        / "grading_forecast"
+        / "berry_grading"
+        / "models"
+        / "v2"
+        / "class_names.json",
+        forecast_model_path=root
+        / "ml"
+        / "grading_forecast"
+        / "price_forecasting"
+        / "models"
+        / "v2"
+        / "forecast_model.joblib",
+        forecast_metrics_path=root
+        / "ml"
+        / "grading_forecast"
+        / "price_forecasting"
+        / "models"
+        / "v2"
+        / "naive_persistence_metrics.json",
+        forecast_data_path=root
+        / "data"
+        / "processed"
+        / "grading_forecast"
+        / "price_v2"
+        / "national_grade1_average_weekly.csv",
+    )
+
+
+def _bundled_runtime_artifacts_ready() -> RuntimeArtifacts | None:
+    artifacts = _bundled_runtime_artifacts()
+    if all(
+        path.is_file()
+        for path in (
+            artifacts.grading_model_path,
+            artifacts.class_names_path,
+            artifacts.forecast_model_path,
+            artifacts.forecast_metrics_path,
+            artifacts.forecast_data_path,
+        )
+    ):
+        return artifacts
+    return None
+
+
 def download_runtime_artifacts() -> RuntimeArtifacts:
     """Download all required runtime artifacts once and store local cache paths.
 
-    Hugging Face is the primary source. Direct artifact URLs are a fallback for
-    deployments where Hugging Face access is unavailable or rate-limited.
+    Hugging Face is the primary source. Repository-bundled artifacts and direct
+    artifact URLs are fallbacks for deployments where Hugging Face access is
+    unavailable or rate-limited.
     """
 
     global _runtime_artifacts
@@ -199,12 +261,16 @@ def download_runtime_artifacts() -> RuntimeArtifacts:
     try:
         artifacts = _download_hugging_face_artifacts()
     except (ArtifactConfigurationError, ArtifactDownloadError):
-        try:
-            artifacts = _download_url_artifacts()
-        except (ArtifactConfigurationError, ArtifactDownloadError) as fallback_exc:
-            raise ArtifactDownloadError(
-                "Failed to load runtime artifacts from Hugging Face or artifact URLs."
-            ) from fallback_exc
+        bundled = _bundled_runtime_artifacts_ready()
+        if bundled is not None:
+            artifacts = bundled
+        else:
+            try:
+                artifacts = _download_url_artifacts()
+            except (ArtifactConfigurationError, ArtifactDownloadError) as fallback_exc:
+                raise ArtifactDownloadError(
+                    "Failed to load runtime artifacts from Hugging Face, bundled files, or artifact URLs."
+                ) from fallback_exc
 
     _runtime_artifacts = artifacts
     return artifacts
