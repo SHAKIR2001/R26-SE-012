@@ -108,8 +108,10 @@ def test_download_runtime_artifacts_uses_hf_hub_download(
 
 def test_failed_hugging_face_download_raises_without_token_leak(
     monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
 ) -> None:
     _set_hf_env(monkeypatch)
+    monkeypatch.setattr(artifact_service, "_repo_root", lambda: tmp_path / "empty_repo")
 
     def fake_hf_hub_download(**_kwargs) -> str:
         raise RuntimeError("private failure containing test-token")
@@ -130,6 +132,7 @@ def test_download_runtime_artifacts_falls_back_to_urls(
     _set_hf_env(monkeypatch)
     _set_url_env(monkeypatch)
     monkeypatch.setenv("ARTIFACT_CACHE_DIR", str(tmp_path))
+    monkeypatch.setattr(artifact_service, "_repo_root", lambda: tmp_path / "empty_repo")
     calls: list[str] = []
 
     def fake_hf_hub_download(**_kwargs) -> str:
@@ -158,6 +161,70 @@ def test_download_runtime_artifacts_falls_back_to_urls(
         URL_ENV["ARTIFACT_FORECAST_METRICS_URL"],
         URL_ENV["ARTIFACT_FORECAST_DATA_URL"],
     ]
+    assert artifact_service.runtime_artifacts_ready() is True
+
+
+def test_download_runtime_artifacts_falls_back_to_bundled_files(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    _set_hf_env(monkeypatch)
+
+    root = tmp_path / "repo"
+    bundled_files = [
+        root
+        / "ml"
+        / "grading_forecast"
+        / "berry_grading"
+        / "models"
+        / "v2"
+        / "berry_mobilenetv2_v2_best.onnx",
+        root
+        / "ml"
+        / "grading_forecast"
+        / "berry_grading"
+        / "models"
+        / "v2"
+        / "class_names.json",
+        root
+        / "ml"
+        / "grading_forecast"
+        / "price_forecasting"
+        / "models"
+        / "v2"
+        / "forecast_model.joblib",
+        root
+        / "ml"
+        / "grading_forecast"
+        / "price_forecasting"
+        / "models"
+        / "v2"
+        / "naive_persistence_metrics.json",
+        root
+        / "data"
+        / "processed"
+        / "grading_forecast"
+        / "price_v2"
+        / "national_grade1_average_weekly.csv",
+    ]
+    for path in bundled_files:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("artifact", encoding="utf-8")
+
+    def fake_hf_hub_download(**_kwargs) -> str:
+        raise RuntimeError("hugging face unavailable")
+
+    fake_module = types.SimpleNamespace(hf_hub_download=fake_hf_hub_download)
+    monkeypatch.setitem(sys.modules, "huggingface_hub", fake_module)
+    monkeypatch.setattr(artifact_service, "_repo_root", lambda: root)
+
+    artifacts = artifact_service.download_runtime_artifacts()
+
+    assert artifacts.grading_model_path == bundled_files[0]
+    assert artifacts.class_names_path == bundled_files[1]
+    assert artifacts.forecast_model_path == bundled_files[2]
+    assert artifacts.forecast_metrics_path == bundled_files[3]
+    assert artifacts.forecast_data_path == bundled_files[4]
     assert artifact_service.runtime_artifacts_ready() is True
 
 
