@@ -1173,3 +1173,13 @@ Date: 2026-10-08.
 - Result: 5/5 controlled emulator cases matched the frozen decision-level expectations. `UNCERTAIN_GRADE` correctly stopped before pricing; it was not conflated with `HIGH_UNCERTAINTY_OUTLOOK`.
 - Decision: Phase 7 mobile acceptance gate closed. Overall Phase 7 status is `COMPLETE WITH LIMITATIONS`; this adds deployment/integration evidence, not new predictive accuracy or field robustness.
 - Next phase: Phase 8 is ready with limitations for separately authorized prospective field/domain-shift validation. It was not started.
+
+### PHASE7-RAILWAY-TEXT-INTEGRITY-CORRECTION-001
+
+Date: 2026-10-08.
+
+- Trigger: the Railway-hosted API returned HTTP 200 for rejection cases but HTTP 500 for accepted berry cases when price routing began.
+- Diagnosis: the frozen Phase 5 forecast CSV raw SHA-256 was recorded from a Windows CRLF checkout. Railway's Linux checkout materialized the same tracked CSV with LF endings, producing a different byte hash while preserving the CSV content.
+- Correction: retained the original raw hash and added an explicit LF-normalized canonical text hash. Runtime validation accepts either the exact original bytes or the exact canonical text and continues to fail closed for any content change. No forecast value, model, threshold, route, or Phase 6 decision rule changed.
+- Readiness hardening: application startup and `/ready` now validate both the ONNX runtime and the frozen forecast source, preventing a deployment that can reject images but cannot complete accepted-grade pricing from reporting ready.
+- Verification: focused cross-platform integrity, startup, API, and real Grade 1 tests passed locally. Hosted Grade 1/2 verification is pending redeployment.

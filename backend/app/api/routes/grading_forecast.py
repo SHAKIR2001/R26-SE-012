@@ -9,9 +9,10 @@ from PIL import Image, UnidentifiedImageError
 
 from app.schemas.grading_forecast import Phase7AnalyzeResponse
 from app.services.grading_forecast.phase7_service import (
+    ForecastRecordError,
     GradingRuntimeError,
     analyze as analyze_phase7,
-    initialize_grading_runtime,
+    initialize_phase7_runtime,
 )
 
 router = APIRouter(prefix="/api/v1/grading-forecast", tags=["grading-forecast"])
@@ -72,8 +73,8 @@ async def _read_valid_image_upload(image: UploadFile | None) -> tuple[bytes, str
 def _safe_analysis(image_bytes: bytes, analysis_id: str) -> dict:
     try:
         return analyze_phase7(image_bytes, analysis_id)
-    except GradingRuntimeError as exc:
-        LOGGER.warning("Berry grading failed safely: %s", exc)
+    except (GradingRuntimeError, ForecastRecordError) as exc:
+        LOGGER.warning("Phase 7 runtime failed safely: %s", exc)
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="Frozen grading runtime is unavailable or failed safely.",
@@ -97,9 +98,9 @@ def health() -> dict[str, str]:
 @router.get("/ready")
 def ready() -> dict[str, object]:
     try:
-        initialize_grading_runtime()
+        initialize_phase7_runtime()
         readiness = "ready"
-    except GradingRuntimeError:
+    except (GradingRuntimeError, ForecastRecordError):
         readiness = "not_ready"
     return {
         "status": readiness,
