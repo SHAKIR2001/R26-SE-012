@@ -33,6 +33,7 @@ price_runtime:
   strategy: FROZEN_FORECAST_RECORD_SERVICE
   source: ml/grading_forecast/price_forecasting/phase5/outputs/external_reality_check_selected.csv
   source_sha256: 0b3e5a4ede8f6839f831f008a4655114413c6369a1b9549dca240cc685288c4a
+  source_canonical_text_sha256: 6879f803cb2ad2e522bebbbf9b49c4a9d0b9b61502ed5a9a5d3070e1721b1fa8
   selection: latest feature_date per exact grade
   live_forecast_claim: false
 
