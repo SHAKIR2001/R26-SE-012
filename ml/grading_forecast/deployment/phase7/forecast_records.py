@@ -4,22 +4,32 @@ from __future__ import annotations
 
 import csv
 import math
+from pathlib import Path
 
 from ml.grading_forecast.decision_support.phase6.price_router import MarketForecast, canonical_history, history_context, route_for_grade
 
-from .config import load_config, repo_path, sha256
+from .config import frozen_text_matches, load_config, repo_path
 
 
 class ForecastRecordError(RuntimeError):
     pass
 
 
-def latest_frozen_forecast(v3_grade: str) -> MarketForecast | None:
-    route = route_for_grade(v3_grade)
+def validate_frozen_forecast_source() -> Path:
     settings = load_config()["price_runtime"]
     source = repo_path(settings["source"])
-    if not source.is_file() or sha256(source) != settings["source_sha256"]:
+    if not frozen_text_matches(
+        source,
+        raw_sha256=settings["source_sha256"],
+        canonical_sha256=settings["source_canonical_text_sha256"],
+    ):
         raise ForecastRecordError("Frozen Phase 5 forecast evidence is unavailable or changed")
+    return source
+
+
+def latest_frozen_forecast(v3_grade: str) -> MarketForecast | None:
+    route = route_for_grade(v3_grade)
+    source = validate_frozen_forecast_source()
     with source.open(newline="", encoding="utf-8-sig") as handle:
         rows = [row for row in csv.DictReader(handle) if row["grade"] == route["price_grade"]]
     if not rows:

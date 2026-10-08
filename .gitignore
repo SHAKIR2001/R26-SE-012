@@ -97,7 +97,6 @@ coverage/
 *.iml
 *.ipr
 *.iws
-.vscode/
 
 # OS
 .DS_Store
@@ -107,4 +106,5 @@ coverage/
 /android/app/profile
 /android/app/release
 
-.env
+config.bat
+node_modules

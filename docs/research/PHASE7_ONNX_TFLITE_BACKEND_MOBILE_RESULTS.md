@@ -92,6 +92,8 @@ On 2026-10-08, a researcher-operated emulator run exercised the five controlled 
 
 The researcher then rebuilt the client and reran all five cases. The corrected emulator path passed 5/5: Grade 1 and Grade 2 used their exact grade-specific price records, non-pepper and poor-image cases were rejected without pricing, and the uncertain case returned `UNCERTAIN_GRADE` without pricing. This closes the Phase 7 mobile preprocessing acceptance gate.
 
+During the first Railway Linux deployment on 2026-10-08, rejected inputs worked but accepted grades returned HTTP 500 before pricing. The frozen Phase 5 CSV had been hash-pinned as Windows CRLF bytes; Git materialized the same tracked text with LF endings on Linux. Deployment now records and verifies a canonical LF-normalized text hash in addition to retaining the original raw frozen hash. This accepts only the same text across platform line-ending representations and still rejects content changes. Startup and `/ready` now validate both the ONNX runtime and frozen forecast source. Hosted accepted-grade verification remains required after redeployment; this correction does not alter forecast values or decision rules.
+
 ## 15. End-to-end verification
 
 The backend-controlled five-case set produced:

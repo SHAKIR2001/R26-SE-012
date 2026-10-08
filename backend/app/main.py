@@ -1,3 +1,8 @@
+import utils.net
+import utils.clients
+import utils.http_session
+import utils.transport
+import utils.session
 from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
@@ -5,13 +10,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.router import api_router
-from app.services.grading_forecast.phase7_service import initialize_grading_runtime
+from app.services.grading_forecast.phase7_service import initialize_phase7_runtime
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     load_dotenv()
-    initialize_grading_runtime()
+    initialize_phase7_runtime()
     yield
 
 
