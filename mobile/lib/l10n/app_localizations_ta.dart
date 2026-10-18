@@ -1118,6 +1118,13 @@ class AppLocalizationsTa extends AppLocalizations {
   String get noPestsFound => 'பூச்சிகள் எதுவும் இல்லை';
 
   @override
+  String get pestUncertainTitle => 'பூச்சியை உறுதிப்படுத்த முடியவில்லை';
+
+  @override
+  String get pestUncertainMessage =>
+      'எந்த சிகிச்சையையும் பயன்படுத்துவதற்கு முன் நல்ல வெளிச்சத்தில் நெருக்கமான படத்தை எடுக்கவும். பிரச்சினை தொடர்ந்தால் உள்ளூர் வேளாண் நிபுணரிடம் செடியைப் பரிசோதிக்கச் சொல்லவும்.';
+
+  @override
   String get aboveTreatmentThreshold => 'சிகிச்சை வரம்பிற்கு மேல்';
 
   @override

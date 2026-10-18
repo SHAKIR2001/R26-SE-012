@@ -2061,6 +2061,18 @@ abstract class AppLocalizations {
   /// **'No pests found'**
   String get noPestsFound;
 
+  /// No description provided for @pestUncertainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not confirm the pest'**
+  String get pestUncertainTitle;
+
+  /// No description provided for @pestUncertainMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a closer photo in good light before applying any treatment. If the problem continues, ask a local agronomist to inspect the plant.'**
+  String get pestUncertainMessage;
+
   /// No description provided for @aboveTreatmentThreshold.
   ///
   /// In en, this message translates to:

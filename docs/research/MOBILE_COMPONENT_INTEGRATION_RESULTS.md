@@ -272,3 +272,44 @@ remain outside this update.
 Updated status:
 
 `IMPLEMENTED; STATIC AND FLUTTER TEST VERIFICATION PASSED; ANDROID BUILD AND LIVE DEVICE/CLOUD ACCEPTANCE PENDING`.
+
+## Pest recommendation consistency correction (2026-10-18)
+
+The Pest recommendation flow now follows the same trusted-result handoff used
+by Leaf Health. When the scanner has a normal-confidence pest result, its class
+is supplied to the detailed Gemini analysis. The second analysis remains
+responsible for confirming the pepper plant and describing count, affected
+plant part, severity, visible damage, and treatment context, but it cannot
+silently replace the scanner's pest class with another species.
+
+The handoff is deliberately fail closed:
+
+- a normal-confidence `Pterolopha annulata` result remains Pterolopha throughout
+  recommendation generation, even if the detail response names another pest;
+- a relaxed low-confidence fallback result is not treated as a trusted class;
+- a trusted positive detection followed by a healthy, empty, or inconclusive
+  detail response becomes an explicit uncertain result;
+- uncertain results ask for a clearer photograph or expert inspection and do
+  not present chemical treatment instructions; and
+- non-pepper results remain non-target results and are never overridden by the
+  scanner class.
+
+No pest model, threshold, preprocessing path, cloud provider, or treatment
+calculation was changed. Offline dual-model Leaf Health & Pests detection is
+also unchanged. Detailed recommendations still require the configured online
+Gemini service.
+
+Verification completed after this correction:
+
+- localization generation passed;
+- `flutter analyze` passed with no issues;
+- 13/13 focused pest/fallback/component-integration tests passed;
+- the complete Flutter suite passed 96/96; and
+- the Android debug APK built successfully at
+  `mobile/build/app/outputs/flutter-apk/app-debug.apk`.
+
+The imported comparison project, Berry Disease, Berry Grading and Export Price
+Forecasting, backend APIs, ML artifacts, Phase 6/7 behavior, and research data
+were not modified. Live provider wording and the affected-pest image must still
+be checked manually on an emulator or physical device; automated tests verify
+the handoff and fail-closed reconciliation, not Gemini's real-world accuracy.

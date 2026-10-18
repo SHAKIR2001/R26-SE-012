@@ -1105,6 +1105,13 @@ class AppLocalizationsSi extends AppLocalizations {
   String get noPestsFound => 'පළිබෝධ හමු නොවීය';
 
   @override
+  String get pestUncertainTitle => 'පළිබෝධයා තහවුරු කළ නොහැකි විය';
+
+  @override
+  String get pestUncertainMessage =>
+      'ප්‍රතිකාරයක් යෙදීමට පෙර හොඳ ආලෝකයකින් වඩා සමීප ඡායාරූපයක් ගන්න. ගැටලුව දිගටම පවතී නම් ප්‍රාදේශීය කෘෂි විශේෂඥයෙකුගෙන් ශාකය පරීක්ෂා කරවා ගන්න.';
+
+  @override
   String get aboveTreatmentThreshold => 'ප්‍රතිකාර සීමාවට වඩා ඉහළ';
 
   @override
