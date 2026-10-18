@@ -363,6 +363,14 @@ class _ScannerViewState extends State<ScannerView> with WidgetsBindingObserver {
             !AiDetectionService.isPestClass(top.className)
         ? top.className
         : null;
+    // Mirror the leaf handoff for pests: a normal-confidence scanner label is
+    // carried into the detail analysis so the second AI request measures
+    // count/severity without silently changing the pest species. Relaxed local
+    // matches remain unanchored and must be independently verified.
+    final detectedPest = detectedPestForRecommendations(
+      top,
+      lowConfidence: _result?.lowConfidence ?? false,
+    );
 
     final Widget page;
     switch (widget.modelConfig.id) {
@@ -374,12 +382,14 @@ class _ScannerViewState extends State<ScannerView> with WidgetsBindingObserver {
       case 'pest':
         page = PestAnalysisScreen(
           imageBytes: photo,
+          detectedClass: detectedPest,
           historyRecordKey: _historyRecordKey,
         );
       case 'plant':
         page = top != null && AiDetectionService.isPestClass(top.className)
             ? PestAnalysisScreen(
                 imageBytes: photo,
+                detectedClass: detectedPest,
                 historyRecordKey: _historyRecordKey,
               )
             : LeafAnalysisScreen(
@@ -694,6 +704,20 @@ DetectionResult mergeDetectionResults(List<DetectionResult> results) {
     thresholdUsed: thresholdUsed.isFinite ? thresholdUsed : 0,
     lowConfidence: lowConfidence,
   );
+}
+
+/// Returns a pest label that is strong enough to anchor detail analysis.
+/// Relaxed local matches are intentionally left unanchored so the second-stage
+/// analysis can abstain instead of turning a weak guess into treatment advice.
+@visibleForTesting
+String? detectedPestForRecommendations(
+  Detection? detection, {
+  required bool lowConfidence,
+}) {
+  if (detection == null || lowConfidence) return null;
+  return AiDetectionService.isPestClass(detection.className)
+      ? detection.className
+      : null;
 }
 
 /// Localized "how to scan" guide shown in a bottom sheet before the user starts.

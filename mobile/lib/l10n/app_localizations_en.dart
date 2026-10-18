@@ -1096,6 +1096,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noPestsFound => 'No pests found';
 
   @override
+  String get pestUncertainTitle => 'We could not confirm the pest';
+
+  @override
+  String get pestUncertainMessage =>
+      'Take a closer photo in good light before applying any treatment. If the problem continues, ask a local agronomist to inspect the plant.';
+
+  @override
   String get aboveTreatmentThreshold => 'Above treatment threshold';
 
   @override

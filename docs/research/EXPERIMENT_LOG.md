@@ -1262,3 +1262,14 @@ Date: 2026-10-18.
 - Failure behavior: both fallback models are required to load for the combined scanner. A pest-model load failure is surfaced instead of silently presenting leaf-only fallback as combined coverage.
 - Protected boundary: Berry Disease, Berry Grading and Export Price Forecasting, backend APIs, Phase 6/7 logic, models, research data, and forecast evidence were unchanged.
 - Verification: localization generation completed; `flutter analyze` passed with no issues; 12/12 focused tests passed; the complete Flutter suite passed 89/89; and the Android debug APK built successfully. Emulator/device checks with cloud keys configured and absent remain manual acceptance work.
+
+### MOBILE-PEST-RECOMMENDATION-CONSISTENCY-004
+
+Date: 2026-10-18.
+
+- Scope: aligned the Pest recommendation handoff with the established Leaf Health pattern while preserving pest-specific analysis and treatment behavior.
+- Consistency rule: a normal-confidence scanner pest class is authoritative during detailed analysis, so a detected `Pterolopha annulata` cannot silently become `Gynaikothrips karny` when recommendations are requested.
+- Fail-closed behavior: relaxed low-confidence detections are not anchored; a trusted positive detection followed by a healthy, empty, or inconclusive detail response becomes uncertain and exposes no chemical treatment recommendation; non-pepper responses remain non-target.
+- Protected boundary: no imported-reference source, Berry Disease source, Berry Grading and Export Price Forecasting source, backend API, model, threshold, preprocessing contract, Phase 6/7 logic, price evidence, or research calculation changed.
+- Verification: localization generation and `flutter analyze` passed; 13/13 focused tests passed; the complete Flutter suite passed 96/96; and the Android debug APK built successfully.
+- Remaining acceptance: manually exercise an affected-pest photograph with authorized Gemini configuration on emulator/device. These checks establish software handoff consistency, not cloud-classification accuracy or field robustness.

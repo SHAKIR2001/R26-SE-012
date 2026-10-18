@@ -26,6 +26,11 @@ class PestAnalysis {
   final String affectedRegions;
   final String summary;
 
+  /// True when the detail analysis could not confirm a pest identity. This is
+  /// a fail-closed result: the UI asks for a clearer image and the treatment
+  /// engine must not recommend chemicals.
+  bool get isUncertain => pestType.trim().toLowerCase() == 'uncertain';
+
   /// Creates a new pest analysis result.
   const PestAnalysis({
     required this.isPepperPlant,
@@ -58,7 +63,7 @@ class PestAnalysis {
     int asInt(Object? v) =>
         v is num ? v.round() : (int.tryParse('${v ?? ''}') ?? 0);
 
-  // Convert the JSON response into a PestAnalysis object.
+    // Convert the JSON response into a PestAnalysis object.
     return PestAnalysis(
       isPepperPlant: j['is_pepper_plant'] == true,
 
