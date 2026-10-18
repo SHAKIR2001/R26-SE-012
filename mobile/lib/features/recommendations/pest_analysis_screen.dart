@@ -2,7 +2,6 @@
 
 import 'dart:typed_data';
 
-
 // Flutter Material UI package.
 import 'package:flutter/material.dart';
 
@@ -29,11 +28,13 @@ import 'remediation_engine.dart' show Market;
 class PestAnalysisScreen extends StatefulWidget {
   final Uint8List imageBytes;
   final Future<PestAnalysis>? prefetch;
+  final String? detectedClass;
   final String? historyRecordKey;
   const PestAnalysisScreen({
     super.key,
     required this.imageBytes,
     this.prefetch,
+    this.detectedClass,
     this.historyRecordKey,
   });
 
@@ -62,7 +63,12 @@ class _PestAnalysisScreenState extends State<PestAnalysisScreen> {
       _result = null;
     });
     try {
-      final r = await (_pending ?? _service.analyze(widget.imageBytes));
+      final r =
+          await (_pending ??
+              _service.analyze(
+                widget.imageBytes,
+                knownPest: widget.detectedClass,
+              ));
       _pending = null;
       if (!mounted) return;
       setState(() {
@@ -90,6 +96,8 @@ class _PestAnalysisScreenState extends State<PestAnalysisScreen> {
         recordKey: key,
         outcomeCode: !result.isPepperPlant
             ? 'not_target'
+            : result.isUncertain
+            ? 'uncertain'
             : result.healthy
             ? 'healthy'
             : 'detected',
@@ -133,6 +141,16 @@ class _PestAnalysisScreenState extends State<PestAnalysisScreen> {
         RetakeView(
           title: t.notPepperPlant,
           message: r.summary.isNotEmpty ? r.summary : t.pestRetryHint,
+          onRetake: () => Navigator.of(context).pop(),
+        ),
+      ];
+    }
+
+    if (r.isUncertain) {
+      return [
+        RetakeView(
+          title: t.pestUncertainTitle,
+          message: t.pestUncertainMessage,
           onRetake: () => Navigator.of(context).pop(),
         ),
       ];
