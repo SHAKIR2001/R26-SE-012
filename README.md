@@ -216,6 +216,12 @@ It performs the focused Phase 7 backend tests plus `flutter analyze` and
 14-day `phase7-backend-<commit>` delivery artifact containing the tracked
 FastAPI and ML runtime source.
 
+One real-image integration assertion uses an intentionally ignored V3 dataset
+image. It runs in complete local research checkouts and is reported as skipped
+in clean CI checkouts; the tracked upload, response-contract, readiness,
+rejection-first, retired-route, startup, and frozen-integrity tests remain
+mandatory in CI.
+
 The workflow does not automatically deploy to Railway or another production
 environment because no deployment target or credentials are defined. It also
 does not publish an APK: the three current pest/leaf/berry-disease TFLite assets

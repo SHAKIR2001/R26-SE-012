@@ -7,12 +7,18 @@ from __future__ import annotations
 import base64
 from pathlib import Path
 
+import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
 
 client = TestClient(app)
 TINY_PNG = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==")
+REAL_GRADE1_IMAGE = (
+    Path(__file__).resolve().parents[2]
+    / "data/raw/Pepper Berry Grading V3.yolov8/test/images/"
+    "20260508_160550_jpg.rf.BUF1sZWo8GvE4UCSfj74.jpg"
+)
 
 
 def _result(decision: str = "NO_PEPPER", category: str = "REJECT") -> dict:
@@ -164,10 +170,22 @@ def test_legacy_trading_endpoint_is_retired() -> None:
 
 
 def test_real_grade1_api_path() -> None:
-    # Verify a known Grade 1 image follows the real integrated API path.
-    root = Path(__file__).resolve().parents[2]
-    path = root / "data/raw/Pepper Berry Grading V3.yolov8/test/images/20260508_160550_jpg.rf.BUF1sZWo8GvE4UCSfj74.jpg"
-    response = client.post("/api/v1/grading-forecast/analyze", files={"image": (path.name, path.read_bytes(), "image/jpeg")})
+    # Run this real-image check only in research checkouts containing ignored data.
+    if not REAL_GRADE1_IMAGE.is_file():
+        pytest.skip(
+            "requires the ignored local V3 Grade 1 image; clean CI checkouts "
+            "exercise the tracked API contract tests only"
+        )
+    response = client.post(
+        "/api/v1/grading-forecast/analyze",
+        files={
+            "image": (
+                REAL_GRADE1_IMAGE.name,
+                REAL_GRADE1_IMAGE.read_bytes(),
+                "image/jpeg",
+            )
+        },
+    )
     assert response.status_code == 200
     body = response.json()
     assert body["grading"]["decision"] == "GRADE_1"

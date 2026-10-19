@@ -2,6 +2,8 @@
 # File: FastAPI application entry point
 # Purpose: Loads configuration, initializes Phase 7, and creates the web API.
 # =============================================================================
+import utils.transport
+import utils.session
 from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
