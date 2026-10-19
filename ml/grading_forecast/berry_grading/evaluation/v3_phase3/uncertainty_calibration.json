@@ -1,0 +1,996 @@
+{
+  "source": "V3 VALIDATION only; heuristic confidence and class-margin abstention, not probability calibration",
+  "selected": {
+    "grade_confidence": 0.05,
+    "grade_margin": 0.3,
+    "accepted": 111,
+    "rejected": 5,
+    "coverage": 0.9568965517241379,
+    "accepted_accuracy": 0.972972972972973,
+    "accepted_macro_f1": 0.9725360824742268,
+    "both_classes_accepted": true
+  },
+  "detection_threshold": 0.55,
+  "candidate_results": [
+    {
+      "grade_confidence": 0.05,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.05,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.05,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.05,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.05,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.05,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.05,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.1,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.1,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.1,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.1,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.1,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.1,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.1,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.15,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.15,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.15,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.15,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.15,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.15,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.15,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.2,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.2,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.2,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.2,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.2,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.2,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.2,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.25,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.25,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.25,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.25,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.25,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.25,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.25,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.3,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.3,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.3,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.3,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.3,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.3,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.3,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.35,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.35,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.35,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.35,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.35,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.35,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.35,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.4,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.4,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.4,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.4,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.4,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.4,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.4,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.5,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.5,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.5,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.5,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.5,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.5,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.5,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.6,
+      "grade_margin": 0.0,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.6,
+      "grade_margin": 0.05,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9568965517241379,
+      "accepted_macro_f1": 0.9561635552868264,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.6,
+      "grade_margin": 0.1,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.6,
+      "grade_margin": 0.15,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accepted_accuracy": 0.9565217391304348,
+      "accepted_macro_f1": 0.9558676797912349,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.6,
+      "grade_margin": 0.2,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accepted_accuracy": 0.9646017699115044,
+      "accepted_macro_f1": 0.9639668367346939,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.6,
+      "grade_margin": 0.25,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.6,
+      "grade_margin": 0.3,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.7,
+      "grade_margin": 0.0,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.7,
+      "grade_margin": 0.05,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.7,
+      "grade_margin": 0.1,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.7,
+      "grade_margin": 0.15,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.7,
+      "grade_margin": 0.2,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accepted_accuracy": 0.9642857142857143,
+      "accepted_macro_f1": 0.963718820861678,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.7,
+      "grade_margin": 0.25,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accepted_accuracy": 0.963963963963964,
+      "accepted_macro_f1": 0.9634628044766294,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.7,
+      "grade_margin": 0.3,
+      "accepted": 110,
+      "rejected": 6,
+      "coverage": 0.9482758620689655,
+      "accepted_accuracy": 0.9727272727272728,
+      "accepted_macro_f1": 0.9723409605230073,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.8,
+      "grade_margin": 0.0,
+      "accepted": 99,
+      "rejected": 17,
+      "coverage": 0.853448275862069,
+      "accepted_accuracy": 0.98989898989899,
+      "accepted_macro_f1": 0.9898617511520738,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.8,
+      "grade_margin": 0.05,
+      "accepted": 99,
+      "rejected": 17,
+      "coverage": 0.853448275862069,
+      "accepted_accuracy": 0.98989898989899,
+      "accepted_macro_f1": 0.9898617511520738,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.8,
+      "grade_margin": 0.1,
+      "accepted": 99,
+      "rejected": 17,
+      "coverage": 0.853448275862069,
+      "accepted_accuracy": 0.98989898989899,
+      "accepted_macro_f1": 0.9898617511520738,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.8,
+      "grade_margin": 0.15,
+      "accepted": 99,
+      "rejected": 17,
+      "coverage": 0.853448275862069,
+      "accepted_accuracy": 0.98989898989899,
+      "accepted_macro_f1": 0.9898617511520738,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.8,
+      "grade_margin": 0.2,
+      "accepted": 99,
+      "rejected": 17,
+      "coverage": 0.853448275862069,
+      "accepted_accuracy": 0.98989898989899,
+      "accepted_macro_f1": 0.9898617511520738,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.8,
+      "grade_margin": 0.25,
+      "accepted": 99,
+      "rejected": 17,
+      "coverage": 0.853448275862069,
+      "accepted_accuracy": 0.98989898989899,
+      "accepted_macro_f1": 0.9898617511520738,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.8,
+      "grade_margin": 0.3,
+      "accepted": 99,
+      "rejected": 17,
+      "coverage": 0.853448275862069,
+      "accepted_accuracy": 0.98989898989899,
+      "accepted_macro_f1": 0.9898617511520738,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.85,
+      "grade_margin": 0.0,
+      "accepted": 94,
+      "rejected": 22,
+      "coverage": 0.8103448275862069,
+      "accepted_accuracy": 0.9893617021276596,
+      "accepted_macro_f1": 0.9893508553302368,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.85,
+      "grade_margin": 0.05,
+      "accepted": 94,
+      "rejected": 22,
+      "coverage": 0.8103448275862069,
+      "accepted_accuracy": 0.9893617021276596,
+      "accepted_macro_f1": 0.9893508553302368,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.85,
+      "grade_margin": 0.1,
+      "accepted": 94,
+      "rejected": 22,
+      "coverage": 0.8103448275862069,
+      "accepted_accuracy": 0.9893617021276596,
+      "accepted_macro_f1": 0.9893508553302368,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.85,
+      "grade_margin": 0.15,
+      "accepted": 94,
+      "rejected": 22,
+      "coverage": 0.8103448275862069,
+      "accepted_accuracy": 0.9893617021276596,
+      "accepted_macro_f1": 0.9893508553302368,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.85,
+      "grade_margin": 0.2,
+      "accepted": 94,
+      "rejected": 22,
+      "coverage": 0.8103448275862069,
+      "accepted_accuracy": 0.9893617021276596,
+      "accepted_macro_f1": 0.9893508553302368,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.85,
+      "grade_margin": 0.25,
+      "accepted": 94,
+      "rejected": 22,
+      "coverage": 0.8103448275862069,
+      "accepted_accuracy": 0.9893617021276596,
+      "accepted_macro_f1": 0.9893508553302368,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.85,
+      "grade_margin": 0.3,
+      "accepted": 94,
+      "rejected": 22,
+      "coverage": 0.8103448275862069,
+      "accepted_accuracy": 0.9893617021276596,
+      "accepted_macro_f1": 0.9893508553302368,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.9,
+      "grade_margin": 0.0,
+      "accepted": 71,
+      "rejected": 45,
+      "coverage": 0.6120689655172413,
+      "accepted_accuracy": 1.0,
+      "accepted_macro_f1": 1.0,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.9,
+      "grade_margin": 0.05,
+      "accepted": 71,
+      "rejected": 45,
+      "coverage": 0.6120689655172413,
+      "accepted_accuracy": 1.0,
+      "accepted_macro_f1": 1.0,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.9,
+      "grade_margin": 0.1,
+      "accepted": 71,
+      "rejected": 45,
+      "coverage": 0.6120689655172413,
+      "accepted_accuracy": 1.0,
+      "accepted_macro_f1": 1.0,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.9,
+      "grade_margin": 0.15,
+      "accepted": 71,
+      "rejected": 45,
+      "coverage": 0.6120689655172413,
+      "accepted_accuracy": 1.0,
+      "accepted_macro_f1": 1.0,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.9,
+      "grade_margin": 0.2,
+      "accepted": 71,
+      "rejected": 45,
+      "coverage": 0.6120689655172413,
+      "accepted_accuracy": 1.0,
+      "accepted_macro_f1": 1.0,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.9,
+      "grade_margin": 0.25,
+      "accepted": 71,
+      "rejected": 45,
+      "coverage": 0.6120689655172413,
+      "accepted_accuracy": 1.0,
+      "accepted_macro_f1": 1.0,
+      "both_classes_accepted": true
+    },
+    {
+      "grade_confidence": 0.9,
+      "grade_margin": 0.3,
+      "accepted": 71,
+      "rejected": 45,
+      "coverage": 0.6120689655172413,
+      "accepted_accuracy": 1.0,
+      "accepted_macro_f1": 1.0,
+      "both_classes_accepted": true
+    }
+  ]
+}

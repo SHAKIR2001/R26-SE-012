@@ -1,0 +1,123 @@
+{
+  "phase": 5,
+  "validated_on": "2026-10-07",
+  "passed": true,
+  "checks": [
+    {
+      "check": "phase4_canonical_unchanged",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "phase4_results_report_unchanged",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "phase4_audit_report_unchanged",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "no_out_of_scope_worktree_changes",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "v3_images_match_phase1_sha256",
+      "passed": true,
+      "details": "images_checked=775"
+    },
+    {
+      "check": "v3_annotations_match_phase1_manifest",
+      "passed": true,
+      "details": "labels_checked=775"
+    },
+    {
+      "check": "canonical_has_no_duplicate_national_grade_rows",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "canonical_grade2_not_fabricated",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "target_dates_strictly_future",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "targets_match_next_observed_price",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "return_lags_are_backward_looking",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "no_random_split",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "no_full_dataset_scaling",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "validation_only_model_selection",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "minimum_training_window_respected",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "selected_test_and_external_present",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "persistence_in_all_evaluation_partitions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "required_artifacts_present",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "phase6_not_implemented",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "changed_paths": [
+    "docs/research/EXPERIMENT_LOG.md",
+    "docs/research/PHASE5_PRICE_FORECASTING_RESULTS.md",
+    "ml/grading_forecast/price_forecasting/phase5/data/phase5_modeling_dataset.csv",
+    "ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/01_historical_prices.png",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/02_historical_returns.png",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/03_selected_actual_vs_forecast_price.png",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/04_predicted_vs_actual_returns.png",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/05_validation_model_comparison.png",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/06_direction_confusion_matrix.png",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/07_external_reality_check.png",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/external_reality_check_selected.csv",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/phase5_forecasting_metrics.json",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/selected_error_analysis.csv",
+    "ml/grading_forecast/price_forecasting/phase5/outputs/walk_forward_predictions.csv",
+    "ml/grading_forecast/price_forecasting/phase5/phase5_config.yaml",
+    "ml/grading_forecast/price_forecasting/phase5/scripts/run_phase5_experiments.py",
+    "ml/grading_forecast/price_forecasting/phase5/scripts/validate_phase5_integrity.py"
+  ],
+  "verification_boundary": "Content hashes protect Phase 4 reports/canonical data; Phase 1 hashes and annotation values protect all 775 V3 images/labels; Git worktree scope protects tracked V2, berry, backend, and mobile files."
+}

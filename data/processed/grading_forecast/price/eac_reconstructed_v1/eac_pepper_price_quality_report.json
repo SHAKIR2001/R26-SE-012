@@ -1,0 +1,289 @@
+{
+  "dataset_version": "eac_reconstructed_v1",
+  "created_on": "2026-10-07",
+  "source": "DEA Sri Lanka Economic Research Unit - Producers' Prices (Farm Gate) of EAC",
+  "source_index_url": "https://exagri.info/mkt/index.html",
+  "raw_reconstruction_file": "data/raw/market_prices/eac_phase4/dea_eac_pepper_observations_retrieved_2026-10-07.csv",
+  "raw_reconstruction_sha256": "bc2f3f9d5fb329976aa7aed11e7e3d21a4aa5975373075e302203260bef5ce62",
+  "canonical_sha256": "ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6",
+  "date_range": {
+    "start": "2016-10-04",
+    "end": "2026-09-29"
+  },
+  "observation_count": 16903,
+  "source_dates": 493,
+  "grade_observation_rows": {
+    "Grade 1": 14529,
+    "Grade 2": 2374
+  },
+  "national_average": {
+    "g1_observations": 493,
+    "g2_observations": 358,
+    "dates_with_both": 358,
+    "missing_g1_dates_relative_to_union": 0,
+    "missing_g2_dates_relative_to_union": 135,
+    "latest_g1_date": "2026-09-29",
+    "latest_g2_date": "2026-09-29",
+    "prices": {
+      "Grade 1": {
+        "count": 493,
+        "minimum": 431.21,
+        "maximum": 2119.71,
+        "mean": 1218.086551724138,
+        "median": 1138.77
+      },
+      "Grade 2": {
+        "count": 358,
+        "minimum": 370.0,
+        "maximum": 2025.0,
+        "mean": 1144.8427932960892,
+        "median": 1085.5
+      }
+    },
+    "observations_by_year_and_grade": {
+      "2016": {
+        "Grade 1": 14,
+        "Grade 2": 14
+      },
+      "2017": {
+        "Grade 1": 51,
+        "Grade 2": 51
+      },
+      "2018": {
+        "Grade 1": 52,
+        "Grade 2": 52
+      },
+      "2019": {
+        "Grade 1": 51,
+        "Grade 2": 51
+      },
+      "2020": {
+        "Grade 1": 47,
+        "Grade 2": 18
+      },
+      "2021": {
+        "Grade 1": 41,
+        "Grade 2": 5
+      },
+      "2022": {
+        "Grade 1": 48,
+        "Grade 2": 6
+      },
+      "2023": {
+        "Grade 1": 51,
+        "Grade 2": 27
+      },
+      "2024": {
+        "Grade 1": 51,
+        "Grade 2": 48
+      },
+      "2025": {
+        "Grade 1": 51,
+        "Grade 2": 51
+      },
+      "2026": {
+        "Grade 1": 36,
+        "Grade 2": 35
+      }
+    },
+    "intervals_by_grade": {
+      "Grade 1": {
+        "observation_dates": 493,
+        "interval_count": 492,
+        "minimum_days": 3,
+        "maximum_days": 49,
+        "mean_days": 7.412601626016261,
+        "median_days": 7.0,
+        "gaps_over_14_days": [
+          {
+            "from": "2020-03-10",
+            "to": "2020-04-21",
+            "days": 42
+          },
+          {
+            "from": "2021-05-18",
+            "to": "2021-06-22",
+            "days": 35
+          },
+          {
+            "from": "2021-08-17",
+            "to": "2021-10-05",
+            "days": 49
+          }
+        ]
+      },
+      "Grade 2": {
+        "observation_dates": 358,
+        "interval_count": 357,
+        "minimum_days": 3,
+        "maximum_days": 231,
+        "mean_days": 10.215686274509803,
+        "median_days": 7.0,
+        "gaps_over_14_days": [
+          {
+            "from": "2020-03-10",
+            "to": "2020-04-28",
+            "days": 49
+          },
+          {
+            "from": "2020-04-28",
+            "to": "2020-06-02",
+            "days": 35
+          },
+          {
+            "from": "2020-06-23",
+            "to": "2020-07-14",
+            "days": 21
+          },
+          {
+            "from": "2020-07-14",
+            "to": "2020-08-04",
+            "days": 21
+          },
+          {
+            "from": "2020-08-04",
+            "to": "2020-09-15",
+            "days": 42
+          },
+          {
+            "from": "2020-09-15",
+            "to": "2020-11-10",
+            "days": 56
+          },
+          {
+            "from": "2020-11-10",
+            "to": "2021-01-19",
+            "days": 70
+          },
+          {
+            "from": "2021-01-19",
+            "to": "2021-03-02",
+            "days": 42
+          },
+          {
+            "from": "2021-03-16",
+            "to": "2021-11-02",
+            "days": 231
+          },
+          {
+            "from": "2021-11-02",
+            "to": "2022-03-08",
+            "days": 126
+          },
+          {
+            "from": "2022-03-08",
+            "to": "2022-06-07",
+            "days": 91
+          },
+          {
+            "from": "2022-06-07",
+            "to": "2022-12-05",
+            "days": 181
+          },
+          {
+            "from": "2023-02-07",
+            "to": "2023-05-09",
+            "days": 91
+          },
+          {
+            "from": "2023-05-30",
+            "to": "2023-07-11",
+            "days": 42
+          },
+          {
+            "from": "2023-07-25",
+            "to": "2023-08-15",
+            "days": 21
+          },
+          {
+            "from": "2023-10-24",
+            "to": "2023-11-14",
+            "days": 21
+          },
+          {
+            "from": "2024-06-11",
+            "to": "2024-07-02",
+            "days": 21
+          }
+        ]
+      }
+    }
+  },
+  "duplicates": {
+    "canonical_key_duplicates": 0,
+    "duplicate_source_urls": 0,
+    "duplicate_page_hashes": 0
+  },
+  "source_completeness": {
+    "dated_index_links": 495,
+    "parsed_pages": 493,
+    "broken_index_links": [
+      "2023-04-25",
+      "2026-06-23"
+    ],
+    "limitation": "The canonical dataset contains only observations present on successfully retrieved public pages. Broken index links remain missing and were not interpolated."
+  },
+  "missing_data_policy": "No rows are created for source dashes or missing pages; no Grade 2 discount, fill, interpolation, or resampling is used.",
+  "old_local_artifact": {
+    "rows": 7742,
+    "start": "2021-02-22",
+    "end": "2026-08-18",
+    "sha256": "eb43d39f4daed4abf8074e0d93b6da9d55e5f3741d921bf5969bd3de2f7fd9b1"
+  },
+  "newer_than_old_cutoff": {
+    "cutoff": "2026-08-18",
+    "source_dates": [
+      "2026-08-25",
+      "2026-09-01",
+      "2026-09-08",
+      "2026-09-15",
+      "2026-09-29"
+    ],
+    "observations_by_grade": {
+      "Grade 1": 5,
+      "Grade 2": 5
+    }
+  },
+  "split": {
+    "policy": "shared chronological target-date boundaries; newest dates after old local cutoff reserved externally",
+    "old_local_cutoff": "2026-08-18",
+    "train_last_target_date": "2023-09-19",
+    "validation_last_target_date": "2025-02-25",
+    "test_last_target_date": "2026-08-18",
+    "rows_by_partition_and_grade": {
+      "EXTERNAL_NEWEST": {
+        "Grade 1": 5,
+        "Grade 2": 5
+      },
+      "NO_TARGET": {
+        "Grade 1": 1,
+        "Grade 2": 1
+      },
+      "TEST": {
+        "Grade 1": 74,
+        "Grade 2": 73
+      },
+      "TRAIN": {
+        "Grade 1": 340,
+        "Grade 2": 213
+      },
+      "VALIDATION": {
+        "Grade 1": 73,
+        "Grade 2": 66
+      }
+    }
+  },
+  "reproducibility": {
+    "python": "3.13.14",
+    "pandas": "3.0.1",
+    "numpy": "2.4.3",
+    "seed": 42
+  },
+  "integrity": {
+    "no_fabricated_grade2": true,
+    "no_resampling": true,
+    "no_interpolation": true,
+    "no_random_split": true,
+    "features_are_current_or_backward_looking": true
+  }
+}

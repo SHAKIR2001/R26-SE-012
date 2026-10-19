@@ -1,0 +1,8 @@
+path: D:/work/Year - 4/pepper/project/multimodal-pepper-ai-decision-support/data/processed/grading_forecast/berry_v3/yolo_phase2/materialized
+train: train/images
+val: validation/images
+test: test/images
+names:
+  0: V3 Grade 1
+  1: V3 Grade 2
+nc: 2

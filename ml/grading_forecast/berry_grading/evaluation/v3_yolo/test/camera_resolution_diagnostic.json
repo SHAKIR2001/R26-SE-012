@@ -1,0 +1,34 @@
+{
+  "partition": "TEST",
+  "camera_model": {
+    "Galaxy A06": {
+      "images": 24,
+      "class_support": {"V3 Grade 1": 24, "V3 Grade 2": 0},
+      "accuracy": 1.0,
+      "interpretation": "Not class-comparable because this test subgroup contains only V3 Grade 1."
+    },
+    "SM-A127F": {
+      "images": 96,
+      "class_support": {"V3 Grade 1": 44, "V3 Grade 2": 52},
+      "accuracy": 0.9479166666666666,
+      "macro_f1": 0.9472237493128093,
+      "confusion_matrix": [[40, 4, 0], [1, 51, 0]]
+    }
+  },
+  "resolution": {
+    "4080x3060": {
+      "images": 24,
+      "class_support": {"V3 Grade 1": 24, "V3 Grade 2": 0},
+      "accuracy": 1.0,
+      "interpretation": "Not class-comparable because this resolution subgroup contains only V3 Grade 1."
+    },
+    "4000x3000": {
+      "images": 96,
+      "class_support": {"V3 Grade 1": 44, "V3 Grade 2": 52},
+      "accuracy": 0.9479166666666666,
+      "macro_f1": 0.9472237493128093,
+      "confusion_matrix": [[40, 4, 0], [1, 51, 0]]
+    }
+  },
+  "conclusion": "The balanced SM-A127F/4000x3000 subgroup performed strongly, but Galaxy A06/4080x3060 remains perfectly confounded with V3 Grade 1 in TEST. Phase 2 therefore does not resolve the Phase 1 high shortcut risk."
+}

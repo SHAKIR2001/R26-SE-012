@@ -3,6 +3,10 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
+import '../../l10n/app_localizations.dart';
+import '../../shared/class_labels.dart';
+import '../history/history_scope.dart';
+import '../history/serialization/history_payload_codec.dart';
 import 'analysis_ui.dart';
 import 'ai_errors.dart';
 import 'ai_leaf_service.dart';
@@ -16,10 +20,15 @@ import 'leaf_analysis.dart';
 class LeafAnalysisScreen extends StatefulWidget {
   final Uint8List imageBytes;
   final Future<LeafAnalysis>? prefetch;
+  final String? detectedClass;
+  final String? historyRecordKey;
+
   const LeafAnalysisScreen({
     super.key,
     required this.imageBytes,
     this.prefetch,
+    this.detectedClass,
+    this.historyRecordKey,
   });
 
   @override
@@ -49,30 +58,60 @@ class _LeafAnalysisScreenState extends State<LeafAnalysisScreen> {
       _result = null;
     });
     try {
-      final r = await (_pending ?? _service.analyze(widget.imageBytes));
-      _pending = null; // a retry re-calls the service instead of the dead future
+      final r =
+          await (_pending ??
+              _service.analyze(
+                widget.imageBytes,
+                knownDisease: widget.detectedClass,
+              ));
+      _pending =
+          null; // a retry re-calls the service instead of the dead future
       if (!mounted) return;
       if (!mounted) return;
       setState(() {
         _result = r;
         _loading = false;
       });
+      await _saveHistory(r);
     } catch (e, st) {
       logAiError('leaf-analysis', e, st);
       if (!mounted) return;
       setState(() {
-        _error = friendlyAiMessage(e);
+        _error = friendlyAiMessage(e, AppLocalizations.of(context));
         _loading = false;
       });
     }
   }
 
-  // Builds the shared analysis layout with the selected leaf image and results.
+  Future<void> _saveHistory(LeafAnalysis result) async {
+    final key = widget.historyRecordKey;
+    final repository = HistoryScope.maybeOf(context);
+    if (key == null || repository == null) return;
+    try {
+      await repository.enrich(
+        recordKey: key,
+        outcomeCode: !result.isPepperLeaf
+            ? 'not_target'
+            : result.healthy
+            ? 'healthy'
+            : 'detected',
+        primaryClassCode: result.diseaseType,
+        resultSchemaVersion: HistoryPayloadCodec.schemaVersion,
+        resultJson: HistoryPayloadCodec.leaf(result),
+      );
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).historySaveFailed)),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnalysisScaffold(
       imageBytes: widget.imageBytes,
-      title: 'Leaf analysis',
+      title: AppLocalizations.of(context).leafAnalysisTitle,
       titleIcon: IconlyBold.activity,
       children: _body(),
     );
@@ -80,8 +119,9 @@ class _LeafAnalysisScreenState extends State<LeafAnalysisScreen> {
 
   // Selects the appropriate content for the current loading, error, or result state.
   List<Widget> _body() {
+    final t = AppLocalizations.of(context);
     if (_loading) {
-      return const [LoadingView(message: 'Analysing leaf with AI…')];
+      return [LoadingView(message: t.analysingLeaf)];
     }
     if (_error != null) {
       return [ErrorView(message: _error!, onRetry: _run)];
@@ -91,94 +131,119 @@ class _LeafAnalysisScreenState extends State<LeafAnalysisScreen> {
 
   // Builds the appropriate result widgets from the completed leaf analysis.
   List<Widget> _resultBody(LeafAnalysis r) {
+    final t = AppLocalizations.of(context);
     if (!r.isPepperLeaf) {
       return [
         RetakeView(
-          title: "This doesn't look like a pepper leaf",
-          message: r.summary.isNotEmpty
-              ? r.summary
-              : 'Fill the frame with a single leaf in good light and try again.',
+          title: t.notPepperLeaf,
+          message: r.summary.isNotEmpty ? r.summary : t.leafRetryHint,
           onRetake: () => Navigator.of(context).pop(),
         ),
       ];
     }
 
-    // Choose the result accent color from the leaf's health and severity status.
-    final accent = r.healthy ? kBrand : bandColor(r.severityBand);
+    final accent = r.healthy
+        ? Theme.of(context).colorScheme.primary
+        : bandColor(context, r.severityBand);
     final sev = r.severityPercentage ?? 0;
+    final infoColor = AppStatusColors.of(context).info;
 
     // Assemble the diagnosis summary and supporting detail sections.
     return [
       // headline
-      Row(children: [
-        Icon(r.healthy ? IconlyBold.shield_done : IconlyBold.danger,
-            color: accent, size: 30),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(r.healthy ? 'Healthy leaf' : r.diseaseType,
-                  style: TextStyle(
-                      fontSize: 22, fontWeight: FontWeight.w800, color: kText)),
-              if (r.summary.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(r.summary,
-                      style: TextStyle(color: kTextSub, height: 1.35)),
-                ),
-            ],
-          ),
-        ),
-      ]),
-    
-      // =====================================================
-      // SEVERITY AND CONFIDENCE
-      // =====================================================
-
-      // Display severity percentage and AI confidence side by side
-      const SizedBox(height: 18),
-      Row(children: [
-        Expanded(
-          child: StatTile(
-            icon: IconlyBold.chart,
-            label: 'Severity',
+      Row(
+        children: [
+          Icon(
+            r.healthy ? IconlyBold.shield_done : IconlyBold.danger,
             color: accent,
-            value: r.healthy
-                ? const Text('—',
-                    style: TextStyle(
-                        fontSize: 28, fontWeight: FontWeight.w800, color: kBrand))
-                : CountUp(sev,
-                    suffix: '%',
-                    style: TextStyle(
+            size: 32,
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  r.healthy
+                      ? t.healthyLeaf
+                      : localizedClassName(r.diseaseType, t),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: kText,
+                  ),
+                ),
+                if (r.summary.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Text(
+                      r.summary,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: kTextSub,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+
+      const SizedBox(height: 20),
+      Row(
+        children: [
+          Expanded(
+            child: StatTile(
+              icon: IconlyBold.chart,
+              label: t.severity,
+              color: accent,
+              value: r.healthy
+                  ? Text(
+                      '—',
+                      style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w800,
-                        color: accent)),
-            sub: r.severityBand.toUpperCase(),
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    )
+                  : CountUp(
+                      sev,
+                      suffix: '%',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w800,
+                        color: accent,
+                      ),
+                    ),
+              sub: r.severityBand.toUpperCase(),
+            ),
           ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: StatTile(
-            icon: IconlyBold.activity,
-            label: 'Confidence',
-            color: const Color(0xFF3B82F6),
-            value: CountUp(r.confidence * 100,
+          const SizedBox(width: 14),
+          Expanded(
+            child: StatTile(
+              icon: IconlyBold.activity,
+              label: t.confidence,
+              color: infoColor,
+              value: CountUp(
+                r.confidence * 100,
                 suffix: '%',
-                style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF3B82F6))),
-            sub: _conf(r.confidence),
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  color: infoColor,
+                ),
+              ),
+              sub: _conf(r.confidence, t),
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
 
       if (!r.healthy && sev > 0) ...[
-        const SizedBox(height: 16),
+        const SizedBox(height: 18),
         AnimatedBar(fraction: sev / 100, color: accent),
       ],
-    
+
       // =====================================================
       // AFFECTED REGIONS
       // =====================================================
@@ -187,9 +252,13 @@ class _LeafAnalysisScreenState extends State<LeafAnalysisScreen> {
       if (r.affectedRegions.isNotEmpty)
         SectionCard(
           icon: IconlyBold.show,
-          title: 'What we see',
-          child: Text(r.affectedRegions,
-              style: TextStyle(color: kTextSub, height: 1.45)),
+          title: t.whatWeSee,
+          child: Text(
+            r.affectedRegions,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: kTextSub, height: 1.48),
+          ),
         ),
 
       // =====================================================
@@ -201,35 +270,46 @@ class _LeafAnalysisScreenState extends State<LeafAnalysisScreen> {
       if (r.treatments.isNotEmpty)
         SectionCard(
           icon: IconlyBold.shield_done,
-          title: 'Recommended treatment',
+          title: t.recommendedTreatment,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               for (int i = 0; i < r.treatments.length; i++)
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
+                  padding: const EdgeInsets.only(bottom: 14),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 24,
-                        height: 24,
+                        width: 26,
+                        height: 26,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: accent.withValues(alpha: 0.15),
+                          color: accent.withValues(
+                            alpha:
+                                Theme.of(context).brightness == Brightness.dark
+                                ? 0.25
+                                : 0.15,
+                          ),
                           shape: BoxShape.circle,
                         ),
-                        child: Text('${i + 1}',
-                            style: TextStyle(
-                                fontSize: 12,
-                                color: accent,
-                                fontWeight: FontWeight.w800)),
+                        child: Text(
+                          '${i + 1}',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: accent,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: 14),
                       Expanded(
-                          child: Text(r.treatments[i],
-                              style: TextStyle(
-                                  height: 1.4, color: kText))),
+                        child: Text(
+                          r.treatments[i],
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(height: 1.45, color: kText),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -237,40 +317,25 @@ class _LeafAnalysisScreenState extends State<LeafAnalysisScreen> {
           ),
         ),
 
-      // =====================================================
-      // AI DISCLAIMER
-      // =====================================================
-
-      // Inform the farmer that the result is only an AI estimate
-      // and professional confirmation is recommended
-
-      const InfoCard(
+      InfoCard(
         icon: IconlyBold.info_circle,
-        color: Color(0xFF64748B),
-        text:
-            'AI estimate from one photo. Confirm with a local agronomist before '
-            'applying chemical treatments.',
+        color: Theme.of(context).colorScheme.outline,
+        text: t.leafDisclaimer,
       ),
 
-      const SizedBox(height: 18),
-      // =====================================================
-      // RETAKE BUTTON
-      // =====================================================
-
-      // Return to the previous screen so the user can
-      // capture and analyse another leaf image
+      const SizedBox(height: 20),
       FilledButton.icon(
         onPressed: () => Navigator.of(context).pop(),
         style: FilledButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 14),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           shape: const StadiumBorder(),
         ),
-        icon: const Icon(IconlyLight.camera, size: 18),
-        label: const Text('Take another photo'),
+        icon: const Icon(IconlyLight.camera, size: 20),
+        label: Text(t.takeAnotherPhoto),
       ),
     ];
   }
 
-// Converts the AI confidence value into an easy-to-understand label
-  String _conf(double c) => c >= 0.75 ? 'High' : (c >= 0.5 ? 'Medium' : 'Low');
+  String _conf(double c, AppLocalizations t) =>
+      c >= 0.75 ? t.high : (c >= 0.5 ? t.medium : t.low);
 }

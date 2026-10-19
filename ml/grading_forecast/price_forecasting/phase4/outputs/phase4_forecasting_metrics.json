@@ -1,0 +1,1732 @@
+{
+  "phase": 4,
+  "created_on": "2026-10-07",
+  "seed": 42,
+  "primary_target": "next-observation percentage return",
+  "forecast_horizon": "next observed DEA/EAC market observation; intervals retained as observed",
+  "flat_rule": "Actual FLAT means exact equality in published source prices; predicted FLAT means derived price equals reference after rounding both to the source precision of 0.01 LKR.",
+  "feature_set": [
+    "price_lkr_per_kg",
+    "price_lag_1",
+    "price_lag_2",
+    "return",
+    "return_lag_1",
+    "rolling_price_mean_3",
+    "rolling_return_std_3",
+    "days_since_previous_observation"
+  ],
+  "feature_timing": "All features are current or backward-looking at the reference date.",
+  "walk_forward_rule": "For each forecast origin, fit only rows whose target observation date is on or before that origin.",
+  "model_candidates": {
+    "separate_ridge": {
+      "formulation": "separate",
+      "algorithm": "ridge",
+      "alpha": 1.0
+    },
+    "separate_random_forest": {
+      "formulation": "separate",
+      "algorithm": "random_forest",
+      "n_estimators": 100,
+      "max_depth": 5,
+      "min_samples_leaf": 5
+    },
+    "shared_ridge": {
+      "formulation": "shared",
+      "algorithm": "ridge",
+      "alpha": 1.0
+    },
+    "shared_random_forest": {
+      "formulation": "shared",
+      "algorithm": "random_forest",
+      "n_estimators": 100,
+      "max_depth": 5,
+      "min_samples_leaf": 5
+    }
+  },
+  "baselines": [
+    "zero_return_persistence",
+    "last_observed_return",
+    "expanding_mean_return"
+  ],
+  "selection_metric": "lowest validation macro-average of per-grade return RMSE",
+  "selected_ml_candidate": "separate_ridge",
+  "selected_ml_candidate_configuration": {
+    "formulation": "separate",
+    "algorithm": "ridge",
+    "alpha": 1.0
+  },
+  "selected_ml_beats_persistence_on_validation": false,
+  "forecasting_decision": "No tested ML model demonstrated validation improvement over persistence; the best ML candidate is retained for transparent final comparison, not adopted as a superior final forecaster.",
+  "validation": {
+    "expanding_mean_return": {
+      "overall": {
+        "observations": 139,
+        "return_mae": 0.030826052537714078,
+        "return_rmse": 0.050153049022043567,
+        "return_r2": -0.012400220883190594,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.5035971223021583,
+        "nonflat_up_down_directional_accuracy": 0.5343511450381679,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            0,
+            0,
+            61
+          ],
+          [
+            0,
+            0,
+            8
+          ],
+          [
+            0,
+            0,
+            70
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 50.11967886116252,
+        "derived_price_rmse_lkr_per_kg": 79.90517220738097,
+        "derived_price_mape_percent": 3.144186330052635
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 73,
+          "return_mae": 0.01174504540374654,
+          "return_rmse": 0.01630026587995018,
+          "return_r2": -0.03326398610651071,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.5205479452054794,
+          "nonflat_up_down_directional_accuracy": 0.5205479452054794,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              35
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              38
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 20.746529415452667,
+          "derived_price_rmse_lkr_per_kg": 28.160305548832678,
+          "derived_price_mape_percent": 1.1746076554406515
+        },
+        "Grade 2": {
+          "observations": 66,
+          "return_mae": 0.05193080285255697,
+          "return_rmse": 0.0707358117903874,
+          "return_r2": -0.011274865945784418,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.48484848484848486,
+          "nonflat_up_down_directional_accuracy": 0.5517241379310345,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              26
+            ],
+            [
+              0,
+              0,
+              8
+            ],
+            [
+              0,
+              0,
+              32
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 82.60816233899311,
+          "derived_price_rmse_lkr_per_kg": 112.11486769159228,
+          "derived_price_mape_percent": 5.322659712578007
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.04351803883516879
+    },
+    "last_observed_return": {
+      "overall": {
+        "observations": 139,
+        "return_mae": 0.04917329826367981,
+        "return_rmse": 0.08639470784657899,
+        "return_r2": -2.0042206731380205,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.4892086330935252,
+        "nonflat_up_down_directional_accuracy": 0.5190839694656488,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            30,
+            3,
+            28
+          ],
+          [
+            4,
+            0,
+            4
+          ],
+          [
+            27,
+            5,
+            38
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 79.30455806223846,
+        "derived_price_rmse_lkr_per_kg": 139.40163854972025,
+        "derived_price_mape_percent": 4.974890054898605
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 73,
+          "return_mae": 0.013313942671809647,
+          "return_rmse": 0.01856484700112129,
+          "return_r2": -0.340308168972997,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.6301369863013698,
+          "nonflat_up_down_directional_accuracy": 0.6301369863013698,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              22,
+              0,
+              13
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              14,
+              0,
+              24
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 23.58947979547718,
+          "derived_price_rmse_lkr_per_kg": 32.53194931867433,
+          "derived_price_mape_percent": 1.32948482622221
+        },
+        "Grade 2": {
+          "observations": 66,
+          "return_mae": 0.0888359188425665,
+          "return_rmse": 0.12384879722423565,
+          "return_r2": -2.1000886702275796,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.3333333333333333,
+          "nonflat_up_down_directional_accuracy": 0.3793103448275862,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              8,
+              3,
+              15
+            ],
+            [
+              4,
+              0,
+              4
+            ],
+            [
+              13,
+              5,
+              14
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 140.92881129668655,
+          "derived_price_rmse_lkr_per_kg": 199.38935624709708,
+          "derived_price_mape_percent": 9.006929171464922
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.07120682211267847
+    },
+    "separate_random_forest": {
+      "overall": {
+        "observations": 139,
+        "return_mae": 0.03548486070125911,
+        "return_rmse": 0.05485822132956303,
+        "return_r2": -0.21127009288550047,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.48201438848920863,
+        "nonflat_up_down_directional_accuracy": 0.5114503816793893,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            42,
+            0,
+            19
+          ],
+          [
+            4,
+            0,
+            4
+          ],
+          [
+            45,
+            0,
+            25
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 57.183784845906025,
+        "derived_price_rmse_lkr_per_kg": 85.38695886715459,
+        "derived_price_mape_percent": 3.5863853365895775
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 73,
+          "return_mae": 0.012307780405382874,
+          "return_rmse": 0.015785765334284385,
+          "return_r2": 0.030934347770814608,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.547945205479452,
+          "nonflat_up_down_directional_accuracy": 0.547945205479452,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              23,
+              0,
+              12
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              21,
+              0,
+              17
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 21.710470524057182,
+          "derived_price_rmse_lkr_per_kg": 27.44283619107832,
+          "derived_price_mape_percent": 1.2274367366803376
+        },
+        "Grade 2": {
+          "observations": 66,
+          "return_mae": 0.06112011618003131,
+          "return_rmse": 0.07786148344975996,
+          "return_r2": -0.22528150216036913,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.4090909090909091,
+          "nonflat_up_down_directional_accuracy": 0.46551724137931033,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              19,
+              0,
+              7
+            ],
+            [
+              4,
+              0,
+              4
+            ],
+            [
+              24,
+              0,
+              8
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 96.41942038370854,
+          "derived_price_rmse_lkr_per_kg": 120.50793232079658,
+          "derived_price_mape_percent": 6.195525454671009
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.04682362439202217
+    },
+    "separate_ridge": {
+      "overall": {
+        "observations": 139,
+        "return_mae": 0.033764605392553874,
+        "return_rmse": 0.049918273105055415,
+        "return_r2": -0.0029439319646227258,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.460431654676259,
+        "nonflat_up_down_directional_accuracy": 0.48854961832061067,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            44,
+            1,
+            16
+          ],
+          [
+            6,
+            0,
+            2
+          ],
+          [
+            50,
+            0,
+            20
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 54.60643839738468,
+        "derived_price_rmse_lkr_per_kg": 78.65111547552553,
+        "derived_price_mape_percent": 3.3965774178169443
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 73,
+          "return_mae": 0.013688944669052803,
+          "return_rmse": 0.019057511415620478,
+          "return_r2": -0.41238889065918527,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.4246575342465753,
+          "nonflat_up_down_directional_accuracy": 0.4246575342465753,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              22,
+              1,
+              12
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              29,
+              0,
+              9
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 24.04171148341673,
+          "derived_price_rmse_lkr_per_kg": 32.709228432865366,
+          "derived_price_mape_percent": 1.3628722228924435
+        },
+        "Grade 2": {
+          "observations": 66,
+          "return_mae": 0.05596950285945657,
+          "return_rmse": 0.06961497427538328,
+          "return_r2": 0.02051934397830657,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.5,
+          "nonflat_up_down_directional_accuracy": 0.5689655172413793,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              22,
+              0,
+              4
+            ],
+            [
+              6,
+              0,
+              2
+            ],
+            [
+              21,
+              0,
+              11
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 88.412878771925,
+          "derived_price_rmse_lkr_per_kg": 108.8334481374068,
+          "derived_price_mape_percent": 5.645978618263739
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.04433624284550188
+    },
+    "shared_random_forest": {
+      "overall": {
+        "observations": 139,
+        "return_mae": 0.034610050978255674,
+        "return_rmse": 0.05666633414819818,
+        "return_r2": -0.292432248973556,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.5107913669064749,
+        "nonflat_up_down_directional_accuracy": 0.5419847328244275,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            39,
+            0,
+            22
+          ],
+          [
+            2,
+            0,
+            6
+          ],
+          [
+            38,
+            0,
+            32
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 55.3350433231462,
+        "derived_price_rmse_lkr_per_kg": 85.75979617954638,
+        "derived_price_mape_percent": 3.5059215037065687
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 73,
+          "return_mae": 0.012489031364336711,
+          "return_rmse": 0.016235375536625456,
+          "return_r2": -0.02505364197609139,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.5753424657534246,
+          "nonflat_up_down_directional_accuracy": 0.5753424657534246,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              27,
+              0,
+              8
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              23,
+              0,
+              15
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 22.044838161168677,
+          "derived_price_rmse_lkr_per_kg": 28.13630227696072,
+          "derived_price_mape_percent": 1.2430859301928443
+        },
+        "Grade 2": {
+          "observations": 66,
+          "return_mae": 0.05907723933910544,
+          "return_rmse": 0.08044359256665941,
+          "return_r2": -0.30789670265950564,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.4393939393939394,
+          "nonflat_up_down_directional_accuracy": 0.5,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              12,
+              0,
+              14
+            ],
+            [
+              2,
+              0,
+              6
+            ],
+            [
+              15,
+              0,
+              17
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 92.15602782048498,
+          "derived_price_rmse_lkr_per_kg": 120.88804407010879,
+          "derived_price_mape_percent": 6.0087547895626585
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.04833948405164243
+    },
+    "shared_ridge": {
+      "overall": {
+        "observations": 139,
+        "return_mae": 0.033812728143081054,
+        "return_rmse": 0.049481983577640144,
+        "return_r2": 0.014511067664358057,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.48201438848920863,
+        "nonflat_up_down_directional_accuracy": 0.5114503816793893,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            47,
+            0,
+            14
+          ],
+          [
+            5,
+            0,
+            3
+          ],
+          [
+            50,
+            0,
+            20
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 54.904608945409606,
+        "derived_price_rmse_lkr_per_kg": 78.29717831136925,
+        "derived_price_mape_percent": 3.4172960292942007
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 73,
+          "return_mae": 0.01552045597984158,
+          "return_rmse": 0.02086415357290445,
+          "return_r2": -0.6928694092138652,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.4794520547945205,
+          "nonflat_up_down_directional_accuracy": 0.4794520547945205,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              28,
+              0,
+              7
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              31,
+              0,
+              7
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 27.354136910390764,
+          "derived_price_rmse_lkr_per_kg": 36.01553693130262,
+          "derived_price_mape_percent": 1.5430764667502241
+        },
+        "Grade 2": {
+          "observations": 66,
+          "return_mae": 0.054045089778179255,
+          "return_rmse": 0.06837497206417001,
+          "return_r2": 0.055102166415564646,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.48484848484848486,
+          "nonflat_up_down_directional_accuracy": 0.5517241379310345,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              19,
+              0,
+              7
+            ],
+            [
+              5,
+              0,
+              3
+            ],
+            [
+              19,
+              0,
+              13
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 85.37710074171831,
+          "derived_price_rmse_lkr_per_kg": 107.12797575858816,
+          "derived_price_mape_percent": 5.490296454532237
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.044619562818537226
+    },
+    "zero_return_persistence": {
+      "overall": {
+        "observations": 139,
+        "return_mae": 0.030600889925341955,
+        "return_rmse": 0.049846186578327394,
+        "return_r2": -4.933897961878486e-05,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.05755395683453238,
+        "nonflat_up_down_directional_accuracy": 0.0,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            0,
+            61,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            70,
+            0
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 49.642014388489166,
+        "derived_price_rmse_lkr_per_kg": 78.8565263878446,
+        "derived_price_mape_percent": 3.1042543390847466
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 73,
+          "return_mae": 0.011616809184795726,
+          "return_rmse": 0.016035801276091402,
+          "return_r2": -7.476397306360738e-06,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.0,
+          "nonflat_up_down_directional_accuracy": 0.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              35,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              38,
+              0
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 20.48273972602735,
+          "derived_price_rmse_lkr_per_kg": 27.58173253918274,
+          "derived_price_mape_percent": 1.1588647428396361
+        },
+        "Grade 2": {
+          "observations": 66,
+          "return_mae": 0.05159843377473401,
+          "return_rmse": 0.07034477394735104,
+          "return_r2": -0.00012482217596510026,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.12121212121212122,
+          "nonflat_up_down_directional_accuracy": 0.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              26,
+              0
+            ],
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              0,
+              32,
+              0
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 81.89393939393935,
+          "derived_price_rmse_lkr_per_kg": 110.7013454244702,
+          "derived_price_mape_percent": 5.255973134931611
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.04319028761172122
+    }
+  },
+  "final_test": {
+    "expanding_mean_return": {
+      "overall": {
+        "observations": 147,
+        "return_mae": 0.019238699906409328,
+        "return_rmse": 0.03201581555381902,
+        "return_r2": -0.010384704399432065,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.4557823129251701,
+        "nonflat_up_down_directional_accuracy": 0.5075757575757576,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            0,
+            0,
+            65
+          ],
+          [
+            0,
+            0,
+            15
+          ],
+          [
+            0,
+            0,
+            67
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 35.95868356779859,
+        "derived_price_rmse_lkr_per_kg": 58.77171096039289,
+        "derived_price_mape_percent": 1.9282757176128158
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 74,
+          "return_mae": 0.007935765961359111,
+          "return_rmse": 0.010942805075541559,
+          "return_r2": -0.05386376435599538,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.5,
+          "nonflat_up_down_directional_accuracy": 0.5,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              37
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              37
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 15.678847410574724,
+          "derived_price_rmse_lkr_per_kg": 21.48734404018021,
+          "derived_price_mape_percent": 0.7966548654387302
+        },
+        "Grade 2": {
+          "observations": 73,
+          "return_mae": 0.030696468563035567,
+          "return_rmse": 0.04407585316675083,
+          "return_r2": -0.009155164355407086,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.410958904109589,
+          "nonflat_up_down_directional_accuracy": 0.5172413793103449,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              28
+            ],
+            [
+              0,
+              0,
+              15
+            ],
+            [
+              0,
+              0,
+              30
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 56.516325699778946,
+          "derived_price_rmse_lkr_per_kg": 80.54510510075399,
+          "derived_price_mape_percent": 3.0753982252961354
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.027509329121146193
+    },
+    "last_observed_return": {
+      "overall": {
+        "observations": 147,
+        "return_mae": 0.02991214116129287,
+        "return_rmse": 0.054280661976227246,
+        "return_r2": -1.904342936877296,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.47619047619047616,
+        "nonflat_up_down_directional_accuracy": 0.4696969696969697,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            30,
+            4,
+            31
+          ],
+          [
+            3,
+            8,
+            4
+          ],
+          [
+            33,
+            2,
+            32
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 55.48606549285722,
+        "derived_price_rmse_lkr_per_kg": 98.28914558205001,
+        "derived_price_mape_percent": 2.9736826883675302
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 74,
+          "return_mae": 0.009031325597014686,
+          "return_rmse": 0.012519790112238815,
+          "return_r2": -0.3794985305390728,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.5675675675675675,
+          "nonflat_up_down_directional_accuracy": 0.5675675675675675,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              21,
+              0,
+              16
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              16,
+              0,
+              21
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 17.811101591578552,
+          "derived_price_rmse_lkr_per_kg": 24.38909354297889,
+          "derived_price_mape_percent": 0.9050462331770438
+        },
+        "Grade 2": {
+          "observations": 73,
+          "return_mae": 0.05107899529494474,
+          "return_rmse": 0.07598848400523849,
+          "return_r2": -1.9995220055423073,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.3835616438356164,
+          "nonflat_up_down_directional_accuracy": 0.3448275862068966,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              9,
+              4,
+              15
+            ],
+            [
+              3,
+              8,
+              4
+            ],
+            [
+              17,
+              2,
+              11
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 93.67712479004383,
+          "derived_price_rmse_lkr_per_kg": 137.29848940418046,
+          "derived_price_mape_percent": 5.070656629245559
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.04425413705873865
+    },
+    "separate_ridge": {
+      "overall": {
+        "observations": 147,
+        "return_mae": 0.01988618577652841,
+        "return_rmse": 0.029541404777968815,
+        "return_r2": 0.13975944831259024,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.46258503401360546,
+        "nonflat_up_down_directional_accuracy": 0.5151515151515151,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            47,
+            0,
+            18
+          ],
+          [
+            12,
+            0,
+            3
+          ],
+          [
+            46,
+            0,
+            21
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 37.289294175201015,
+        "derived_price_rmse_lkr_per_kg": 54.55072515790118,
+        "derived_price_mape_percent": 1.9795449678030437
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 74,
+          "return_mae": 0.009344373668962834,
+          "return_rmse": 0.012868720964296936,
+          "return_r2": -0.45746426041708466,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.47297297297297297,
+          "nonflat_up_down_directional_accuracy": 0.47297297297297297,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              25,
+              0,
+              12
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              27,
+              0,
+              10
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 18.407086347797303,
+          "derived_price_rmse_lkr_per_kg": 25.230628116291186,
+          "derived_price_mape_percent": 0.9347023538511542
+        },
+        "Grade 2": {
+          "observations": 73,
+          "return_mae": 0.030572406269129132,
+          "return_rmse": 0.039868175103586846,
+          "return_r2": 0.17432486534315428,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.4520547945205479,
+          "nonflat_up_down_directional_accuracy": 0.5689655172413793,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              22,
+              0,
+              6
+            ],
+            [
+              12,
+              0,
+              3
+            ],
+            [
+              19,
+              0,
+              11
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 56.43016238380202,
+          "derived_price_rmse_lkr_per_kg": 73.12333711038626,
+          "derived_price_mape_percent": 3.038700494274822
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.02636844803394189
+    },
+    "zero_return_persistence": {
+      "overall": {
+        "observations": 147,
+        "return_mae": 0.018575679388190363,
+        "return_rmse": 0.03186657164336772,
+        "return_r2": -0.00098670568988668,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.10204081632653061,
+        "nonflat_up_down_directional_accuracy": 0.0,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            0,
+            65,
+            0
+          ],
+          [
+            0,
+            15,
+            0
+          ],
+          [
+            0,
+            67,
+            0
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 34.62170068027205,
+        "derived_price_rmse_lkr_per_kg": 58.11874322114543,
+        "derived_price_mape_percent": 1.8525540234982472
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 74,
+          "return_mae": 0.007741426767968537,
+          "return_rmse": 0.010660296213868463,
+          "return_r2": -0.00015126977342050374,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.0,
+          "nonflat_up_down_directional_accuracy": 0.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              37,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              37,
+              0
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 15.262027027026967,
+          "derived_price_rmse_lkr_per_kg": 20.871188630858164,
+          "derived_price_mape_percent": 0.7754082566808322
+        },
+        "Grade 2": {
+          "observations": 73,
+          "return_mae": 0.029558346427867283,
+          "return_rmse": 0.043927995464431685,
+          "return_r2": -0.002395858316788013,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.2054794520547945,
+          "nonflat_up_down_directional_accuracy": 0.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              28,
+              0
+            ],
+            [
+              0,
+              15,
+              0
+            ],
+            [
+              0,
+              30,
+              0
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 54.2465753424657,
+          "derived_price_rmse_lkr_per_kg": 79.75132583601813,
+          "derived_price_mape_percent": 2.944455211778915
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.027294145839150075
+    }
+  },
+  "external_newest_reality_check": {
+    "expanding_mean_return": {
+      "overall": {
+        "observations": 10,
+        "return_mae": 0.02251056058704515,
+        "return_rmse": 0.031619184718728446,
+        "return_r2": -0.06817369467808643,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.7,
+        "nonflat_up_down_directional_accuracy": 0.7777777777777778,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            7
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 41.28635447634817,
+        "derived_price_rmse_lkr_per_kg": 56.58430230829275,
+        "derived_price_mape_percent": 2.196653175790456
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 5,
+          "return_mae": 0.009619153331084273,
+          "return_rmse": 0.011459581263330285,
+          "return_r2": -2.387370525633636,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 1.0,
+          "nonflat_up_down_directional_accuracy": 1.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              5
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 18.540845040502518,
+          "derived_price_rmse_lkr_per_kg": 22.05962622967292,
+          "derived_price_mape_percent": 0.9469861177989185
+        },
+        "Grade 2": {
+          "observations": 5,
+          "return_mae": 0.035401967843006026,
+          "return_rmse": 0.04322295318257732,
+          "return_r2": -0.01943789740395574,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.4,
+          "nonflat_up_down_directional_accuracy": 0.5,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              2
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              2
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 64.03186391219383,
+          "derived_price_rmse_lkr_per_kg": 76.92164471746332,
+          "derived_price_mape_percent": 3.4463202337819925
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.027341267222953804
+    },
+    "last_observed_return": {
+      "overall": {
+        "observations": 10,
+        "return_mae": 0.030601443220150105,
+        "return_rmse": 0.04647797524447585,
+        "return_r2": -1.3079954258665039,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.7,
+        "nonflat_up_down_directional_accuracy": 0.6666666666666666,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            6
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 56.15941143325176,
+        "derived_price_rmse_lkr_per_kg": 83.52389283000234,
+        "derived_price_mape_percent": 2.9736623882055815
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 5,
+          "return_mae": 0.00880686795469766,
+          "return_rmse": 0.009240167401794914,
+          "return_r2": -1.2023426310075584,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 1.0,
+          "nonflat_up_down_directional_accuracy": 1.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              5
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 16.926051495566433,
+          "derived_price_rmse_lkr_per_kg": 17.705353843084353,
+          "derived_price_mape_percent": 0.8717930838670692
+        },
+        "Grade 2": {
+          "observations": 5,
+          "return_mae": 0.05239601848560256,
+          "return_rmse": 0.06507705949133709,
+          "return_r2": -1.3109350714717327,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.4,
+          "nonflat_up_down_directional_accuracy": 0.25,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 95.39277137093708,
+          "derived_price_rmse_lkr_per_kg": 116.78613698657306,
+          "derived_price_mape_percent": 5.075531692544093
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.037158613446566
+    },
+    "separate_ridge": {
+      "overall": {
+        "observations": 10,
+        "return_mae": 0.027141505338098216,
+        "return_rmse": 0.03557114768491542,
+        "return_r2": -0.3518742585520931,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.3,
+        "nonflat_up_down_directional_accuracy": 0.3333333333333333,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            1
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 50.18611151202542,
+        "derived_price_rmse_lkr_per_kg": 64.68335930995826,
+        "derived_price_mape_percent": 2.63203112585506
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 5,
+          "return_mae": 0.018452098483564622,
+          "return_rmse": 0.01936996380543493,
+          "return_r2": -8.677937773181831,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.0,
+          "nonflat_up_down_directional_accuracy": 0.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 35.615557965874316,
+          "derived_price_rmse_lkr_per_kg": 37.407861154388875,
+          "derived_price_mape_percent": 1.8204177799898358
+        },
+        "Grade 2": {
+          "observations": 5,
+          "return_mae": 0.035830912192631806,
+          "return_rmse": 0.04642647517764263,
+          "return_r2": -0.17615165941861965,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.6,
+          "nonflat_up_down_directional_accuracy": 0.75,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              1
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 64.75666505817654,
+          "derived_price_rmse_lkr_per_kg": 83.47769682433922,
+          "derived_price_mape_percent": 3.443644471720285
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.03289821949153878
+    },
+    "zero_return_persistence": {
+      "overall": {
+        "observations": 10,
+        "return_mae": 0.02304583358028747,
+        "return_rmse": 0.03258764636202074,
+        "return_r2": -0.1346098059633185,
+        "return_mape": null,
+        "return_mape_reason": "Omitted because observed returns include and approach zero.",
+        "directional_accuracy": 0.1,
+        "nonflat_up_down_directional_accuracy": 0.0,
+        "direction_labels": [
+          "DOWN",
+          "FLAT",
+          "UP"
+        ],
+        "direction_confusion_matrix": [
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            7,
+            0
+          ]
+        ],
+        "derived_price_mae_lkr_per_kg": 42.32899999999997,
+        "derived_price_rmse_lkr_per_kg": 58.21789544461396,
+        "derived_price_mape_percent": 2.2404248782227887
+      },
+      "by_grade": {
+        "Grade 1": {
+          "observations": 5,
+          "return_mae": 0.01175342442286004,
+          "return_rmse": 0.013300793596673011,
+          "return_r2": -3.563313597340267,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.0,
+          "nonflat_up_down_directional_accuracy": 0.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              0
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 22.657999999999948,
+          "derived_price_rmse_lkr_per_kg": 25.615360625999326,
+          "derived_price_mape_percent": 1.1579430342444244
+        },
+        "Grade 2": {
+          "observations": 5,
+          "return_mae": 0.034338242737714894,
+          "return_rmse": 0.044124803461669374,
+          "return_r2": -0.062423013188925625,
+          "return_mape": null,
+          "return_mape_reason": "Omitted because observed returns include and approach zero.",
+          "directional_accuracy": 0.2,
+          "nonflat_up_down_directional_accuracy": 0.0,
+          "direction_labels": [
+            "DOWN",
+            "FLAT",
+            "UP"
+          ],
+          "direction_confusion_matrix": [
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              2,
+              0
+            ]
+          ],
+          "derived_price_mae_lkr_per_kg": 62.0,
+          "derived_price_rmse_lkr_per_kg": 78.24640566824785,
+          "derived_price_mape_percent": 3.322906722201152
+        }
+      },
+      "selection_score_macro_grade_return_rmse": 0.02871279852917119
+    }
+  },
+  "external_observation_policy": "Excluded from model/feature/hyperparameter selection; evaluated after final test using the frozen selected formulation.",
+  "runtime_seconds": 33.7952515000361,
+  "environment": {
+    "python": "3.13.14",
+    "pandas": "3.0.1",
+    "numpy": "2.4.3",
+    "scikit_learn": "1.8.0",
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "integrity": {
+    "random_split": false,
+    "test_used_for_selection": false,
+    "external_used_for_selection": false,
+    "full_dataset_scaling": false,
+    "persistence_is_baseline_only": true
+  }
+}

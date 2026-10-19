@@ -1,0 +1,12 @@
+{
+  "candidate_id": "model_bakeoff|ridge|log_return|A_return_lags|separate",
+  "model": "ridge",
+  "target": "log_return",
+  "feature_group": "A_return_lags",
+  "formulation": "separate",
+  "configuration": {
+    "alpha": 1.0,
+    "scaling": "StandardScaler fitted inside each expanding training window"
+  },
+  "serialization": "No single fitted checkpoint: the selected research method refits on each expanding window."
+}

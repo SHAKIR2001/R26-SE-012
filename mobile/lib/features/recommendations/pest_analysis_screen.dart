@@ -1,10 +1,23 @@
+// Used for handling image data as bytes.
+
 import 'dart:typed_data';
 
+// Flutter Material UI package.
 import 'package:flutter/material.dart';
+
+// Icon library used throughout the UI.
 import 'package:iconly/iconly.dart';
 
+import '../../l10n/app_localizations.dart';
+import '../../shared/class_labels.dart';
+import '../history/history_scope.dart';
+import '../history/serialization/history_payload_codec.dart';
 import 'analysis_ui.dart';
+
+// Handles and converts AI-related errors into user-friendly messages.
 import 'ai_errors.dart';
+
+// AI service responsible for analysing the pest image.
 import 'ai_pest_service.dart';
 import 'pest_analysis.dart';
 import 'pest_treatment_engine.dart';
@@ -15,10 +28,14 @@ import 'remediation_engine.dart' show Market;
 class PestAnalysisScreen extends StatefulWidget {
   final Uint8List imageBytes;
   final Future<PestAnalysis>? prefetch;
+  final String? detectedClass;
+  final String? historyRecordKey;
   const PestAnalysisScreen({
     super.key,
     required this.imageBytes,
     this.prefetch,
+    this.detectedClass,
+    this.historyRecordKey,
   });
 
   @override
@@ -46,20 +63,53 @@ class _PestAnalysisScreenState extends State<PestAnalysisScreen> {
       _result = null;
     });
     try {
-      final r = await (_pending ?? _service.analyze(widget.imageBytes));
+      final r =
+          await (_pending ??
+              _service.analyze(
+                widget.imageBytes,
+                knownPest: widget.detectedClass,
+              ));
       _pending = null;
       if (!mounted) return;
       setState(() {
         _result = r;
         _loading = false;
       });
+      await _saveHistory(r);
     } catch (e, st) {
       logAiError('pest-analysis', e, st);
       if (!mounted) return;
       setState(() {
-        _error = friendlyAiMessage(e);
+        _error = friendlyAiMessage(e, AppLocalizations.of(context));
         _loading = false;
       });
+    }
+  }
+
+  Future<void> _saveHistory(PestAnalysis result) async {
+    final key = widget.historyRecordKey;
+    final repository = HistoryScope.maybeOf(context);
+    if (key == null || repository == null) return;
+    try {
+      final treatment = PestTreatmentEngine.forAnalysis(result, _market);
+      await repository.enrich(
+        recordKey: key,
+        outcomeCode: !result.isPepperPlant
+            ? 'not_target'
+            : result.isUncertain
+            ? 'uncertain'
+            : result.healthy
+            ? 'healthy'
+            : 'detected',
+        primaryClassCode: result.pestType,
+        resultSchemaVersion: HistoryPayloadCodec.schemaVersion,
+        resultJson: HistoryPayloadCodec.pest(result, treatment, _market),
+      );
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).historySaveFailed)),
+      );
     }
   }
 
@@ -67,15 +117,16 @@ class _PestAnalysisScreenState extends State<PestAnalysisScreen> {
   Widget build(BuildContext context) {
     return AnalysisScaffold(
       imageBytes: widget.imageBytes,
-      title: 'Pest analysis',
+      title: AppLocalizations.of(context).pestAnalysisTitle,
       titleIcon: IconlyBold.scan,
       children: _body(),
     );
   }
 
   List<Widget> _body() {
+    final t = AppLocalizations.of(context);
     if (_loading) {
-      return const [LoadingView(message: 'Inspecting for pests with AI…')];
+      return [LoadingView(message: t.analysingPest)];
     }
     if (_error != null) {
       return [ErrorView(message: _error!, onRetry: _run)];
@@ -84,57 +135,94 @@ class _PestAnalysisScreenState extends State<PestAnalysisScreen> {
   }
 
   List<Widget> _resultBody(PestAnalysis r) {
+    final t = AppLocalizations.of(context);
     if (!r.isPepperPlant) {
       return [
         RetakeView(
-          title: "This doesn't look like a pepper plant",
-          message: r.summary.isNotEmpty
-              ? r.summary
-              : 'Get closer to the leaf/stem/berry in good light and retry.',
+          title: t.notPepperPlant,
+          message: r.summary.isNotEmpty ? r.summary : t.pestRetryHint,
+          onRetake: () => Navigator.of(context).pop(),
+        ),
+      ];
+    }
+
+    if (r.isUncertain) {
+      return [
+        RetakeView(
+          title: t.pestUncertainTitle,
+          message: t.pestUncertainMessage,
           onRetake: () => Navigator.of(context).pop(),
         ),
       ];
     }
 
     final plan = PestTreatmentEngine.forAnalysis(r, _market);
-    final accent = r.healthy ? kBrand : bandColor(r.severityBand);
+    final accent = r.healthy
+        ? Theme.of(context).colorScheme.primary
+        : bandColor(context, r.severityBand);
 
     return [
-      Row(children: [
-        Icon(r.healthy ? IconlyBold.shield_done : IconlyBold.danger,
-            color: accent, size: 30),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(r.healthy ? 'No pests found' : r.pestType,
-                  style: TextStyle(
-                      fontSize: 22, fontWeight: FontWeight.w800, color: kText)),
-              if (r.summary.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(r.summary,
-                      style: TextStyle(color: kTextSub, height: 1.35)),
-                ),
-            ],
+      Row(
+        children: [
+          Icon(
+            r.healthy ? IconlyBold.shield_done : IconlyBold.danger,
+            color: accent,
+            size: 32,
           ),
-        ),
-      ]),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  r.healthy
+                      ? t.noPestsFound
+                      : localizedClassName(r.pestType, t),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: kText,
+                  ),
+                ),
+                if (r.summary.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Text(
+                      r.summary,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: kTextSub,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
 
-      const SizedBox(height: 18),
+      const SizedBox(height: 20),
       StatTile(
         icon: IconlyBold.chart,
-        label: 'Severity',
+        label: t.severity,
         color: accent,
         value: r.healthy
-            ? const Text('—',
+            ? Text(
+                '—',
                 style: TextStyle(
-                    fontSize: 26, fontWeight: FontWeight.w800, color: kBrand))
-            : CountUp(r.severityPercentage,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              )
+            : CountUp(
+                r.severityPercentage,
                 suffix: '%',
                 style: TextStyle(
-                    fontSize: 26, fontWeight: FontWeight.w800, color: accent)),
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  color: accent,
+                ),
+              ),
         sub: r.severityBand.toUpperCase(),
       ),
 
@@ -145,14 +233,19 @@ class _PestAnalysisScreenState extends State<PestAnalysisScreen> {
 
       SectionCard(
         icon: IconlyBold.shield_done,
-        title: 'Recommended action (IPM)',
+        title: t.recommendedActionIpm,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(plan.action,
-                style: TextStyle(
-                    fontWeight: FontWeight.w700, color: kText, height: 1.35)),
-            const SizedBox(height: 12),
+            Text(
+              plan.action,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: kText,
+                height: 1.4,
+              ),
+            ),
+            const SizedBox(height: 14),
             for (final o in plan.options)
               OptionTile(
                 name: o.name,
@@ -171,79 +264,110 @@ class _PestAnalysisScreenState extends State<PestAnalysisScreen> {
       if (plan.note.isNotEmpty)
         InfoCard(
           icon: IconlyBold.bag,
-          color: const Color(0xFF3B82F6),
+          color: AppStatusColors.of(context).info,
           text: plan.note,
         ),
 
-      const InfoCard(
+      InfoCard(
         icon: IconlyBold.info_circle,
-        color: Color(0xFF64748B),
-        text:
-            'AI estimate from one photo. Confirm the pest, economic threshold, '
-            'exact dose, MRL and pre-harvest interval with your local agri '
-            'authority before any chemical use.',
+        color: Theme.of(context).colorScheme.outline,
+        text: t.pestDisclaimer,
       ),
 
-      const SizedBox(height: 18),
+      const SizedBox(height: 20),
       FilledButton.icon(
         onPressed: () => Navigator.of(context).pop(),
         style: FilledButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 14),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           shape: const StadiumBorder(),
         ),
-        icon: const Icon(IconlyLight.camera, size: 18),
-        label: const Text('Take another photo'),
+        icon: const Icon(IconlyLight.camera, size: 20),
+        label: Text(t.takeAnotherPhoto),
       ),
     ];
   }
 
   Widget _thresholdBadge(bool above) {
-    final color = above ? const Color(0xFFFB8C00) : kBrand;
+    final t = AppLocalizations.of(context);
+    final status = AppStatusColors.of(context);
+    final color = above
+        ? status.warning
+        : Theme.of(context).colorScheme.primary;
     return Container(
-      margin: const EdgeInsets.only(top: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+      margin: const EdgeInsets.only(top: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.10),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: color.withValues(alpha: 0.35)),
-      ),
-      child: Row(children: [
-        Icon(above ? IconlyBold.danger : IconlyBold.show, size: 20, color: color),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text(
-            above
-                ? 'Above treatment threshold'
-                : 'Below treatment threshold — monitor only',
-            style: TextStyle(fontWeight: FontWeight.w700, color: kText),
+        color: color.withValues(
+          alpha: Theme.of(context).brightness == Brightness.dark ? 0.18 : 0.10,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: color.withValues(
+            alpha: Theme.of(context).brightness == Brightness.dark
+                ? 0.45
+                : 0.35,
           ),
         ),
-      ]),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            above ? IconlyBold.danger : IconlyBold.show,
+            size: 22,
+            color: color,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              above ? t.aboveTreatmentThreshold : t.belowThreshold,
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: kText,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _marketDropdown() => DropdownButton<Market>(
-        value: _market,
-        underline: const SizedBox.shrink(),
-        borderRadius: BorderRadius.circular(12),
-        style: TextStyle(color: kText, fontWeight: FontWeight.w600),
-        icon: Icon(IconlyLight.arrow_down, size: 16, color: kText),
-        onChanged: (m) => setState(() => _market = m ?? _market),
-        items: [
-          for (final m in Market.values)
-            DropdownMenuItem(value: m, child: Text(m.label)),
-        ],
-      );
+    value: _market,
+    underline: const SizedBox.shrink(),
+    borderRadius: BorderRadius.circular(12),
+    dropdownColor: Theme.of(context).colorScheme.surfaceContainerHigh,
+    style: Theme.of(
+      context,
+    ).textTheme.titleSmall?.copyWith(color: kText, fontWeight: FontWeight.w700),
+    icon: Icon(IconlyLight.arrow_down, size: 18, color: kText),
+    onChanged: (m) => setState(() => _market = m ?? _market),
+    items: [
+      for (final m in Market.values)
+        DropdownMenuItem(value: m, child: Text(m.label)),
+    ],
+  );
 
-  Widget _warning(String w) => Padding(
-        padding: const EdgeInsets.only(top: 6),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Icon(IconlyBold.danger, size: 15, color: Color(0xFFB26A00)),
+  Widget _warning(String w) {
+    final warningColor = AppStatusColors.of(context).warning;
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(IconlyBold.danger, size: 16, color: warningColor),
           const SizedBox(width: 8),
           Expanded(
-              child: Text(w,
-                  style: const TextStyle(
-                      fontSize: 12, color: Color(0xFFB26A00), height: 1.35))),
-        ]),
-      );
+            child: Text(
+              w,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: warningColor,
+                height: 1.4,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

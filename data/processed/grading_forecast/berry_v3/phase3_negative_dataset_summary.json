@@ -1,0 +1,25 @@
+{
+  "source": "Wikimedia Commons",
+  "thumbnail_max_width": 800,
+  "seed": 42,
+  "images": 80,
+  "categories": {
+    "people": 8,
+    "vehicles": 8,
+    "buildings_indoor": 8,
+    "leaves_plants": 8,
+    "other_crops": 8,
+    "other_spices_food": 8,
+    "soil_ground": 8,
+    "containers": 8,
+    "random_objects": 8,
+    "empty_background": 8
+  },
+  "partitions": {
+    "CALIBRATION": 40,
+    "EVALUATION": 40
+  },
+  "download_bytes": 20540794,
+  "unique_hashes": 80,
+  "v3_hash_overlap": 0
+}

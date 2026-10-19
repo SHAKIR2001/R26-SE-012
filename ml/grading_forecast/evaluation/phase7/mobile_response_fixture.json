@@ -1,0 +1,96 @@
+{
+  "decision_support": {
+    "category": "HIGH_UNCERTAINTY_OUTLOOK",
+    "limitations": [
+      "V3 grades are project-specific and are not official SLS, buyer, export-certification, or laboratory grades.",
+      "This is research decision support, not an autonomous trading recommendation.",
+      "The Phase 5 price signal is limited/mixed and persistence remains a strong baseline."
+    ],
+    "summary": "Accepted as V3 Grade 1. The frozen Grade 1 forecast indicates up movement, with signal classified as HIGH_UNCERTAINTY. This is a limited research outlook, not a buy/sell instruction."
+  },
+  "grading": {
+    "class_margin": 0.9237500429153442,
+    "confidence_interpretation": "model score; not a calibrated probability",
+    "decision": "GRADE_1",
+    "detection_confidence": 0.9237500429153442,
+    "grade": "V3 Grade 1",
+    "model_confidence": 0.9237500429153442,
+    "physical_sample_id": null,
+    "quality_status": "PASSED",
+    "rejection_reason": null,
+    "status": "ACCEPTED"
+  },
+  "market": {
+    "evidence_partition": "EXTERNAL_NEWEST_FROZEN_RECORD",
+    "forecast_direction": "UP",
+    "forecast_interval": {
+      "label": "validation-derived forecast interval",
+      "lower": 1942.4903597456641,
+      "probability_claim": false,
+      "upper": 2038.704534601795
+    },
+    "forecast_log_return": 0.0015572508420478284,
+    "forecast_price": 1990.5974471737297,
+    "forecast_return": 0.001558463986782277,
+    "forecast_signal": "HIGH_UNCERTAINTY",
+    "forecast_target_date": "2026-09-29",
+    "latest_observed_return": 0.015325670498084198,
+    "latest_price_interpretation": "observed EAC reference; not a forecast or guaranteed transaction price",
+    "latest_reference_date": "2026-09-15",
+    "latest_reference_price": 1987.5,
+    "model_scope": "separate_grade_1_ridge",
+    "model_vs_persistence": "RIDGE_BETTER",
+    "persistence_price": 1987.5,
+    "previous_reference_price": 1957.5,
+    "price_grade": "Grade 1",
+    "source": "EAC farm-gate reference price",
+    "source_organization": "Department of Export Agriculture, Sri Lanka - Economic Research Unit",
+    "source_url": "https://exagri.info/mkt/2026/15.09.2026.html",
+    "status": "AVAILABLE",
+    "unit": "LKR/kg"
+  },
+  "runtime": {
+    "grading": "ONNX_RUNTIME_CPU",
+    "mobile": "BACKEND_API",
+    "price": "FROZEN_PHASE5_FORECAST_RECORD",
+    "tflite": "NOT_IMPLEMENTED_OR_CLAIMED"
+  },
+  "schema_version": "phase6_decision_support_v1",
+  "trace": {
+    "bbox_xyxy": [
+      11.248207092285156,
+      0.0,
+      3987.6880645751953,
+      2968.5359954833984
+    ],
+    "decision_config_path": "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+    "decision_config_sha256": "39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+    "detection_count": 1,
+    "direction": "UP",
+    "explanation": "Accepted as V3 Grade 1. The frozen Grade 1 forecast indicates up movement, with signal classified as HIGH_UNCERTAINTY. This is a limited research outlook, not a buy/sell instruction.",
+    "final_decision_support_category": "HIGH_UNCERTAINTY_OUTLOOK",
+    "forecast_model_specification": "ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json",
+    "forecast_model_specification_sha256": "e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9",
+    "forecast_price": 1990.5974471737297,
+    "forecast_return": 0.001558463986782277,
+    "grade_result": "V3 Grade 1",
+    "grading_decision": "GRADE_1",
+    "grading_model_path": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+    "grading_model_sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+    "input_identifier": "20260508_160550_jpg.rf.BUF1sZWo8GvE4UCSfj74.jpg",
+    "latest_reference_price": 1987.5,
+    "latest_reference_price_date": "2026-09-15",
+    "persistence_baseline": 1987.5,
+    "quality_scores": {
+      "blur_laplacian_variance": 67.95017633320865,
+      "brightness": 123.71878608333333,
+      "height": 3000,
+      "minimum_dimension": 3000,
+      "width": 4000
+    },
+    "rejection_or_quality_result": "PASSED",
+    "selected_price_series": "Grade 1",
+    "signal_classification": "HIGH_UNCERTAINTY",
+    "timestamp_utc": "2026-10-07T18:00:00+00:00"
+  }
+}

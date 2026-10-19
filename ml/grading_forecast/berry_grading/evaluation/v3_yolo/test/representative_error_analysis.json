@@ -1,0 +1,98 @@
+[
+  {
+    "category": "correct_grade_1",
+    "image_id": "20260509_001631_jpg.rf.PRVrgTCefZatVcB0yMDK.jpg",
+    "physical_sample_id": "grade_1/sample_063",
+    "true_class": "V3 Grade 1",
+    "predicted_class": "V3 Grade 1",
+    "confidence": 0.9626526236534119,
+    "box_xyxy": [
+      0.0,
+      14.200210571289062,
+      3000.0,
+      4000.0
+    ],
+    "box_iou": 0.952882784045802,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "incorrect_grade_1",
+    "image_id": "20260508_174753_jpg.rf.5ZOvZqmc2aojVYPJ0TZu.jpg",
+    "physical_sample_id": "grade_1/sample_072",
+    "true_class": "V3 Grade 1",
+    "predicted_class": "V3 Grade 2",
+    "confidence": 0.9261766672134399,
+    "box_xyxy": [
+      26.44205093383789,
+      368.17626953125,
+      3000.0,
+      3794.408447265625
+    ],
+    "box_iou": 0.987128009786078,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "correct_grade_2",
+    "image_id": "20260905_174924_jpg.rf.UzxbDBfW2pZUXElW6uE2.jpg",
+    "physical_sample_id": "grade_2/sample_058",
+    "true_class": "V3 Grade 2",
+    "predicted_class": "V3 Grade 2",
+    "confidence": 0.9531558156013489,
+    "box_xyxy": [
+      148.6408233642578,
+      380.4557800292969,
+      2865.010009765625,
+      3607.84375
+    ],
+    "box_iou": 0.918700112907386,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "incorrect_grade_2",
+    "image_id": "20260508_235341_jpg.rf.KDoPFhiFUIbjoGw5mGlt.jpg",
+    "physical_sample_id": "grade_2/sample_026",
+    "true_class": "V3 Grade 2",
+    "predicted_class": "V3 Grade 1",
+    "confidence": 0.891126811504364,
+    "box_xyxy": [
+      0.0,
+      0.0,
+      3000.0,
+      4000.0
+    ],
+    "box_iou": 0.98352065044011,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "low_confidence",
+    "image_id": "20260508_235227_jpg.rf.f6lH4qjxfHuxlruS3zPo.jpg",
+    "physical_sample_id": "grade_2/sample_026",
+    "true_class": "V3 Grade 2",
+    "predicted_class": "V3 Grade 2",
+    "confidence": 0.3449770510196686,
+    "box_xyxy": [
+      594.8594970703125,
+      643.8656005859375,
+      2320.246337890625,
+      3215.1162109375
+    ],
+    "box_iou": 0.906288972894146,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "conflicting_physical_sample",
+    "image_id": "20260729_083009_jpg.rf.5Bz4HHRgG0uNnu3chjBY.jpg",
+    "physical_sample_id": "grade_1/sample_039",
+    "true_class": "V3 Grade 1",
+    "predicted_class": "V3 Grade 2",
+    "confidence": 0.7330211400985718,
+    "box_xyxy": [
+      184.55886840820312,
+      297.8275146484375,
+      2955.61865234375,
+      3453.83447265625
+    ],
+    "box_iou": 0.929193710530292,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  }
+]

@@ -1,0 +1,499 @@
+{
+  "cases": [
+    {
+      "category": "HIGH_UNCERTAINTY_OUTLOOK",
+      "grade": "V3 Grade 1",
+      "grading_decision": "GRADE_1",
+      "image_id": "20260508_160550_jpg.rf.BUF1sZWo8GvE4UCSfj74.jpg",
+      "market_status": "AVAILABLE",
+      "price_grade": "Grade 1",
+      "result": {
+        "decision_support": {
+          "category": "HIGH_UNCERTAINTY_OUTLOOK",
+          "limitations": [
+            "V3 grades are project-specific and are not official SLS, buyer, export-certification, or laboratory grades.",
+            "This is research decision support, not an autonomous trading recommendation.",
+            "The Phase 5 price signal is limited/mixed and persistence remains a strong baseline."
+          ],
+          "summary": "Accepted as V3 Grade 1. The frozen Grade 1 forecast indicates up movement, with signal classified as HIGH_UNCERTAINTY. This is a limited research outlook, not a buy/sell instruction."
+        },
+        "grading": {
+          "class_margin": 0.9237500429153442,
+          "confidence_interpretation": "model score; not a calibrated probability",
+          "decision": "GRADE_1",
+          "detection_confidence": 0.9237500429153442,
+          "grade": "V3 Grade 1",
+          "model_confidence": 0.9237500429153442,
+          "physical_sample_id": null,
+          "quality_status": "PASSED",
+          "rejection_reason": null,
+          "status": "ACCEPTED"
+        },
+        "market": {
+          "evidence_partition": "EXTERNAL_NEWEST_FROZEN_RECORD",
+          "forecast_direction": "UP",
+          "forecast_interval": {
+            "label": "validation-derived forecast interval",
+            "lower": 1942.4903597456641,
+            "probability_claim": false,
+            "upper": 2038.704534601795
+          },
+          "forecast_log_return": 0.0015572508420478284,
+          "forecast_price": 1990.5974471737297,
+          "forecast_return": 0.001558463986782277,
+          "forecast_signal": "HIGH_UNCERTAINTY",
+          "forecast_target_date": "2026-09-29",
+          "latest_observed_return": 0.015325670498084198,
+          "latest_price_interpretation": "observed EAC reference; not a forecast or guaranteed transaction price",
+          "latest_reference_date": "2026-09-15",
+          "latest_reference_price": 1987.5,
+          "model_scope": "separate_grade_1_ridge",
+          "model_vs_persistence": "RIDGE_BETTER",
+          "persistence_price": 1987.5,
+          "previous_reference_price": 1957.5,
+          "price_grade": "Grade 1",
+          "source": "EAC farm-gate reference price",
+          "source_organization": "Department of Export Agriculture, Sri Lanka - Economic Research Unit",
+          "source_url": "https://exagri.info/mkt/2026/15.09.2026.html",
+          "status": "AVAILABLE",
+          "unit": "LKR/kg"
+        },
+        "runtime": {
+          "grading": "ONNX_RUNTIME_CPU",
+          "mobile": "BACKEND_API",
+          "price": "FROZEN_PHASE5_FORECAST_RECORD",
+          "tflite": "NOT_IMPLEMENTED_OR_CLAIMED"
+        },
+        "schema_version": "phase6_decision_support_v1",
+        "trace": {
+          "bbox_xyxy": [
+            11.248207092285156,
+            0.0,
+            3987.6880645751953,
+            2968.5359954833984
+          ],
+          "decision_config_path": "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+          "decision_config_sha256": "39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+          "detection_count": 1,
+          "direction": "UP",
+          "explanation": "Accepted as V3 Grade 1. The frozen Grade 1 forecast indicates up movement, with signal classified as HIGH_UNCERTAINTY. This is a limited research outlook, not a buy/sell instruction.",
+          "final_decision_support_category": "HIGH_UNCERTAINTY_OUTLOOK",
+          "forecast_model_specification": "ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json",
+          "forecast_model_specification_sha256": "e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9",
+          "forecast_price": 1990.5974471737297,
+          "forecast_return": 0.001558463986782277,
+          "grade_result": "V3 Grade 1",
+          "grading_decision": "GRADE_1",
+          "grading_model_path": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+          "grading_model_sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+          "input_identifier": "20260508_160550_jpg.rf.BUF1sZWo8GvE4UCSfj74.jpg",
+          "latest_reference_price": 1987.5,
+          "latest_reference_price_date": "2026-09-15",
+          "persistence_baseline": 1987.5,
+          "quality_scores": {
+            "blur_laplacian_variance": 67.95017633320865,
+            "brightness": 123.71878608333333,
+            "height": 3000,
+            "minimum_dimension": 3000,
+            "width": 4000
+          },
+          "rejection_or_quality_result": "PASSED",
+          "selected_price_series": "Grade 1",
+          "signal_classification": "HIGH_UNCERTAINTY",
+          "timestamp_utc": "2026-10-07T18:00:00+00:00"
+        }
+      },
+      "role": "GRADE_1",
+      "source_path": "data/raw/Pepper Berry Grading V3.yolov8/test/images/20260508_160550_jpg.rf.BUF1sZWo8GvE4UCSfj74.jpg"
+    },
+    {
+      "category": "HIGH_UNCERTAINTY_OUTLOOK",
+      "grade": "V3 Grade 2",
+      "grading_decision": "GRADE_2",
+      "image_id": "20260508_233543_jpg.rf.GIitSA5jym8tu4es92nw.jpg",
+      "market_status": "AVAILABLE",
+      "price_grade": "Grade 2",
+      "result": {
+        "decision_support": {
+          "category": "HIGH_UNCERTAINTY_OUTLOOK",
+          "limitations": [
+            "V3 grades are project-specific and are not official SLS, buyer, export-certification, or laboratory grades.",
+            "This is research decision support, not an autonomous trading recommendation.",
+            "The Phase 5 price signal is limited/mixed and persistence remains a strong baseline."
+          ],
+          "summary": "Accepted as V3 Grade 2. The frozen Grade 2 forecast indicates down movement, with signal classified as HIGH_UNCERTAINTY. This is a limited research outlook, not a buy/sell instruction."
+        },
+        "grading": {
+          "class_margin": 0.9045816659927368,
+          "confidence_interpretation": "model score; not a calibrated probability",
+          "decision": "GRADE_2",
+          "detection_confidence": 0.9045816659927368,
+          "grade": "V3 Grade 2",
+          "model_confidence": 0.9045816659927368,
+          "physical_sample_id": null,
+          "quality_status": "PASSED",
+          "rejection_reason": null,
+          "status": "ACCEPTED"
+        },
+        "market": {
+          "evidence_partition": "EXTERNAL_NEWEST_FROZEN_RECORD",
+          "forecast_direction": "DOWN",
+          "forecast_interval": {
+            "label": "validation-derived forecast interval",
+            "lower": 1692.9622763015946,
+            "probability_claim": false,
+            "upper": 2169.300159584897
+          },
+          "forecast_log_return": -0.004582018574950818,
+          "forecast_price": 1931.1312179432457,
+          "forecast_return": -0.004571537142656901,
+          "forecast_signal": "HIGH_UNCERTAINTY",
+          "forecast_target_date": "2026-09-29",
+          "latest_observed_return": 0.027814569536423805,
+          "latest_price_interpretation": "observed EAC reference; not a forecast or guaranteed transaction price",
+          "latest_reference_date": "2026-09-15",
+          "latest_reference_price": 1940.0,
+          "model_scope": "separate_grade_2_ridge",
+          "model_vs_persistence": "RIDGE_BETTER",
+          "persistence_price": 1940.0,
+          "previous_reference_price": 1887.5,
+          "price_grade": "Grade 2",
+          "source": "EAC farm-gate reference price",
+          "source_organization": "Department of Export Agriculture, Sri Lanka - Economic Research Unit",
+          "source_url": "https://exagri.info/mkt/2026/15.09.2026.html",
+          "status": "AVAILABLE",
+          "unit": "LKR/kg"
+        },
+        "runtime": {
+          "grading": "ONNX_RUNTIME_CPU",
+          "mobile": "BACKEND_API",
+          "price": "FROZEN_PHASE5_FORECAST_RECORD",
+          "tflite": "NOT_IMPLEMENTED_OR_CLAIMED"
+        },
+        "schema_version": "phase6_decision_support_v1",
+        "trace": {
+          "bbox_xyxy": [
+            48.37303161621094,
+            14.267444610595703,
+            3000,
+            3814.6278381347656
+          ],
+          "decision_config_path": "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+          "decision_config_sha256": "39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+          "detection_count": 1,
+          "direction": "DOWN",
+          "explanation": "Accepted as V3 Grade 2. The frozen Grade 2 forecast indicates down movement, with signal classified as HIGH_UNCERTAINTY. This is a limited research outlook, not a buy/sell instruction.",
+          "final_decision_support_category": "HIGH_UNCERTAINTY_OUTLOOK",
+          "forecast_model_specification": "ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json",
+          "forecast_model_specification_sha256": "e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9",
+          "forecast_price": 1931.1312179432457,
+          "forecast_return": -0.004571537142656901,
+          "grade_result": "V3 Grade 2",
+          "grading_decision": "GRADE_2",
+          "grading_model_path": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+          "grading_model_sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+          "input_identifier": "20260508_233543_jpg.rf.GIitSA5jym8tu4es92nw.jpg",
+          "latest_reference_price": 1940.0,
+          "latest_reference_price_date": "2026-09-15",
+          "persistence_baseline": 1940.0,
+          "quality_scores": {
+            "blur_laplacian_variance": 278.547413317916,
+            "brightness": 138.01479883333334,
+            "height": 4000,
+            "minimum_dimension": 3000,
+            "width": 3000
+          },
+          "rejection_or_quality_result": "PASSED",
+          "selected_price_series": "Grade 2",
+          "signal_classification": "HIGH_UNCERTAINTY",
+          "timestamp_utc": "2026-10-07T18:00:00+00:00"
+        }
+      },
+      "role": "GRADE_2",
+      "source_path": "data/raw/Pepper Berry Grading V3.yolov8/test/images/20260508_233543_jpg.rf.GIitSA5jym8tu4es92nw.jpg"
+    },
+    {
+      "category": "REJECT",
+      "grade": null,
+      "grading_decision": "NO_PEPPER",
+      "image_id": "p3fu_aerial_crop_imagery_0010",
+      "market_status": "NOT_AVAILABLE_REJECTED_INPUT",
+      "price_grade": null,
+      "result": {
+        "decision_support": {
+          "category": "REJECT",
+          "limitations": [
+            "V3 grades are project-specific and are not official SLS, buyer, export-certification, or laboratory grades.",
+            "This is research decision support, not an autonomous trading recommendation.",
+            "The Phase 5 price signal is limited/mixed and persistence remains a strong baseline."
+          ],
+          "summary": "Valid pepper was not established; no grade-specific market outlook was generated."
+        },
+        "grading": {
+          "class_margin": 0.0,
+          "confidence_interpretation": "model score; not a calibrated probability",
+          "decision": "NO_PEPPER",
+          "detection_confidence": 0.0,
+          "grade": null,
+          "model_confidence": 0.0,
+          "physical_sample_id": null,
+          "quality_status": "PASSED",
+          "rejection_reason": "no_detection_above_threshold",
+          "status": "REJECTED"
+        },
+        "market": {
+          "forecast_direction": null,
+          "forecast_interval": null,
+          "forecast_log_return": null,
+          "forecast_price": null,
+          "forecast_return": null,
+          "forecast_signal": null,
+          "forecast_target_date": null,
+          "latest_observed_return": null,
+          "latest_reference_date": null,
+          "latest_reference_price": null,
+          "model_vs_persistence": null,
+          "persistence_price": null,
+          "previous_reference_price": null,
+          "price_grade": null,
+          "source": null,
+          "status": "NOT_AVAILABLE_REJECTED_INPUT"
+        },
+        "runtime": {
+          "grading": "ONNX_RUNTIME_CPU",
+          "mobile": "BACKEND_API",
+          "price": "FROZEN_PHASE5_FORECAST_RECORD",
+          "tflite": "NOT_IMPLEMENTED_OR_CLAIMED"
+        },
+        "schema_version": "phase6_decision_support_v1",
+        "trace": {
+          "bbox_xyxy": null,
+          "decision_config_path": "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+          "decision_config_sha256": "39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+          "detection_count": 0,
+          "direction": null,
+          "explanation": "Valid pepper was not established; no grade-specific market outlook was generated.",
+          "final_decision_support_category": "REJECT",
+          "forecast_model_specification": "ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json",
+          "forecast_model_specification_sha256": "e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9",
+          "forecast_price": null,
+          "forecast_return": null,
+          "grade_result": null,
+          "grading_decision": "NO_PEPPER",
+          "grading_model_path": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+          "grading_model_sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+          "input_identifier": "p3fu_aerial_crop_imagery_0010",
+          "latest_reference_price": null,
+          "latest_reference_price_date": null,
+          "persistence_baseline": null,
+          "quality_scores": {
+            "blur_laplacian_variance": 299.50756028572636,
+            "brightness": 109.96740506329114,
+            "height": 640,
+            "minimum_dimension": 474,
+            "width": 474
+          },
+          "rejection_or_quality_result": "no_detection_above_threshold",
+          "selected_price_series": null,
+          "signal_classification": null,
+          "timestamp_utc": "2026-10-07T18:00:00+00:00"
+        }
+      },
+      "role": "NO_PEPPER",
+      "source_path": "data/external/phase3_followup_negatives/aerial_crop_imagery/p3fu_aerial_crop_imagery_0010.jpg"
+    },
+    {
+      "category": "REJECT",
+      "grade": null,
+      "grading_decision": "POOR_IMAGE",
+      "image_id": "p3fu_agricultural_materials_0002",
+      "market_status": "NOT_AVAILABLE_REJECTED_INPUT",
+      "price_grade": null,
+      "result": {
+        "decision_support": {
+          "category": "REJECT",
+          "limitations": [
+            "V3 grades are project-specific and are not official SLS, buyer, export-certification, or laboratory grades.",
+            "This is research decision support, not an autonomous trading recommendation.",
+            "The Phase 5 price signal is limited/mixed and persistence remains a strong baseline."
+          ],
+          "summary": "Valid pepper was not established; no grade-specific market outlook was generated."
+        },
+        "grading": {
+          "class_margin": 0.0,
+          "confidence_interpretation": "model score; not a calibrated probability",
+          "decision": "POOR_IMAGE",
+          "detection_confidence": 0.0,
+          "grade": null,
+          "model_confidence": 0.0,
+          "physical_sample_id": null,
+          "quality_status": "FAILED",
+          "rejection_reason": "blur_variance_below_minimum",
+          "status": "REJECTED"
+        },
+        "market": {
+          "forecast_direction": null,
+          "forecast_interval": null,
+          "forecast_log_return": null,
+          "forecast_price": null,
+          "forecast_return": null,
+          "forecast_signal": null,
+          "forecast_target_date": null,
+          "latest_observed_return": null,
+          "latest_reference_date": null,
+          "latest_reference_price": null,
+          "model_vs_persistence": null,
+          "persistence_price": null,
+          "previous_reference_price": null,
+          "price_grade": null,
+          "source": null,
+          "status": "NOT_AVAILABLE_REJECTED_INPUT"
+        },
+        "runtime": {
+          "grading": "ONNX_RUNTIME_CPU",
+          "mobile": "BACKEND_API",
+          "price": "FROZEN_PHASE5_FORECAST_RECORD",
+          "tflite": "NOT_IMPLEMENTED_OR_CLAIMED"
+        },
+        "schema_version": "phase6_decision_support_v1",
+        "trace": {
+          "bbox_xyxy": null,
+          "decision_config_path": "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+          "decision_config_sha256": "39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+          "detection_count": 0,
+          "direction": null,
+          "explanation": "Valid pepper was not established; no grade-specific market outlook was generated.",
+          "final_decision_support_category": "REJECT",
+          "forecast_model_specification": "ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json",
+          "forecast_model_specification_sha256": "e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9",
+          "forecast_price": null,
+          "forecast_return": null,
+          "grade_result": null,
+          "grading_decision": "POOR_IMAGE",
+          "grading_model_path": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+          "grading_model_sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+          "input_identifier": "p3fu_agricultural_materials_0002",
+          "latest_reference_price": null,
+          "latest_reference_price_date": null,
+          "persistence_baseline": null,
+          "quality_scores": {
+            "blur_laplacian_variance": 4.158922295381038,
+            "brightness": 61.67250959376022,
+            "height": 3187,
+            "minimum_dimension": 3187,
+            "width": 4780
+          },
+          "rejection_or_quality_result": "blur_variance_below_minimum",
+          "selected_price_series": null,
+          "signal_classification": null,
+          "timestamp_utc": "2026-10-07T18:00:00+00:00"
+        }
+      },
+      "role": "POOR_IMAGE",
+      "source_path": "data/external/phase3_followup_negatives/agricultural_materials/p3fu_agricultural_materials_0002.jpg"
+    },
+    {
+      "category": "UNCERTAIN_GRADE",
+      "grade": null,
+      "grading_decision": "UNCERTAIN_GRADE",
+      "image_id": "20260814_163149_jpg.rf.akYgyVxsjFSkI9lbWxrt.jpg",
+      "market_status": "NOT_AVAILABLE_UNCERTAIN_GRADE",
+      "price_grade": null,
+      "result": {
+        "decision_support": {
+          "category": "UNCERTAIN_GRADE",
+          "limitations": [
+            "V3 grades are project-specific and are not official SLS, buyer, export-certification, or laboratory grades.",
+            "This is research decision support, not an autonomous trading recommendation.",
+            "The Phase 5 price signal is limited/mixed and persistence remains a strong baseline."
+          ],
+          "summary": "A reliable grade was not established; no grade-specific market outlook was generated."
+        },
+        "grading": {
+          "class_margin": 0.1090821623802185,
+          "confidence_interpretation": "model score; not a calibrated probability",
+          "decision": "UNCERTAIN_GRADE",
+          "detection_confidence": 0.7010824084281921,
+          "grade": null,
+          "model_confidence": 0.7010824084281921,
+          "physical_sample_id": null,
+          "quality_status": "PASSED",
+          "rejection_reason": "grade_margin_below_minimum",
+          "status": "UNCERTAIN"
+        },
+        "market": {
+          "forecast_direction": null,
+          "forecast_interval": null,
+          "forecast_log_return": null,
+          "forecast_price": null,
+          "forecast_return": null,
+          "forecast_signal": null,
+          "forecast_target_date": null,
+          "latest_observed_return": null,
+          "latest_reference_date": null,
+          "latest_reference_price": null,
+          "model_vs_persistence": null,
+          "persistence_price": null,
+          "previous_reference_price": null,
+          "price_grade": null,
+          "source": null,
+          "status": "NOT_AVAILABLE_UNCERTAIN_GRADE"
+        },
+        "runtime": {
+          "grading": "ONNX_RUNTIME_CPU",
+          "mobile": "BACKEND_API",
+          "price": "FROZEN_PHASE5_FORECAST_RECORD",
+          "tflite": "NOT_IMPLEMENTED_OR_CLAIMED"
+        },
+        "schema_version": "phase6_decision_support_v1",
+        "trace": {
+          "bbox_xyxy": [
+            457.0962905883789,
+            372.78661727905273,
+            2649.2599487304688,
+            3827.8274536132812
+          ],
+          "decision_config_path": "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+          "decision_config_sha256": "39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+          "detection_count": 2,
+          "direction": null,
+          "explanation": "A reliable grade was not established; no grade-specific market outlook was generated.",
+          "final_decision_support_category": "UNCERTAIN_GRADE",
+          "forecast_model_specification": "ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json",
+          "forecast_model_specification_sha256": "e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9",
+          "forecast_price": null,
+          "forecast_return": null,
+          "grade_result": null,
+          "grading_decision": "UNCERTAIN_GRADE",
+          "grading_model_path": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+          "grading_model_sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+          "input_identifier": "20260814_163149_jpg.rf.akYgyVxsjFSkI9lbWxrt.jpg",
+          "latest_reference_price": null,
+          "latest_reference_price_date": null,
+          "persistence_baseline": null,
+          "quality_scores": {
+            "blur_laplacian_variance": 64.7546774804,
+            "brightness": 141.28400458333334,
+            "height": 4000,
+            "minimum_dimension": 3000,
+            "width": 3000
+          },
+          "rejection_or_quality_result": "grade_margin_below_minimum",
+          "selected_price_series": null,
+          "signal_classification": null,
+          "timestamp_utc": "2026-10-07T18:00:00+00:00"
+        }
+      },
+      "role": "UNCERTAIN_GRADE",
+      "source_path": "data/raw/Pepper Berry Grading V3.yolov8/train/images/20260814_163149_jpg.rf.akYgyVxsjFSkI9lbWxrt.jpg"
+    }
+  ],
+  "checks": {
+    "deterministic_repeat": true,
+    "grade_routing": true,
+    "phase6_schema_preserved": true,
+    "rejection_uncertainty_blocking": true
+  },
+  "experiment_id": "PHASE7-ONNX-BACKEND-MOBILE-001",
+  "status": "PASS"
+}

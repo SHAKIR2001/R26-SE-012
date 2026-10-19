@@ -1,0 +1,256 @@
+{
+  "boundary": "No training, model conversion, backend/mobile modification, deployment, or field validation was performed.",
+  "checks": [
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/models/v3_yolo/best.pt",
+      "detail": "expected=c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4; actual=c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+      "detail": "expected=e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca; actual=e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+      "detail": "expected=39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8; actual=39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:data/processed/grading_forecast/price/eac_reconstructed_v1/eac_pepper_price_canonical.csv",
+      "detail": "expected=ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6; actual=ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/price_forecasting/phase5/phase5_config.yaml",
+      "detail": "expected=039b6eb3b7e394ba16a69cd72ad3e847b451741624f9324b4701ff19ec081046; actual=039b6eb3b7e394ba16a69cd72ad3e847b451741624f9324b4701ff19ec081046",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json",
+      "detail": "expected=e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9; actual=e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/price_forecasting/phase5/outputs/walk_forward_predictions.csv",
+      "detail": "expected=d06f8c195a475e30eb78b5aeede55658dcfaaa0f5d09fecfda6de0f435b19e93; actual=d06f8c195a475e30eb78b5aeede55658dcfaaa0f5d09fecfda6de0f435b19e93",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/price_forecasting/phase5/outputs/external_reality_check_selected.csv",
+      "detail": "expected=0b3e5a4ede8f6839f831f008a4655114413c6369a1b9549dca240cc685288c4a; actual=0b3e5a4ede8f6839f831f008a4655114413c6369a1b9549dca240cc685288c4a",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/price_forecasting/phase5/outputs/phase5_forecasting_metrics.json",
+      "detail": "expected=aa25b60f75d3b5bdfbfcdf37f126d3d826e77818241a68f16d00ed6292ed5e2c; actual=aa25b60f75d3b5bdfbfcdf37f126d3d826e77818241a68f16d00ed6292ed5e2c",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/price_forecasting/phase5/outputs/phase5_integrity_validation.json",
+      "detail": "expected=085faac5e47a47780dc875effb8e313f5394fe27743bbb8ee277502facbb6d74; actual=085faac5e47a47780dc875effb8e313f5394fe27743bbb8ee277502facbb6d74",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/phase2_positive_test_decisions.csv",
+      "detail": "expected=349e981d862952e39c034a2ed083b7a67627acc056de82f9b71d1f0c120c80de; actual=349e981d862952e39c034a2ed083b7a67627acc056de82f9b71d1f0c120c80de",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/final_new_negative_decisions.csv",
+      "detail": "expected=c04097e17b053366c602b78410b01fb682cd45f993c3e8303b938a9f57ca6455; actual=c04097e17b053366c602b78410b01fb682cd45f993c3e8303b938a9f57ca6455",
+      "status": "PASS"
+    },
+    {
+      "check": "phase6_config_exists",
+      "detail": "ml\\grading_forecast\\decision_support\\phase6\\phase6_config.yaml",
+      "status": "PASS"
+    },
+    {
+      "check": "grade_routing_one_to_one",
+      "detail": "{\"V3 Grade 1\": {\"model_scope\": \"separate_grade_1_ridge\", \"price_grade\": \"Grade 1\"}, \"V3 Grade 2\": {\"model_scope\": \"separate_grade_2_ridge\", \"price_grade\": \"Grade 2\"}}",
+      "status": "PASS"
+    },
+    {
+      "check": "direction_rule_matches_phase5",
+      "detail": "round reference price and forecast price to 0.01 LKR; UP if forecast is greater, DOWN if lower, FLAT if equal",
+      "status": "PASS"
+    },
+    {
+      "check": "no_synthetic_empirical_values",
+      "detail": "empirical=13",
+      "status": "PASS"
+    },
+    {
+      "check": "logic_values_explicitly_synthetic",
+      "detail": "logic=15",
+      "status": "PASS"
+    },
+    {
+      "check": "all_scenario_expectations_pass",
+      "detail": "passed=28/28",
+      "status": "PASS"
+    },
+    {
+      "check": "rejected_inputs_have_no_price",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "uncertain_inputs_have_no_price",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "grade1_never_routes_grade2",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "grade2_never_routes_grade1",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "invalid_route_fails_closed",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "missing_price_fails_closed",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "missing_forecast_fails_closed",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "decision_traces_complete",
+      "detail": "traces=28",
+      "status": "PASS"
+    },
+    {
+      "check": "in_memory_reproducibility",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "recorded_reproducibility",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "no_synthetic_grade2_price",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "no_interpolation_or_fixed_discount",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "no_hidden_composite_weight",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "phase5_metrics_preserved_not_improved",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "historical_artifacts_not_overwritten",
+      "detail": "unexpected_changes=[]",
+      "status": "PASS"
+    }
+  ],
+  "experiment_id": "PHASE6-GRADE-PRICE-DECISION-001",
+  "frozen_artifact_hashes": {
+    "data/processed/grading_forecast/price/eac_reconstructed_v1/eac_pepper_price_canonical.csv": {
+      "actual": "ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6",
+      "expected": "ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6"
+    },
+    "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json": {
+      "actual": "39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+      "expected": "39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8"
+    },
+    "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/final_new_negative_decisions.csv": {
+      "actual": "c04097e17b053366c602b78410b01fb682cd45f993c3e8303b938a9f57ca6455",
+      "expected": "c04097e17b053366c602b78410b01fb682cd45f993c3e8303b938a9f57ca6455"
+    },
+    "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/phase2_positive_test_decisions.csv": {
+      "actual": "349e981d862952e39c034a2ed083b7a67627acc056de82f9b71d1f0c120c80de",
+      "expected": "349e981d862952e39c034a2ed083b7a67627acc056de82f9b71d1f0c120c80de"
+    },
+    "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt": {
+      "actual": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+      "expected": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca"
+    },
+    "ml/grading_forecast/berry_grading/models/v3_yolo/best.pt": {
+      "actual": "c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4",
+      "expected": "c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4"
+    },
+    "ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json": {
+      "actual": "e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9",
+      "expected": "e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9"
+    },
+    "ml/grading_forecast/price_forecasting/phase5/outputs/external_reality_check_selected.csv": {
+      "actual": "0b3e5a4ede8f6839f831f008a4655114413c6369a1b9549dca240cc685288c4a",
+      "expected": "0b3e5a4ede8f6839f831f008a4655114413c6369a1b9549dca240cc685288c4a"
+    },
+    "ml/grading_forecast/price_forecasting/phase5/outputs/phase5_forecasting_metrics.json": {
+      "actual": "aa25b60f75d3b5bdfbfcdf37f126d3d826e77818241a68f16d00ed6292ed5e2c",
+      "expected": "aa25b60f75d3b5bdfbfcdf37f126d3d826e77818241a68f16d00ed6292ed5e2c"
+    },
+    "ml/grading_forecast/price_forecasting/phase5/outputs/phase5_integrity_validation.json": {
+      "actual": "085faac5e47a47780dc875effb8e313f5394fe27743bbb8ee277502facbb6d74",
+      "expected": "085faac5e47a47780dc875effb8e313f5394fe27743bbb8ee277502facbb6d74"
+    },
+    "ml/grading_forecast/price_forecasting/phase5/outputs/walk_forward_predictions.csv": {
+      "actual": "d06f8c195a475e30eb78b5aeede55658dcfaaa0f5d09fecfda6de0f435b19e93",
+      "expected": "d06f8c195a475e30eb78b5aeede55658dcfaaa0f5d09fecfda6de0f435b19e93"
+    },
+    "ml/grading_forecast/price_forecasting/phase5/phase5_config.yaml": {
+      "actual": "039b6eb3b7e394ba16a69cd72ad3e847b451741624f9324b4701ff19ec081046",
+      "expected": "039b6eb3b7e394ba16a69cd72ad3e847b451741624f9324b4701ff19ec081046"
+    }
+  },
+  "git_changed_paths": [
+    "docs/research/EXPERIMENT_LOG.md",
+    "docs/research/PHASE6_FIELD_DATA_PROTOCOL.md",
+    "docs/research/PHASE6_FIELD_DOMAIN_VALIDATION_RESULTS.md",
+    "docs/research/PHASE6_FREEZE_AND_READINESS.md",
+    "docs/research/PHASE6_GRADE_PRICE_DECISION_ENGINE_RESULTS.md",
+    "ml/grading_forecast/decision_support/phase6/__init__.py",
+    "ml/grading_forecast/decision_support/phase6/config.py",
+    "ml/grading_forecast/decision_support/phase6/decision_engine.py",
+    "ml/grading_forecast/decision_support/phase6/decision_rules.py",
+    "ml/grading_forecast/decision_support/phase6/evaluate_phase6.py",
+    "ml/grading_forecast/decision_support/phase6/grading_adapter.py",
+    "ml/grading_forecast/decision_support/phase6/phase6_config.yaml",
+    "ml/grading_forecast/decision_support/phase6/phase6_decision_scenarios.csv",
+    "ml/grading_forecast/decision_support/phase6/phase6_decision_trace.csv",
+    "ml/grading_forecast/decision_support/phase6/phase6_integrity.json",
+    "ml/grading_forecast/decision_support/phase6/phase6_metrics.json",
+    "ml/grading_forecast/decision_support/phase6/price_router.py",
+    "ml/grading_forecast/decision_support/phase6/scenario_builder.py",
+    "ml/grading_forecast/decision_support/phase6/tests/__init__.py",
+    "ml/grading_forecast/decision_support/phase6/tests/test_decision_engine.py",
+    "ml/grading_forecast/decision_support/phase6/validate_phase6_integrity.py"
+  ],
+  "phase6_artifacts": {
+    "config_sha256": "679c5f15689a073bf849b7a518f7d8314bcc92ee08a132d67cd67e6874ee9355",
+    "metrics_sha256": "04a212aa3b18837573cfd5bc10579f5b80ee2b9d51690d3c6be5bc465f664910",
+    "scenarios_sha256": "7f1505070848d393c295e3d8aa49366c725a402b21fdc9b9725e27a51e10373d",
+    "traces_sha256": "75f93026c3cd2c209b4fa14db3cb4702e9295c98c98c53ebde28b789f390d0bc"
+  },
+  "reproducibility": "PASS",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 33
+  }
+}

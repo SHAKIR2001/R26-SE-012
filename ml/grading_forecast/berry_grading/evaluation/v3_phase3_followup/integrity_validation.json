@@ -1,0 +1,130 @@
+{
+  "phase": "3_followup",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/models/v3_yolo/best.pt",
+      "status": "PASS",
+      "detail": "expected=c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4; actual=c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4"
+    },
+    {
+      "check": "frozen:docs/research/V3_PHASE3_REJECTION_RESULTS.md",
+      "status": "PASS",
+      "detail": "expected=95ee80c44902385abbaf773f2344224b10fd5e7ebf27ea270ebc521c287a726d; actual=95ee80c44902385abbaf773f2344224b10fd5e7ebf27ea270ebc521c287a726d"
+    },
+    {
+      "check": "frozen:data/processed/grading_forecast/berry_v3/phase3_negative_manifest.csv",
+      "status": "PASS",
+      "detail": "expected=7ebf54b8ad0928015b06ee7d27fc2c93cb5df2663509e81bab740a7c21cef9fb; actual=7ebf54b8ad0928015b06ee7d27fc2c93cb5df2663509e81bab740a7c21cef9fb"
+    },
+    {
+      "check": "frozen:data/processed/grading_forecast/berry_v3/v3_image_sample_manifest.csv",
+      "status": "PASS",
+      "detail": "expected=f97702eaa7d62861abd8e8674e79e407f7f9eaf3d1f709a1f454bbe1aaa93044; actual=f97702eaa7d62861abd8e8674e79e407f7f9eaf3d1f709a1f454bbe1aaa93044"
+    },
+    {
+      "check": "frozen:data/processed/grading_forecast/berry_v3/v3_group_split_manifest.csv",
+      "status": "PASS",
+      "detail": "expected=fecebbaf4a0346ee2a6b286828c4c3ca131687c693ad89d4b7ff2a3359ace64a; actual=fecebbaf4a0346ee2a6b286828c4c3ca131687c693ad89d4b7ff2a3359ace64a"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/evaluation/v3_phase3/phase3_metrics.json",
+      "status": "PASS",
+      "detail": "expected=f96e54f7ce9747a1d673dbe3a95818f84f0816051343dc0479d2f0d9ae323787; actual=f96e54f7ce9747a1d673dbe3a95818f84f0816051343dc0479d2f0d9ae323787"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/evaluation/v3_phase3/decision_config_frozen.json",
+      "status": "PASS",
+      "detail": "expected=1a1c987bb9011209440e761f9acd29ac7afd4e64ce0c22704ac4e12655203f47; actual=1a1c987bb9011209440e761f9acd29ac7afd4e64ce0c22704ac4e12655203f47"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/evaluation/v3_yolo/test/metrics.json",
+      "status": "PASS",
+      "detail": "expected=e9f5c227e9667e8b3575c14ced0ab23c37440c1abeb4483cfa7cb95c444ed233; actual=e9f5c227e9667e8b3575c14ced0ab23c37440c1abeb4483cfa7cb95c444ed233"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/models/v3_yolo/experiment_metadata.json",
+      "status": "PASS",
+      "detail": "expected=d70a62f137e3537bf5bb4d49293236e2e3799b46397f456273821a8cc73cda9b; actual=d70a62f137e3537bf5bb4d49293236e2e3799b46397f456273821a8cc73cda9b"
+    },
+    {
+      "check": "canonical_v3_images_unchanged",
+      "status": "PASS",
+      "detail": "matches=775/775"
+    },
+    {
+      "check": "canonical_v3_annotations_unchanged",
+      "status": "PASS",
+      "detail": "matches=775/775"
+    },
+    {
+      "check": "phase1_split_counts_unchanged",
+      "status": "PASS",
+      "detail": "{'TRAIN': 539, 'VALIDATION': 116, 'TEST': 120}"
+    },
+    {
+      "check": "no_physical_sample_leakage",
+      "status": "PASS",
+      "detail": "groups=194; leaks=0"
+    },
+    {
+      "check": "negative_manifest_image_consistency",
+      "status": "PASS",
+      "detail": "rows=250"
+    },
+    {
+      "check": "no_duplicate_sha256_across_negative_partitions",
+      "status": "PASS",
+      "detail": "unique=250/250"
+    },
+    {
+      "check": "source_aware_partitioning",
+      "status": "PASS",
+      "detail": "groups=172; leaks=0"
+    },
+    {
+      "check": "all_negative_partitions_present",
+      "status": "PASS",
+      "detail": "{'NEGATIVE_TRAIN': 152, 'NEGATIVE_VALIDATION': 49, 'NEGATIVE_FINAL_HOLDOUT': 49}"
+    },
+    {
+      "check": "original_phase3_holdout_not_in_training",
+      "status": "PASS",
+      "detail": "overlap=0"
+    },
+    {
+      "check": "new_final_holdout_isolated",
+      "status": "PASS",
+      "detail": "overlap=0"
+    },
+    {
+      "check": "holdout_paths_absent_from_training_list",
+      "status": "PASS",
+      "detail": "negative_final=0; positive_test=0"
+    },
+    {
+      "check": "experiment_configuration_recorded",
+      "status": "PASS",
+      "detail": "config and training metadata"
+    },
+    {
+      "check": "selected_threshold_from_validation",
+      "status": "PASS",
+      "detail": "selected=0.05; scan_rows=18"
+    },
+    {
+      "check": "holdouts_accessed_only_after_freeze",
+      "status": "PASS",
+      "detail": "freeze status and final provenance"
+    },
+    {
+      "check": "final_metrics_complete",
+      "status": "PASS",
+      "detail": "COMPLETE \u2014 OPERATIONAL GATE IMPROVED"
+    }
+  ],
+  "summary": {
+    "passed": 24,
+    "failed": 0
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "phase": "V3 Phase 1 audit preparation",
+  "created_date": "2026-10-06",
+  "seed": 42,
+  "source_root": "D:/work/Year - 4/pepper/project/datset reorder",
+  "v3_root": "D:/work/Year - 4/pepper/project/multimodal-pepper-ai-decision-support/data/raw/Pepper Berry Grading V3.yolov8",
+  "mapping": {
+    "source_images": 775,
+    "v3_images": 775,
+    "exact_matches": 775,
+    "unmatched": 0,
+    "ambiguous": 0,
+    "duplicate_source_hash_groups": 0,
+    "physical_samples": 194,
+    "sample_size_distribution": {
+      "3": 3,
+      "4": 189,
+      "5": 2
+    },
+    "source_grade_to_v3_grade": {
+      "grade_1 -> V3 Grade 1": 448,
+      "grade_2 -> V3 Grade 2": 327
+    }
+  },
+  "group_aware_split": {
+    "TRAIN": {
+      "groups": 135,
+      "images": 539,
+      "groups_by_v3_grade": {
+        "V3 Grade 1": 78,
+        "V3 Grade 2": 57
+      },
+      "images_by_v3_grade": {
+        "V3 Grade 1": 312,
+        "V3 Grade 2": 227
+      }
+    },
+    "VALIDATION": {
+      "groups": 29,
+      "images": 116,
+      "groups_by_v3_grade": {
+        "V3 Grade 1": 17,
+        "V3 Grade 2": 12
+      },
+      "images_by_v3_grade": {
+        "V3 Grade 1": 68,
+        "V3 Grade 2": 48
+      }
+    },
+    "TEST": {
+      "groups": 30,
+      "images": 120,
+      "groups_by_v3_grade": {
+        "V3 Grade 1": 17,
+        "V3 Grade 2": 13
+      },
+      "images_by_v3_grade": {
+        "V3 Grade 1": 68,
+        "V3 Grade 2": 52
+      }
+    }
+  },
+  "split_validation": {
+    "intersections": {
+      "train_validation": [],
+      "train_test": [],
+      "validation_test": []
+    },
+    "all_groups_in_union": true,
+    "every_v3_image_exactly_once": true
+  },
+  "capture_statistics": {
+    "V3 Grade 1": {
+      "images": 448,
+      "physical_samples": 112,
+      "resolution_distribution": {
+        "4000x3000": 304,
+        "4080x3060": 140,
+        "8160x6120": 4
+      },
+      "width": {
+        "min": 4000.0,
+        "max": 8160.0,
+        "mean": 4062.142857,
+        "std": 390.707757
+      },
+      "height": {
+        "min": 3000.0,
+        "max": 6120.0,
+        "mean": 3046.607143,
+        "std": 293.030817
+      },
+      "aspect_ratio": {
+        "min": 1.333333,
+        "max": 1.333333,
+        "mean": 1.333333,
+        "std": 0.0
+      },
+      "brightness_0_255": {
+        "min": 92.888143,
+        "max": 191.352987,
+        "mean": 142.846512,
+        "std": 19.529673
+      },
+      "saturation_0_255": {
+        "min": 8.982218,
+        "max": 107.774963,
+        "mean": 31.663915,
+        "std": 18.100047
+      },
+      "border_brightness_0_255": {
+        "min": 122.547112,
+        "max": 249.498973,
+        "mean": 194.04114,
+        "std": 22.194007
+      },
+      "camera_make": {
+        "samsung": 448
+      },
+      "camera_model": {
+        "Galaxy A06": 144,
+        "SM-A127F": 304
+      },
+      "exif_orientation": {
+        "1": 36,
+        "3": 158,
+        "6": 246,
+        "8": 8
+      }
+    },
+    "V3 Grade 2": {
+      "images": 327,
+      "physical_samples": 82,
+      "resolution_distribution": {
+        "4000x3000": 326,
+        "4080x3060": 1
+      },
+      "width": {
+        "min": 4000.0,
+        "max": 4080.0,
+        "mean": 4000.244648,
+        "std": 4.41724
+      },
+      "height": {
+        "min": 3000.0,
+        "max": 3060.0,
+        "mean": 3000.183486,
+        "std": 3.31293
+      },
+      "aspect_ratio": {
+        "min": 1.333333,
+        "max": 1.333333,
+        "mean": 1.333333,
+        "std": 0.0
+      },
+      "brightness_0_255": {
+        "min": 112.772664,
+        "max": 177.836202,
+        "mean": 141.195278,
+        "std": 10.198062
+      },
+      "saturation_0_255": {
+        "min": 13.965068,
+        "max": 74.543457,
+        "mean": 29.997174,
+        "std": 13.214243
+      },
+      "border_brightness_0_255": {
+        "min": 137.407959,
+        "max": 229.70751,
+        "mean": 191.899737,
+        "std": 18.845716
+      },
+      "camera_make": {
+        "samsung": 327
+      },
+      "camera_model": {
+        "Galaxy A06": 1,
+        "SM-A127F": 326
+      },
+      "exif_orientation": {
+        "1": 2,
+        "3": 48,
+        "6": 263,
+        "8": 14
+      }
+    }
+  }
+}

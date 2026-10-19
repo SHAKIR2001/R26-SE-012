@@ -1,0 +1,43 @@
+{
+  "phase": 6,
+  "status": "BLOCKED_PENDING_FIELD_DATA",
+  "recorded_at_utc": "2026-10-07T14:21:48.288084+00:00",
+  "freeze": {
+    "status": "PASS",
+    "git_commit_at_start": "b6f19d542680fbcae8cd061d9b93e167e1f98226",
+    "phase2_model": {"path": "ml/grading_forecast/berry_grading/models/v3_yolo/best.pt", "sha256": "c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4"},
+    "phase3_followup_model": {"path": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt", "sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca"},
+    "decision_config": "ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+    "model_retrained": false,
+    "threshold_changed": false
+  },
+  "dataset": {
+    "status": "UNAVAILABLE",
+    "manifest": null,
+    "images": null,
+    "physical_samples": null,
+    "devices": null,
+    "independent": null,
+    "reason": "No clearly identifiable independent prospective field dataset exists in the repository."
+  },
+  "overall": {"total_images": null, "accepted": null, "rejected": null, "abstained_uncertain": null, "valid_pepper_coverage": null, "false_rejection_rate": null, "non_pepper_rejection_rate": null, "false_acceptance_rate": null},
+  "grading": {"accuracy": null, "balanced_accuracy": null, "macro_f1": null, "weighted_f1": null, "grade_1": null, "grade_2": null, "confusion_matrix": null, "reason": "Prospective field images and independent reference grades are unavailable."},
+  "rejection": {"valid_pepper_images": null, "valid_pepper_false_rejections": null, "non_pepper_images": null, "non_pepper_false_accepts": null, "reason": "Prospective field positives and negatives are unavailable."},
+  "domain_shift": {"device": null, "lighting": null, "background": null, "framing": null, "pepper_density": null, "quality_challenge": null, "negative_category": null, "reason": "No field acquisition metadata exists."},
+  "physical_sample": {"samples": null, "majority_vote_accuracy": null, "confidence_weighted_accuracy": null, "conflicting_view_rate": null, "reason": "No prospective physical-sample groups exist."},
+  "price_temporal": {"status": "NO_NEW_TEMPORAL_PRICE_EVALUATION_AVAILABLE", "phase5_frozen_cutoff": "2026-09-29", "new_observations": 0, "ridge_metrics": null, "persistence_metrics": null},
+  "acceptance_gates": {
+    "gate_a_dataset_independence": "UNAVAILABLE",
+    "gate_b_grading_performance": "UNAVAILABLE",
+    "gate_c_rejection_performance": "UNAVAILABLE",
+    "gate_d_domain_shift_stability": "UNAVAILABLE",
+    "gate_e_uncertainty_behavior": "UNAVAILABLE",
+    "decision": "BLOCKED_PENDING_FIELD_DATA"
+  },
+  "limitations": [
+    "No independent prospective field dataset is available.",
+    "No Phase 6 grading, rejection, domain-shift, physical-sample, or uncertainty metric can be calculated.",
+    "The latest verified EAC observation remains 2026-09-29, so no new chronological price continuation is available.",
+    "Existing internal and internet-negative results cannot be relabelled as prospective field validation."
+  ]
+}

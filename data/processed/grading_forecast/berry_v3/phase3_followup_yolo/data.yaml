@@ -1,0 +1,7 @@
+path: D:/work/Year - 4/pepper/project/multimodal-pepper-ai-decision-support/data/processed/grading_forecast/berry_v3/phase3_followup_yolo
+train: train.txt
+val: validation.txt
+names:
+  0: V3 Grade 1
+  1: V3 Grade 2
+nc: 2

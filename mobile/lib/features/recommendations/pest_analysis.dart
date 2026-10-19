@@ -26,6 +26,12 @@ class PestAnalysis {
   final String affectedRegions;
   final String summary;
 
+  /// True when the detail analysis could not confirm a pest identity. This is
+  /// a fail-closed result: the UI asks for a clearer image and the treatment
+  /// engine must not recommend chemicals.
+  bool get isUncertain => pestType.trim().toLowerCase() == 'uncertain';
+
+  /// Creates a new pest analysis result.
   const PestAnalysis({
     required this.isPepperPlant,
     required this.healthy,
@@ -46,13 +52,22 @@ class PestAnalysis {
     return 'severe';
   }
 
+  /// Creates a [PestAnalysis] object from JSON data.
+  ///
+  /// This is normally used to convert the response received
+  /// from the AI backend/API into a Dart object that can be used
+  /// throughout the Flutter application.
   factory PestAnalysis.fromJson(Map<String, dynamic> j) {
     double asDouble(Object? v) =>
         v is num ? v.toDouble() : (double.tryParse('${v ?? ''}') ?? 0);
     int asInt(Object? v) =>
         v is num ? v.round() : (int.tryParse('${v ?? ''}') ?? 0);
+
+    // Convert the JSON response into a PestAnalysis object.
     return PestAnalysis(
       isPepperPlant: j['is_pepper_plant'] == true,
+
+      // Checks whether the plant was classified as healthy.
       healthy: j['healthy'] == true,
       pestType: (j['pest_type'] ?? 'Uncertain').toString(),
       plantPart: (j['plant_part'] ?? 'unknown').toString(),

@@ -1,0 +1,496 @@
+{
+  "phase": "3_followup",
+  "status": "COMPLETE",
+  "baseline_model": "ml/grading_forecast/berry_grading/models/v3_yolo/best.pt",
+  "followup_model": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+  "selected_threshold": 0.05,
+  "validation": {
+    "valid_pepper": {
+      "images": 116,
+      "accepted": 114,
+      "coverage": 0.9827586206896551,
+      "false_rejections": 2,
+      "false_rejection_rate": 0.017241379310344827,
+      "accuracy": 0.9396551724137931,
+      "balanced_accuracy": 0.9301470588235294,
+      "macro_precision": 0.9602030789387488,
+      "macro_recall": 0.9301470588235294,
+      "macro_f1": 0.9435528500276702,
+      "weighted_f1": 0.9470831822605575,
+      "g1_f1": 0.9640287769784173,
+      "g2_f1": 0.9230769230769231,
+      "accepted_accuracy": 0.956140350877193,
+      "accepted_macro_f1": 0.9539245008487591,
+      "accepted_confusion_matrix": [
+        [
+          67,
+          1
+        ],
+        [
+          4,
+          42
+        ]
+      ],
+      "end_to_end_confusion_matrix": [
+        [
+          67,
+          1,
+          0
+        ],
+        [
+          4,
+          42,
+          2
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "decision_counts": {
+        "GRADE_1": 71,
+        "UNCERTAIN_GRADE": 2,
+        "GRADE_2": 43
+      }
+    },
+    "negative": {
+      "images": 49,
+      "rejected": 49,
+      "accepted": 0,
+      "rejection_rate": 1.0,
+      "false_acceptance_rate": 0.0,
+      "binary_convention": "positive class = non-pepper; predicted positive = any rejection state",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "balanced_accuracy": null,
+      "balanced_accuracy_note": "undefined on an all-non-pepper-only holdout",
+      "decision_counts": {
+        "NO_PEPPER": 46,
+        "POOR_IMAGE": 3
+      },
+      "by_category": {
+        "aerial_crop_imagery": {
+          "n": 2,
+          "rejected": 2,
+          "accepted": 0,
+          "rejection_rate": 1.0,
+          "false_acceptance_rate": 0.0
+        },
+        "agricultural_crops": {
+          "n": 16,
+          "rejected": 16,
+          "accepted": 0,
+          "rejection_rate": 1.0,
+          "false_acceptance_rate": 0.0
+        },
+        "agricultural_materials": {
+          "n": 5,
+          "rejected": 5,
+          "accepted": 0,
+          "rejection_rate": 1.0,
+          "false_acceptance_rate": 0.0
+        },
+        "background_scenes": {
+          "n": 3,
+          "rejected": 3,
+          "accepted": 0,
+          "rejection_rate": 1.0,
+          "false_acceptance_rate": 0.0
+        },
+        "ordinary_objects": {
+          "n": 1,
+          "rejected": 1,
+          "accepted": 0,
+          "rejection_rate": 1.0,
+          "false_acceptance_rate": 0.0
+        },
+        "other_spices_food": {
+          "n": 4,
+          "rejected": 4,
+          "accepted": 0,
+          "rejection_rate": 1.0,
+          "false_acceptance_rate": 0.0
+        },
+        "vegetation_leaves": {
+          "n": 18,
+          "rejected": 18,
+          "accepted": 0,
+          "rejection_rate": 1.0,
+          "false_acceptance_rate": 0.0
+        }
+      }
+    }
+  },
+  "new_negative_holdout": {
+    "images": 49,
+    "rejected": 49,
+    "accepted": 0,
+    "rejection_rate": 1.0,
+    "false_acceptance_rate": 0.0,
+    "binary_convention": "positive class = non-pepper; predicted positive = any rejection state",
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "balanced_accuracy": null,
+    "balanced_accuracy_note": "undefined on an all-non-pepper-only holdout",
+    "decision_counts": {
+      "NO_PEPPER": 44,
+      "POOR_IMAGE": 4,
+      "UNCERTAIN_GRADE": 1
+    },
+    "by_category": {
+      "aerial_crop_imagery": {
+        "n": 2,
+        "rejected": 2,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "agricultural_crops": {
+        "n": 14,
+        "rejected": 14,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "agricultural_materials": {
+        "n": 5,
+        "rejected": 5,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "background_scenes": {
+        "n": 2,
+        "rejected": 2,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "ordinary_objects": {
+        "n": 2,
+        "rejected": 2,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "other_spices_food": {
+        "n": 5,
+        "rejected": 5,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "vegetation_leaves": {
+        "n": 19,
+        "rejected": 19,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      }
+    }
+  },
+  "new_negative_holdout_control": {
+    "images": 49,
+    "rejected": 35,
+    "accepted": 14,
+    "rejection_rate": 0.7142857142857143,
+    "false_acceptance_rate": 0.2857142857142857,
+    "binary_convention": "positive class = non-pepper; predicted positive = any rejection state",
+    "precision": 1.0,
+    "recall": 0.7142857142857143,
+    "f1": 0.8333333333333334,
+    "balanced_accuracy": null,
+    "balanced_accuracy_note": "undefined on an all-non-pepper-only holdout",
+    "decision_counts": {
+      "NO_PEPPER": 31,
+      "GRADE_2": 7,
+      "GRADE_1": 7,
+      "POOR_IMAGE": 4
+    },
+    "by_category": {
+      "aerial_crop_imagery": {
+        "n": 2,
+        "rejected": 2,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "agricultural_crops": {
+        "n": 14,
+        "rejected": 10,
+        "accepted": 4,
+        "rejection_rate": 0.7142857142857143,
+        "false_acceptance_rate": 0.2857142857142857
+      },
+      "agricultural_materials": {
+        "n": 5,
+        "rejected": 5,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "background_scenes": {
+        "n": 2,
+        "rejected": 2,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "ordinary_objects": {
+        "n": 2,
+        "rejected": 2,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "other_spices_food": {
+        "n": 5,
+        "rejected": 5,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "vegetation_leaves": {
+        "n": 19,
+        "rejected": 9,
+        "accepted": 10,
+        "rejection_rate": 0.47368421052631576,
+        "false_acceptance_rate": 0.5263157894736842
+      }
+    }
+  },
+  "original_phase3_holdout": {
+    "images": 40,
+    "rejected": 40,
+    "accepted": 0,
+    "rejection_rate": 1.0,
+    "false_acceptance_rate": 0.0,
+    "binary_convention": "positive class = non-pepper; predicted positive = any rejection state",
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "balanced_accuracy": null,
+    "balanced_accuracy_note": "undefined on an all-non-pepper-only holdout",
+    "decision_counts": {
+      "NO_PEPPER": 38,
+      "POOR_IMAGE": 2
+    },
+    "by_category": {
+      "buildings_indoor": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "containers": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "empty_background": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "leaves_plants": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "other_crops": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "other_spices_food": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "people": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "random_objects": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "soil_ground": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      },
+      "vehicles": {
+        "n": 4,
+        "rejected": 4,
+        "accepted": 0,
+        "rejection_rate": 1.0,
+        "false_acceptance_rate": 0.0
+      }
+    }
+  },
+  "phase2_positive_test_regression": {
+    "images": 120,
+    "accepted": 118,
+    "coverage": 0.9833333333333333,
+    "false_rejections": 2,
+    "false_rejection_rate": 0.016666666666666666,
+    "accuracy": 0.9583333333333334,
+    "balanced_accuracy": 0.954185520361991,
+    "macro_precision": 0.9753031647441586,
+    "macro_recall": 0.954185520361991,
+    "macro_f1": 0.9642986196429861,
+    "weighted_f1": 0.966139095661391,
+    "g1_f1": 0.9781021897810219,
+    "g2_f1": 0.9504950495049505,
+    "accepted_accuracy": 0.9745762711864406,
+    "accepted_macro_f1": 0.9738995797389958,
+    "accepted_confusion_matrix": [
+      [
+        67,
+        1
+      ],
+      [
+        2,
+        48
+      ]
+    ],
+    "end_to_end_confusion_matrix": [
+      [
+        67,
+        1,
+        0
+      ],
+      [
+        2,
+        48,
+        2
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "decision_counts": {
+      "GRADE_1": 69,
+      "GRADE_2": 49,
+      "UNCERTAIN_GRADE": 2
+    }
+  },
+  "end_to_end": {
+    "matrix": {
+      "rows": [
+        "VALID_G1",
+        "VALID_G2",
+        "NON_PEPPER"
+      ],
+      "columns": [
+        "G1",
+        "G2",
+        "REJECT"
+      ],
+      "values": [
+        [
+          67,
+          1,
+          0
+        ],
+        [
+          2,
+          48,
+          2
+        ],
+        [
+          0,
+          0,
+          49
+        ]
+      ]
+    },
+    "vegetation_crop": {
+      "n": 35,
+      "rejected": 35,
+      "accepted": 0,
+      "rejection_rate": 1.0
+    },
+    "binary_gate_metrics": {
+      "convention": "positive class = non-pepper; predicted positive = any rejection state",
+      "precision": 0.9607843137254902,
+      "recall": 1.0,
+      "f1": 0.98,
+      "balanced_accuracy": 0.9916666666666667,
+      "confusion_matrix": [
+        [
+          118,
+          2
+        ],
+        [
+          0,
+          49
+        ]
+      ]
+    }
+  },
+  "comparison": {
+    "new_holdout_rejection_change": 0.2857142857142857,
+    "frozen_phase3_baseline_rejection": 0.875,
+    "original_phase3_followup_rejection": 1.0,
+    "phase2_accuracy_baseline": 0.9583,
+    "phase2_macro_f1_baseline": 0.9578,
+    "frozen_phase3_validation_baseline": {
+      "images": 116,
+      "accepted_for_grading": 111,
+      "coverage": 0.9568965517241379,
+      "false_rejections": 5,
+      "false_rejection_rate": 0.04310344827586207,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "decision_counts": {
+        "GRADE_1": 61,
+        "GRADE_2": 50,
+        "UNCERTAIN_GRADE": 5
+      },
+      "grade_confusion_matrix_accepted": [
+        [
+          61,
+          3
+        ],
+        [
+          0,
+          47
+        ]
+      ]
+    }
+  },
+  "hypothesis": "SUPPORTED",
+  "decision": "COMPLETE \u2014 OPERATIONAL GATE IMPROVED",
+  "integrity": {
+    "model_and_threshold_frozen_before_holdout": true,
+    "no_post_final_tuning": true,
+    "base_checkpoint_sha256": "c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4",
+    "followup_checkpoint_sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca"
+  }
+}

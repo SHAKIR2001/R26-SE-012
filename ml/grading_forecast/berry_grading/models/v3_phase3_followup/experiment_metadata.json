@@ -1,0 +1,119 @@
+{
+  "experiment": {
+    "experiment_id": "BERRY-V3-YOLO11N-PHASE3-FOLLOWUP-001",
+    "phase": "3_followup",
+    "task": "controlled_hard_negative_fine_tuning",
+    "base_checkpoint": "ml/grading_forecast/berry_grading/models/v3_yolo/best.pt",
+    "dataset_version": "berry_v3_phase3_followup_negatives_v1",
+    "positive_train_partition": "TRAIN",
+    "positive_validation_partition": "VALIDATION",
+    "negative_train_partition": "NEGATIVE_TRAIN",
+    "negative_validation_partition": "NEGATIVE_VALIDATION",
+    "negative_final_holdout_partition": "NEGATIVE_FINAL_HOLDOUT",
+    "seed": 42,
+    "image_size": 640,
+    "batch_size": 4,
+    "epochs": 30,
+    "patience": 8,
+    "device": 0,
+    "workers": 2,
+    "optimizer": "AdamW",
+    "learning_rate_initial": 0.0001,
+    "learning_rate_final_fraction": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 2.0,
+    "augmentations": {
+      "hsv_h": 0.015,
+      "hsv_s": 0.4,
+      "hsv_v": 0.25,
+      "degrees": 5.0,
+      "translate": 0.05,
+      "scale": 0.1,
+      "shear": 0.0,
+      "perspective": 0.0,
+      "flip_up_down": 0.0,
+      "flip_left_right": 0.5,
+      "mosaic": 0.0,
+      "mixup": 0.0,
+      "cutmix": 0.0,
+      "copy_paste": 0.0
+    },
+    "quality_gate": {
+      "minimum_blur_variance": 10.0,
+      "minimum_brightness": 50.0,
+      "minimum_dimension": 320,
+      "minimum_box_area_ratio": 0.2
+    },
+    "threshold_selection": {
+      "candidates": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9
+      ],
+      "minimum_valid_pepper_coverage": 0.95,
+      "objective": "maximize_negative_validation_rejection_then_valid_accepted_macro_f1",
+      "tie_break": "lowest_threshold",
+      "grade_margin": 0.3
+    },
+    "classes": {
+      "0": "V3 Grade 1",
+      "1": "V3 Grade 2"
+    }
+  },
+  "data_yaml": "data/processed/grading_forecast/berry_v3/phase3_followup_yolo/data.yaml",
+  "counts": {
+    "positive_train": 539,
+    "negative_train": 152,
+    "positive_validation": 116,
+    "negative_validation": 49,
+    "sealed_positive_test": 120,
+    "sealed_negative_final_holdout": 49
+  },
+  "integrity": {
+    "base_checkpoint_sha256_before": "c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4",
+    "sealed_holdouts_accessed_during_training": false,
+    "base_checkpoint_sha256_after": "c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4"
+  },
+  "environment": {
+    "executed_at_utc": "2026-10-07T09:47:58.593780+00:00",
+    "python": "3.13.14",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "torch": "2.14.1+cu130",
+    "torch_cuda": "13.0",
+    "ultralytics": "8.4.174",
+    "device": "NVIDIA GeForce RTX 2050",
+    "device_memory_bytes": 4294443008
+  },
+  "training": {
+    "strategy": "one-shot hard-negative fine-tuning",
+    "resume_used": true,
+    "epochs_completed": 27,
+    "best_epoch": 19,
+    "early_stopped": true,
+    "final_invocation_duration_seconds": 2147.103018499969,
+    "duration_seconds": 2620.755,
+    "best_checkpoint": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+    "best_checkpoint_sha256": "e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+    "last_checkpoint": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/last.pt",
+    "run_directory": "ml/grading_forecast/berry_grading/models/v3_phase3_followup/training_run",
+    "positive_test_accessed": false,
+    "negative_final_holdout_accessed": false,
+    "original_phase3_holdout_accessed": false
+  }
+}

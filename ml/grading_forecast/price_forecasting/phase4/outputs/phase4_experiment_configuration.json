@@ -1,0 +1,65 @@
+{
+  "seed": 42,
+  "primary_target": "next-observation percentage return",
+  "forecast_horizon": "next observed DEA/EAC market observation; intervals retained as observed",
+  "flat_rule": "Actual FLAT means exact equality in published source prices; predicted FLAT means derived price equals reference after rounding both to the source precision of 0.01 LKR.",
+  "feature_set": [
+    "price_lkr_per_kg",
+    "price_lag_1",
+    "price_lag_2",
+    "return",
+    "return_lag_1",
+    "rolling_price_mean_3",
+    "rolling_return_std_3",
+    "days_since_previous_observation"
+  ],
+  "feature_timing": "All features are current or backward-looking at the reference date.",
+  "walk_forward_rule": "For each forecast origin, fit only rows whose target observation date is on or before that origin.",
+  "model_candidates": {
+    "separate_ridge": {
+      "formulation": "separate",
+      "algorithm": "ridge",
+      "alpha": 1.0
+    },
+    "separate_random_forest": {
+      "formulation": "separate",
+      "algorithm": "random_forest",
+      "n_estimators": 100,
+      "max_depth": 5,
+      "min_samples_leaf": 5
+    },
+    "shared_ridge": {
+      "formulation": "shared",
+      "algorithm": "ridge",
+      "alpha": 1.0
+    },
+    "shared_random_forest": {
+      "formulation": "shared",
+      "algorithm": "random_forest",
+      "n_estimators": 100,
+      "max_depth": 5,
+      "min_samples_leaf": 5
+    }
+  },
+  "baselines": [
+    "zero_return_persistence",
+    "last_observed_return",
+    "expanding_mean_return"
+  ],
+  "selection_metric": "lowest validation macro-average of per-grade return RMSE",
+  "selected_ml_candidate": "separate_ridge",
+  "selected_ml_candidate_configuration": {
+    "formulation": "separate",
+    "algorithm": "ridge",
+    "alpha": 1.0
+  },
+  "selected_ml_beats_persistence_on_validation": false,
+  "forecasting_decision": "No tested ML model demonstrated validation improvement over persistence; the best ML candidate is retained for transparent final comparison, not adopted as a superior final forecaster.",
+  "environment": {
+    "python": "3.13.14",
+    "pandas": "3.0.1",
+    "numpy": "2.4.3",
+    "scikit_learn": "1.8.0",
+    "platform": "Windows-11-10.0.26300-SP0"
+  }
+}
