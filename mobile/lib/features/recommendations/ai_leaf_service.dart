@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import '../../core/locale/app_locale.dart';
 import 'ai_config.dart';
 import 'leaf_analysis.dart';
 
@@ -33,7 +34,12 @@ class AiLeafService {
     'Uncertain',
   ];
 
-  static const List<String> _severityBands = ['none', 'mild', 'moderate', 'severe'];
+  static const List<String> _severityBands = [
+    'none',
+    'mild',
+    'moderate',
+    'severe',
+  ];
 
   // Configure the Gemini Generative AI model
   // The system prompt tells the AI to behave like a black pepper agronomist
@@ -47,15 +53,28 @@ class AiLeafService {
       responseSchema: _schema,
     ),
   );
-   // Main function used to analyse a captured leaf image
-  Future<LeafAnalysis> analyze(Uint8List jpegBytes) async {
 
-     // Check whether the Gemini API key is available
+  /// [knownDisease] is the class the scanner already detected (e.g. "Quick
+  /// Wilt"). When given, the diagnosis is PINNED to it — this screen only fills
+  /// in the severity, affected regions and treatment for that disease, instead
+  /// of running a second, independent classification that can disagree with the
+  /// scan the user just saw.
+  Future<LeafAnalysis> analyze(
+    Uint8List jpegBytes, {
+    String? knownDisease,
+  }) async {
     if (!AiConfig.hasKey) {
       throw LeafAnalysisException(
         'No AI API key. Run with --dart-define=GEMINI_API_KEY=your_key',
       );
     }
+
+    final anchor = (knownDisease == null || knownDisease.trim().isEmpty)
+        ? ''
+        : '\n\nA specialist detector has ALREADY diagnosed this leaf as '
+              '"$knownDisease". Treat that as correct: set disease_type to exactly '
+              '"$knownDisease", and describe its symptoms, severity and treatment '
+              'accordingly. Do NOT pick a different disease.';
 
     final GenerateContentResponse res;
     try {
@@ -64,8 +83,13 @@ class AiLeafService {
       // to the Gemini multimodal AI model
       res = await _model.generateContent([
         Content.multi([
-          TextPart(_taskPrompt),  // Tell Gemini what task it should perform
-          DataPart('image/jpeg', jpegBytes), // Attach the captured JPEG image
+          TextPart(
+            '$_taskPrompt$anchor\n\nWrite summary, affected_regions and '
+            'every treatment step in ${currentPromptLanguage()}. Keep '
+            'disease_type and severity_band exactly as the allowed English '
+            'values.',
+          ),
+          DataPart('image/jpeg', jpegBytes),
         ]),
       ]);
     } on Exception catch (e) {
@@ -83,9 +107,15 @@ class AiLeafService {
     try {
        // Convert the JSON text response into a Dart Map
       final json = jsonDecode(text) as Map<String, dynamic>;
-
-       // Convert the Dart Map into a LeafAnalysis object
-      // which can be used by the application UI
+      // Pin the label to the scan when we have one, but only if the leaf is in
+      // distribution (is_pepper_leaf). The prompt already steers the model here;
+      // this guarantees the header matches the "Quick Wilt 95%" the user saw.
+      if (knownDisease != null &&
+          knownDisease.trim().isNotEmpty &&
+          json['is_pepper_leaf'] == true) {
+        json['disease_type'] = knownDisease;
+        json['healthy'] = false;
+      }
       return LeafAnalysis.fromJson(json);
     } catch (_) {
       throw LeafAnalysisException('Could not parse AI response:\n$text');
@@ -128,7 +158,8 @@ Rules:
     properties: {
       // Define the structure of the expected JSON response
       'is_pepper_leaf': Schema.boolean(
-        description: 'True only if the image clearly shows a black pepper leaf.',
+        description:
+            'True only if the image clearly shows a black pepper leaf.',
       ),
       'healthy': Schema.boolean(
         description: 'True if the leaf shows no disease or deficiency.',

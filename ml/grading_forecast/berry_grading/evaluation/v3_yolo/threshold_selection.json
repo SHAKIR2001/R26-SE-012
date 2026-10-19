@@ -1,0 +1,4232 @@
+{
+  "status": "FROZEN_BEFORE_TEST",
+  "source": "VALIDATION only",
+  "objective": "image_level_macro_f1_with_rejections_counted_as_errors",
+  "tie_break": "lowest_threshold",
+  "selected_threshold": 0.05,
+  "baseline_threshold": 0.25,
+  "baseline_metrics": {
+    "images": 116,
+    "accepted": 116,
+    "rejected": 0,
+    "coverage": 1.0,
+    "accuracy": 0.9568965517241379,
+    "balanced_accuracy": 0.9632352941176471,
+    "macro_f1": 0.9561635552868264,
+    "weighted_f1": 0.9571408838699084,
+    "per_class": {
+      "V3 Grade 1": {
+        "precision": 1.0,
+        "recall": 0.9264705882352942,
+        "f1": 0.9618320610687023,
+        "support": 68
+      },
+      "V3 Grade 2": {
+        "precision": 0.9056603773584906,
+        "recall": 1.0,
+        "f1": 0.9504950495049505,
+        "support": 48
+      }
+    },
+    "confusion_matrix": {
+      "rows": [
+        "V3 Grade 1",
+        "V3 Grade 2"
+      ],
+      "columns": [
+        "V3 Grade 1",
+        "V3 Grade 2",
+        "REJECT"
+      ],
+      "values": [
+        [
+          63,
+          5,
+          0
+        ],
+        [
+          0,
+          48,
+          0
+        ]
+      ]
+    }
+  },
+  "selected_validation_metrics": {
+    "images": 116,
+    "accepted": 116,
+    "rejected": 0,
+    "coverage": 1.0,
+    "accuracy": 0.9568965517241379,
+    "balanced_accuracy": 0.9632352941176471,
+    "macro_f1": 0.9561635552868264,
+    "weighted_f1": 0.9571408838699084,
+    "per_class": {
+      "V3 Grade 1": {
+        "precision": 1.0,
+        "recall": 0.9264705882352942,
+        "f1": 0.9618320610687023,
+        "support": 68
+      },
+      "V3 Grade 2": {
+        "precision": 0.9056603773584906,
+        "recall": 1.0,
+        "f1": 0.9504950495049505,
+        "support": 48
+      }
+    },
+    "confusion_matrix": {
+      "rows": [
+        "V3 Grade 1",
+        "V3 Grade 2"
+      ],
+      "columns": [
+        "V3 Grade 1",
+        "V3 Grade 2",
+        "REJECT"
+      ],
+      "values": [
+        [
+          63,
+          5,
+          0
+        ],
+        [
+          0,
+          48,
+          0
+        ]
+      ]
+    }
+  },
+  "candidate_results": [
+    {
+      "threshold": 0.05,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.06,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.07,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.08,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.09,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.1,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.11,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.12,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.13,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.14,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.15,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.16,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.17,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.18,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.19,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.2,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.21,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.22,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.23,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.24,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.25,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.26,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.27,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.28,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.29,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.3,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.31,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.32,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.33,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.34,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.35,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.36,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.37,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.38,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.39,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.4,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.41,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.42,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.43,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.44,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.45,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.46,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.47,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.48,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.49,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.5,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.51,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.52,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.53,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.54,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.55,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.56,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.57,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.58,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.59,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.6,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.61,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.62,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.63,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.64,
+      "images": 116,
+      "accepted": 116,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 0.9568965517241379,
+      "balanced_accuracy": 0.9632352941176471,
+      "macro_f1": 0.9561635552868264,
+      "weighted_f1": 0.9571408838699084,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9056603773584906,
+          "recall": 1.0,
+          "f1": 0.9504950495049505,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            48,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.65,
+      "images": 116,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accuracy": 0.9482758620689655,
+      "balanced_accuracy": 0.9528186274509804,
+      "macro_f1": 0.9509160305343511,
+      "weighted_f1": 0.9527981047644116,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9038461538461539,
+          "recall": 0.9791666666666666,
+          "f1": 0.94,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.66,
+      "images": 116,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accuracy": 0.9482758620689655,
+      "balanced_accuracy": 0.9528186274509804,
+      "macro_f1": 0.9509160305343511,
+      "weighted_f1": 0.9527981047644116,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9038461538461539,
+          "recall": 0.9791666666666666,
+          "f1": 0.94,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.67,
+      "images": 116,
+      "accepted": 115,
+      "rejected": 1,
+      "coverage": 0.9913793103448276,
+      "accuracy": 0.9482758620689655,
+      "balanced_accuracy": 0.9528186274509804,
+      "macro_f1": 0.9509160305343511,
+      "weighted_f1": 0.9527981047644116,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9264705882352942,
+          "f1": 0.9618320610687023,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9038461538461539,
+          "recall": 0.9791666666666666,
+          "f1": 0.94,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            63,
+            5,
+            0
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.68,
+      "images": 116,
+      "accepted": 114,
+      "rejected": 2,
+      "coverage": 0.9827586206896551,
+      "accuracy": 0.9396551724137931,
+      "balanced_accuracy": 0.9454656862745098,
+      "macro_f1": 0.946923076923077,
+      "weighted_f1": 0.9481167108753316,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9117647058823529,
+          "f1": 0.9538461538461539,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9038461538461539,
+          "recall": 0.9791666666666666,
+          "f1": 0.94,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            62,
+            5,
+            1
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.69,
+      "images": 116,
+      "accepted": 114,
+      "rejected": 2,
+      "coverage": 0.9827586206896551,
+      "accuracy": 0.9396551724137931,
+      "balanced_accuracy": 0.9454656862745098,
+      "macro_f1": 0.946923076923077,
+      "weighted_f1": 0.9481167108753316,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9117647058823529,
+          "f1": 0.9538461538461539,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9038461538461539,
+          "recall": 0.9791666666666666,
+          "f1": 0.94,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            62,
+            5,
+            1
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.7,
+      "images": 116,
+      "accepted": 113,
+      "rejected": 3,
+      "coverage": 0.9741379310344828,
+      "accuracy": 0.9396551724137931,
+      "balanced_accuracy": 0.9454656862745098,
+      "macro_f1": 0.9516705516705517,
+      "weighted_f1": 0.9520456554939314,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.9117647058823529,
+          "f1": 0.9538461538461539,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9215686274509803,
+          "recall": 0.9791666666666666,
+          "f1": 0.9494949494949495,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            62,
+            4,
+            2
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.71,
+      "images": 116,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accuracy": 0.9310344827586207,
+      "balanced_accuracy": 0.9381127450980392,
+      "macro_f1": 0.9476156918017383,
+      "weighted_f1": 0.9472916818546329,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.8970588235294118,
+          "f1": 0.9457364341085271,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9215686274509803,
+          "recall": 0.9791666666666666,
+          "f1": 0.9494949494949495,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            61,
+            4,
+            3
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.72,
+      "images": 116,
+      "accepted": 112,
+      "rejected": 4,
+      "coverage": 0.9655172413793104,
+      "accuracy": 0.9310344827586207,
+      "balanced_accuracy": 0.9381127450980392,
+      "macro_f1": 0.9476156918017383,
+      "weighted_f1": 0.9472916818546329,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.8970588235294118,
+          "f1": 0.9457364341085271,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9215686274509803,
+          "recall": 0.9791666666666666,
+          "f1": 0.9494949494949495,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            61,
+            4,
+            3
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.73,
+      "images": 116,
+      "accepted": 111,
+      "rejected": 5,
+      "coverage": 0.9568965517241379,
+      "accuracy": 0.9310344827586207,
+      "balanced_accuracy": 0.9381127450980392,
+      "macro_f1": 0.9524600537889574,
+      "weighted_f1": 0.9513008090164694,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.8970588235294118,
+          "f1": 0.9457364341085271,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.94,
+          "recall": 0.9791666666666666,
+          "f1": 0.9591836734693877,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            61,
+            3,
+            4
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.74,
+      "images": 116,
+      "accepted": 110,
+      "rejected": 6,
+      "coverage": 0.9482758620689655,
+      "accuracy": 0.9224137931034483,
+      "balanced_accuracy": 0.9307598039215685,
+      "macro_f1": 0.9483418367346939,
+      "weighted_f1": 0.9464725545390569,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.8823529411764706,
+          "f1": 0.9375,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.94,
+          "recall": 0.9791666666666666,
+          "f1": 0.9591836734693877,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            60,
+            3,
+            5
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.75,
+      "images": 116,
+      "accepted": 109,
+      "rejected": 7,
+      "coverage": 0.9396551724137931,
+      "accuracy": 0.9137931034482759,
+      "balanced_accuracy": 0.923406862745098,
+      "macro_f1": 0.9441587658685522,
+      "weighted_f1": 0.9415682645580632,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.8676470588235294,
+          "f1": 0.9291338582677166,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.94,
+          "recall": 0.9791666666666666,
+          "f1": 0.9591836734693877,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            59,
+            3,
+            6
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.76,
+      "images": 116,
+      "accepted": 107,
+      "rejected": 9,
+      "coverage": 0.9224137931034483,
+      "accuracy": 0.9051724137931034,
+      "balanced_accuracy": 0.9160539215686274,
+      "macro_f1": 0.9448535427916871,
+      "weighted_f1": 0.9406779182818998,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.8529411764705882,
+          "f1": 0.9206349206349206,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9591836734693877,
+          "recall": 0.9791666666666666,
+          "f1": 0.9690721649484536,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            58,
+            2,
+            8
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.77,
+      "images": 116,
+      "accepted": 105,
+      "rejected": 11,
+      "coverage": 0.9051724137931034,
+      "accuracy": 0.8879310344827587,
+      "balanced_accuracy": 0.9013480392156863,
+      "macro_f1": 0.9361489857000332,
+      "weighted_f1": 0.9304725754847882,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.8235294117647058,
+          "f1": 0.9032258064516129,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9591836734693877,
+          "recall": 0.9791666666666666,
+          "f1": 0.9690721649484536,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            56,
+            2,
+            10
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.78,
+      "images": 116,
+      "accepted": 103,
+      "rejected": 13,
+      "coverage": 0.8879310344827587,
+      "accuracy": 0.8706896551724138,
+      "balanced_accuracy": 0.8866421568627451,
+      "macro_f1": 0.9271590332938989,
+      "weighted_f1": 0.9199326312844929,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.7941176470588235,
+          "f1": 0.8852459016393442,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9591836734693877,
+          "recall": 0.9791666666666666,
+          "f1": 0.9690721649484536,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            54,
+            2,
+            12
+          ],
+          [
+            0,
+            47,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.79,
+      "images": 116,
+      "accepted": 100,
+      "rejected": 16,
+      "coverage": 0.8620689655172413,
+      "accuracy": 0.853448275862069,
+      "balanced_accuracy": 0.8688725490196079,
+      "macro_f1": 0.9222270552414094,
+      "weighted_f1": 0.9142625729327594,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.7794117647058824,
+          "f1": 0.8760330578512396,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9787234042553191,
+          "recall": 0.9583333333333334,
+          "f1": 0.968421052631579,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            53,
+            1,
+            14
+          ],
+          [
+            0,
+            46,
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.8,
+      "images": 116,
+      "accepted": 99,
+      "rejected": 17,
+      "coverage": 0.853448275862069,
+      "accuracy": 0.8448275862068966,
+      "balanced_accuracy": 0.8615196078431373,
+      "macro_f1": 0.9175438596491228,
+      "weighted_f1": 0.9087719298245613,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.7647058823529411,
+          "f1": 0.8666666666666667,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9787234042553191,
+          "recall": 0.9583333333333334,
+          "f1": 0.968421052631579,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            52,
+            1,
+            15
+          ],
+          [
+            0,
+            46,
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.81,
+      "images": 116,
+      "accepted": 98,
+      "rejected": 18,
+      "coverage": 0.8448275862068966,
+      "accuracy": 0.8362068965517241,
+      "balanced_accuracy": 0.8541666666666667,
+      "macro_f1": 0.912781954887218,
+      "weighted_f1": 0.9031890070002593,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9787234042553191,
+          "recall": 0.9583333333333334,
+          "f1": 0.968421052631579,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            51,
+            1,
+            16
+          ],
+          [
+            0,
+            46,
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.82,
+      "images": 116,
+      "accepted": 97,
+      "rejected": 19,
+      "coverage": 0.8362068965517241,
+      "accuracy": 0.8275862068965517,
+      "balanced_accuracy": 0.84375,
+      "macro_f1": 0.9072948328267477,
+      "weighted_f1": 0.8986479404674562,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9782608695652174,
+          "recall": 0.9375,
+          "f1": 0.9574468085106383,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            51,
+            1,
+            16
+          ],
+          [
+            0,
+            45,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.83,
+      "images": 116,
+      "accepted": 97,
+      "rejected": 19,
+      "coverage": 0.8362068965517241,
+      "accuracy": 0.8275862068965517,
+      "balanced_accuracy": 0.84375,
+      "macro_f1": 0.9072948328267477,
+      "weighted_f1": 0.8986479404674562,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9782608695652174,
+          "recall": 0.9375,
+          "f1": 0.9574468085106383,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            51,
+            1,
+            16
+          ],
+          [
+            0,
+            45,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.84,
+      "images": 116,
+      "accepted": 96,
+      "rejected": 20,
+      "coverage": 0.8275862068965517,
+      "accuracy": 0.8189655172413793,
+      "balanced_accuracy": 0.8363970588235294,
+      "macro_f1": 0.9024522178146412,
+      "weighted_f1": 0.8929703918325727,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.7352941176470589,
+          "f1": 0.847457627118644,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9782608695652174,
+          "recall": 0.9375,
+          "f1": 0.9574468085106383,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            50,
+            1,
+            17
+          ],
+          [
+            0,
+            45,
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.85,
+      "images": 116,
+      "accepted": 93,
+      "rejected": 23,
+      "coverage": 0.8017241379310345,
+      "accuracy": 0.7931034482758621,
+      "balanced_accuracy": 0.8112745098039216,
+      "macro_f1": 0.8869113830181683,
+      "weighted_f1": 0.8766829043765103,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.7058823529411765,
+          "f1": 0.8275862068965517,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9777777777777777,
+          "recall": 0.9166666666666666,
+          "f1": 0.946236559139785,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            48,
+            1,
+            19
+          ],
+          [
+            0,
+            44,
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.86,
+      "images": 116,
+      "accepted": 92,
+      "rejected": 24,
+      "coverage": 0.7931034482758621,
+      "accuracy": 0.7844827586206896,
+      "balanced_accuracy": 0.803921568627451,
+      "macro_f1": 0.8818139317438056,
+      "weighted_f1": 0.8707065821927746,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.6911764705882353,
+          "f1": 0.8173913043478261,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9777777777777777,
+          "recall": 0.9166666666666666,
+          "f1": 0.946236559139785,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            47,
+            1,
+            20
+          ],
+          [
+            0,
+            44,
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.87,
+      "images": 116,
+      "accepted": 91,
+      "rejected": 25,
+      "coverage": 0.7844827586206896,
+      "accuracy": 0.7758620689655172,
+      "balanced_accuracy": 0.7965686274509804,
+      "macro_f1": 0.876627051499717,
+      "weighted_f1": 0.8646254122514294,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.6764705882352942,
+          "f1": 0.8070175438596491,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9777777777777777,
+          "recall": 0.9166666666666666,
+          "f1": 0.946236559139785,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            46,
+            1,
+            21
+          ],
+          [
+            0,
+            44,
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.88,
+      "images": 116,
+      "accepted": 86,
+      "rejected": 30,
+      "coverage": 0.7413793103448276,
+      "accuracy": 0.7327586206896551,
+      "balanced_accuracy": 0.7536764705882353,
+      "macro_f1": 0.8489258489258489,
+      "weighted_f1": 0.8361411809687671,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.6323529411764706,
+          "f1": 0.7747747747747747,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9767441860465116,
+          "recall": 0.875,
+          "f1": 0.9230769230769231,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            43,
+            1,
+            24
+          ],
+          [
+            0,
+            42,
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.89,
+      "images": 116,
+      "accepted": 76,
+      "rejected": 40,
+      "coverage": 0.6551724137931034,
+      "accuracy": 0.646551724137931,
+      "balanced_accuracy": 0.6678921568627451,
+      "macro_f1": 0.7891625615763547,
+      "weighted_f1": 0.774610724194553,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.5441176470588235,
+          "f1": 0.7047619047619048,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 0.9743589743589743,
+          "recall": 0.7916666666666666,
+          "f1": 0.8735632183908046,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            37,
+            1,
+            30
+          ],
+          [
+            0,
+            38,
+            10
+          ]
+        ]
+      }
+    },
+    {
+      "threshold": 0.9,
+      "images": 116,
+      "accepted": 71,
+      "rejected": 45,
+      "coverage": 0.6120689655172413,
+      "accuracy": 0.6120689655172413,
+      "balanced_accuracy": 0.6384803921568627,
+      "macro_f1": 0.7685931383836058,
+      "weighted_f1": 0.7487435190993037,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 0.4852941176470588,
+          "f1": 0.6534653465346535,
+          "support": 68
+        },
+        "V3 Grade 2": {
+          "precision": 1.0,
+          "recall": 0.7916666666666666,
+          "f1": 0.8837209302325582,
+          "support": 48
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            33,
+            0,
+            35
+          ],
+          [
+            0,
+            38,
+            10
+          ]
+        ]
+      }
+    }
+  ]
+}

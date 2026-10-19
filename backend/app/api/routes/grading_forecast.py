@@ -2,31 +2,41 @@ from __future__ import annotations
 
 import io
 import logging
+import uuid
 
-from fastapi import APIRouter, HTTPException, UploadFile, status
+from fastapi import APIRouter, HTTPException, Response, UploadFile, status
 from PIL import Image, UnidentifiedImageError
+from pydantic import ValidationError
 
-from app.schemas.grading_forecast import (
-    AnalyzeResponse,
-    GradeOnlyResponse,
-    PriceForecastResponse,
-    RecommendRequest,
-    RecommendResponse,
+from app.schemas.grading_forecast import Phase7AnalyzeResponse
+from app.services.grading_forecast.phase7_service import (
+    ForecastRecordError,
+    GradingRuntimeError,
+    analyze as analyze_phase7,
+    initialize_phase7_runtime,
 )
-from app.services.grading_forecast.artifact_service import get_runtime_artifacts, runtime_artifacts_ready
-from app.services.grading_forecast.grading_service import GradingRuntimeError, build_grading_result
-from app.services.grading_forecast.price_forecast_service import build_price_forecast
-from app.services.grading_forecast.recommendation_service import build_recommendation
-from app.services.grading_forecast.result_storage_service import build_storage_result
 
 router = APIRouter(prefix="/api/v1/grading-forecast", tags=["grading-forecast"])
 LOGGER = logging.getLogger(__name__)
+# These limits protect the API before image decoding or model execution. They
+# are validation safeguards, not changes to the frozen model preprocessing.
 MAX_IMAGE_UPLOAD_BYTES = 10 * 1024 * 1024
+UPLOAD_READ_CHUNK_BYTES = 1024 * 1024
+MAX_DECODED_IMAGE_PIXELS = 50_000_000
+MAX_IMAGE_DIMENSION = 12_000
 SUPPORTED_IMAGE_FORMATS = {"JPEG", "PNG", "WEBP"}
-FORECAST_UNAVAILABLE_MODEL = "forecast_unavailable"
 
 
-async def _read_valid_image_upload(image: UploadFile | None) -> tuple[bytes, str]:
+async def _read_valid_image_upload(
+    image: UploadFile | None,
+    analysis_id: str,
+) -> tuple[bytes, str]:
+    """Read and validate one bounded, single-frame image upload.
+
+    The route verifies bytes and decoded dimensions before handing the original
+    image to the frozen grading runtime. Uploaded contents and filenames are
+    intentionally excluded from logs.
+    """
     if image is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -35,9 +45,25 @@ async def _read_valid_image_upload(image: UploadFile | None) -> tuple[bytes, str
 
     image_name = image.filename or "uploaded_image"
     try:
-        image_bytes = await image.read()
+        chunks: list[bytes] = []
+        total = 0
+        while chunk := await image.read(UPLOAD_READ_CHUNK_BYTES):
+            total += len(chunk)
+            if total > MAX_IMAGE_UPLOAD_BYTES:
+                raise HTTPException(
+                    status_code=status.HTTP_413_CONTENT_TOO_LARGE,
+                    detail="Image upload exceeds the 10 MB limit.",
+                )
+            chunks.append(chunk)
+        image_bytes = b"".join(chunks)
+    except HTTPException:
+        raise
     except Exception as exc:
-        LOGGER.warning("Failed to read uploaded image: %s", type(exc).__name__)
+        LOGGER.warning(
+            "phase7_upload id=%s stage=read error=%s",
+            analysis_id,
+            type(exc).__name__,
+        )
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Image upload could not be read.",
@@ -49,24 +75,44 @@ async def _read_valid_image_upload(image: UploadFile | None) -> tuple[bytes, str
             detail="Image upload is empty.",
         )
 
-    if len(image_bytes) > MAX_IMAGE_UPLOAD_BYTES:
-        raise HTTPException(
-            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-            detail="Image upload exceeds the 10 MB limit.",
-        )
-
     try:
         with Image.open(io.BytesIO(image_bytes)) as img:
-            img.verify()
             if str(img.format).upper() not in SUPPORTED_IMAGE_FORMATS:
                 raise HTTPException(
                     status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
                     detail="Unsupported image format. Use JPEG, PNG, or WEBP.",
                 )
+            width, height = img.size
+            if width <= 0 or height <= 0:
+                raise ValueError("Image has invalid dimensions")
+            if (
+                width > MAX_IMAGE_DIMENSION
+                or height > MAX_IMAGE_DIMENSION
+                or width * height > MAX_DECODED_IMAGE_PIXELS
+            ):
+                raise HTTPException(
+                    status_code=status.HTTP_413_CONTENT_TOO_LARGE,
+                    detail="Decoded image dimensions exceed the safe processing limit.",
+                )
+            if getattr(img, "n_frames", 1) != 1:
+                raise HTTPException(
+                    status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+                    detail="Animated images are not supported.",
+                )
+            img.verify()
     except HTTPException:
         raise
-    except (UnidentifiedImageError, OSError, ValueError) as exc:
-        LOGGER.warning("Invalid uploaded image: %s", type(exc).__name__)
+    except (
+        Image.DecompressionBombError,
+        UnidentifiedImageError,
+        OSError,
+        ValueError,
+    ) as exc:
+        LOGGER.warning(
+            "phase7_upload id=%s stage=validate error=%s",
+            analysis_id,
+            type(exc).__name__,
+        )
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Uploaded image is invalid or unreadable.",
@@ -75,142 +121,124 @@ async def _read_valid_image_upload(image: UploadFile | None) -> tuple[bytes, str
     return image_bytes, image_name
 
 
-def _require_forecast_available(forecast_model: str) -> None:
-    if forecast_model == FORECAST_UNAVAILABLE_MODEL:
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Price forecast is unavailable from the configured research data.",
-        )
+def _safe_analysis(image_bytes: bytes, analysis_id: str) -> dict:
+    """Translate internal Phase 7 failures into safe HTTP responses.
 
-
-def _safe_grading_result(image_bytes: bytes, image_name: str):
+    Runtime, forecast-integrity, routing, and unexpected failures are kept
+    distinct for operations while avoiding model details or uploaded data in
+    the client response.
+    """
     try:
-        return build_grading_result(image_bytes=image_bytes, image_name=image_name)
+        return analyze_phase7(image_bytes, analysis_id)
     except GradingRuntimeError as exc:
-        LOGGER.warning("Berry grading failed safely: %s", exc)
+        LOGGER.warning(
+            "phase7_analysis id=%s stage=grading error=%s",
+            analysis_id,
+            type(exc).__name__,
+        )
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Berry grading model is unavailable or failed to produce a safe result.",
+            detail="Frozen grading runtime is unavailable or failed safely.",
+        ) from exc
+    except ForecastRecordError as exc:
+        LOGGER.warning(
+            "phase7_analysis id=%s stage=forecast error=%s",
+            analysis_id,
+            type(exc).__name__,
+        )
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Frozen grade-specific forecast evidence is unavailable or failed integrity validation.",
+        ) from exc
+    except ValueError as exc:
+        LOGGER.warning(
+            "phase7_analysis id=%s stage=decision error=%s",
+            analysis_id,
+            type(exc).__name__,
+        )
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="The grade-to-price decision route failed closed.",
         ) from exc
     except Exception as exc:
         LOGGER.exception("Unexpected berry grading failure.")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Berry grading failed unexpectedly.",
+            detail="Integrated analysis failed unexpectedly.",
         ) from exc
 
 
 @router.get("/health")
 def health() -> dict[str, str]:
+    """Liveness endpoint; it does not claim that artifacts are ready."""
     return {
         "status": "ok",
-        "component": "berry_grading_export_price_forecasting",
+        "component": "phase7_grade_price_decision_support",
     }
 
 
 @router.get("/ready")
-def ready() -> dict[str, object]:
-    artifacts = get_runtime_artifacts()
-    ready_status = runtime_artifacts_ready()
+def ready(response: Response) -> dict[str, object]:
+    """Readiness endpoint for both ONNX grading and frozen price evidence."""
+    try:
+        initialize_phase7_runtime()
+        readiness = "ready"
+    except (GradingRuntimeError, ForecastRecordError):
+        readiness = "not_ready"
+        response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE
     return {
-        "status": "ready" if ready_status else "not_ready",
-        "component": "berry_grading_export_price_forecasting",
-        "artifacts_loaded": artifacts is not None,
-        "artifacts_available": ready_status,
+        "status": readiness,
+        "component": "phase7_grade_price_decision_support",
+        "runtime": "backend_onnx_runtime",
+        "price_strategy": "frozen_phase5_forecast_records",
     }
 
 
-@router.post("/analyze", response_model=AnalyzeResponse)
-async def analyze(image: UploadFile | None = None) -> AnalyzeResponse:
-    component = "berry_grading_export_price_forecasting"
-    image_bytes, image_name = await _read_valid_image_upload(image)
-    processed = True
+@router.post("/analyze", response_model=Phase7AnalyzeResponse)
+async def analyze(image: UploadFile | None = None) -> Phase7AnalyzeResponse:
+    """Run the rejection-first grading → price-decision workflow.
 
-    grading = _safe_grading_result(image_bytes, image_name)
-
-    forecast = build_price_forecast(seed_hint=image_name)
-    _require_forecast_available(forecast.model)
+    Response validation occurs after the integrated service returns. Invalid
+    output is withheld with HTTP 500 rather than converted into a partial or
+    fabricated forecast.
+    """
+    analysis_id = str(uuid.uuid4())
     try:
-        recommendation = build_recommendation(
-            grade=grading.predicted_grade,
-            trend=forecast.trend,
-            quality_score=grading.quality_score,
-            current_price_lkr_per_kg=forecast.current_price_lkr_per_kg,
-            predicted_price_lkr_per_kg=forecast.predicted_price_lkr_per_kg,
+        image_bytes, _ = await _read_valid_image_upload(image, analysis_id)
+    finally:
+        if image is not None:
+            try:
+                await image.close()
+            except Exception as exc:
+                LOGGER.warning(
+                    "phase7_upload id=%s stage=close error=%s",
+                    analysis_id,
+                    type(exc).__name__,
+                )
+    result = _safe_analysis(image_bytes, analysis_id)
+    try:
+        validated = Phase7AnalyzeResponse.model_validate(result)
+    except ValidationError as exc:
+        LOGGER.error(
+            "phase7_analysis id=%s stage=response_validation error=%s",
+            analysis_id,
+            type(exc).__name__,
         )
-    except Exception as exc:
-        LOGGER.exception("Unexpected recommendation failure.")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Recommendation generation failed unexpectedly.",
+            detail="Integrated analysis produced an invalid response and was withheld.",
         ) from exc
-
-    image_id = image_name or "DEMO_IMAGE"
-    storage = build_storage_result(
-        component=component,
-        image_id=image_id,
-        image_processed=processed,
-        grading=grading,
-        forecast=forecast,
-        recommendation=recommendation,
+    LOGGER.info(
+        "phase7_analysis id=%s category=%s",
+        analysis_id,
+        validated.decision_support.category.value,
     )
-
-    return AnalyzeResponse(
-        status="success",
-        component=component,
-        image_analysis={
-            "image_id": image_id,
-            "processed": processed,
-            "note": "Camera-based visual analysis only",
-        },
-        grading=grading,
-        forecast=forecast,
-        recommendation=recommendation,
-        storage=storage,
-    )
+    return validated
 
 
-@router.post("/grade-only", response_model=GradeOnlyResponse)
-async def grade_only(image: UploadFile | None = None) -> GradeOnlyResponse:
-    image_bytes, image_name = await _read_valid_image_upload(image)
-
-    grading = _safe_grading_result(image_bytes, image_name)
-    return GradeOnlyResponse(
-        status="success",
-        component="berry_grading_export_price_forecasting",
-        grading=grading,
-    )
-
-
-@router.get("/price-forecast", response_model=PriceForecastResponse)
-def price_forecast() -> PriceForecastResponse:
-    forecast = build_price_forecast(seed_hint="price-forecast")
-    _require_forecast_available(forecast.model)
-    return PriceForecastResponse(
-        status="success",
-        component="berry_grading_export_price_forecasting",
-        forecast=forecast,
-    )
-
-
-@router.post("/recommend", response_model=RecommendResponse)
-def recommend(payload: RecommendRequest) -> RecommendResponse:
-    try:
-        recommendation = build_recommendation(
-            grade=payload.grade,
-            trend=payload.trend,
-            quality_score=payload.quality_score,
-            current_price_lkr_per_kg=payload.current_price_lkr_per_kg,
-            predicted_price_lkr_per_kg=payload.predicted_price_lkr_per_kg,
-        )
-    except Exception as exc:
-        LOGGER.exception("Unexpected recommendation failure.")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Recommendation generation failed unexpectedly.",
-        ) from exc
-    return RecommendResponse(
-        status="success",
-        component="berry_grading_export_price_forecasting",
-        recommendation=recommendation,
-    )
+@router.api_route("/grade-only", methods=["POST"], status_code=status.HTTP_410_GONE)
+@router.api_route("/price-forecast", methods=["GET"], status_code=status.HTTP_410_GONE)
+@router.api_route("/recommend", methods=["POST"], status_code=status.HTTP_410_GONE)
+def retired_legacy_endpoint() -> dict[str, str]:
+    """Keep pre-Phase-7 routes explicit and prevent accidental legacy use."""
+    return {"detail": "Retired in Phase 7; use POST /api/v1/grading-forecast/analyze."}

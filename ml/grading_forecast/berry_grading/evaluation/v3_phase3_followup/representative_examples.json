@@ -1,0 +1,30 @@
+[
+  {
+    "role": "Original false accept",
+    "image_id": "other_crops_001",
+    "source_path": "data/external/phase3_rejection/non_pepper/other_crops/other_crops_001.jpg",
+    "decision": "GRADE_1",
+    "confidence": 0.9428362250328064
+  },
+  {
+    "role": "Unseen negative rejected",
+    "image_id": "p3fu_vegetation_leaves_0020",
+    "source_path": "data/external/phase3_followup_negatives/vegetation_leaves/p3fu_vegetation_leaves_0020.jpg",
+    "decision": "UNCERTAIN_GRADE",
+    "confidence": 0.09789817780256271
+  },
+  {
+    "role": "Valid pepper accepted",
+    "image_id": "20260814_165019_jpg.rf.wYpflwIsDyyJGipkUa92.jpg",
+    "source_path": "data/raw/Pepper Berry Grading V3.yolov8/train/images/20260814_165019_jpg.rf.wYpflwIsDyyJGipkUa92.jpg",
+    "decision": "GRADE_2",
+    "confidence": 0.9736443161964417
+  },
+  {
+    "role": "Valid pepper rejected",
+    "image_id": "20260905_174826_jpg.rf.S9GTNG7xGJkv1Wu6c45a.jpg",
+    "source_path": "data/raw/Pepper Berry Grading V3.yolov8/train/images/20260905_174826_jpg.rf.S9GTNG7xGJkv1Wu6c45a.jpg",
+    "decision": "UNCERTAIN_GRADE",
+    "confidence": 0.9186877012252808
+  }
+]

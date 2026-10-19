@@ -1,0 +1,8 @@
+category,n,rejected,accepted,rejection_rate,false_acceptance_rate
+aerial_crop_imagery,2,2,0,1.0,0.0
+agricultural_crops,14,14,0,1.0,0.0
+agricultural_materials,5,5,0,1.0,0.0
+background_scenes,2,2,0,1.0,0.0
+ordinary_objects,2,2,0,1.0,0.0
+other_spices_food,5,5,0,1.0,0.0
+vegetation_leaves,19,19,0,1.0,0.0

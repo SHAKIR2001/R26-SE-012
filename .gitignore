@@ -14,6 +14,8 @@ __pycache__/
 # Pytest temp/cache dirs (may have restricted permissions in some environments)
 *.pyc
 .venv/
+.venv-yolo/
+.ultralytics/
 .pytest-tmp/
 .pytest-basetemp/
 pytest-cache-files-*/
@@ -24,10 +26,23 @@ backend/.env
 backend/secrets/
 
 # ML datasets
+data/raw/Pepper Berry Grading V3.yolov8
+data/processed/grading_forecast/berry_v3/blind_review/review_images/
+data/processed/grading_forecast/berry_v3/yolo_phase2/materialized/
+data/processed/grading_forecast/berry_v3/phase3_followup_yolo/materialized/
 data/raw/berry_images
 data/processed/grading_forecast/berry_images_processed/
 data/processed/grading_forecast/*.csv
 data/raw/market_prices/
+
+# Phase 4: retain the compact authoritative reconstruction and index snapshot,
+# while leaving the 493-page resumable retrieval cache local.
+!data/raw/market_prices/
+data/raw/market_prices/*
+!data/raw/market_prices/eac_phase4/
+data/raw/market_prices/eac_phase4/*
+!data/raw/market_prices/eac_phase4/dea_eac_index_*.html
+!data/raw/market_prices/eac_phase4/dea_eac_pepper_observations_retrieved_*.csv
 
 # Deterministic split directories created during training
 data/processed/grading_forecast/berry_split_v2/
@@ -42,15 +57,30 @@ data/processed/grading_forecast/*.json
 *.onnx
 *.tflite
 *.joblib
+!ml/grading_forecast/berry_grading/models/v2/berry_mobilenetv2_v2_best.onnx
+!ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.onnx
+!ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.onnx
+!ml/grading_forecast/price_forecasting/models/v2/forecast_model.joblib
+!mobile/assets/models/berry_mobilenetv2_v2_best.tflite
 
 # Hugging Face Hub local cache / downloaded runtime artifacts
 .cache/huggingface/
 hf_cache/
 model_cache/
+/yolo11n.pt
+/weights/
+ml/grading_forecast/berry_grading/models/v3_yolo/last.pt
+ml/grading_forecast/berry_grading/models/v3_yolo/training_run/weights/
+ml/grading_forecast/berry_grading/models/v3_phase3_followup/last.pt
+ml/grading_forecast/berry_grading/models/v3_phase3_followup/training_run/weights/
 
 # Training/evaluation outputs
 ml/**/evaluation/_outputs/
 ml/**/evaluation/_outputs/*
+
+# Phase 3 controlled quality perturbations are reproducibly generated from
+# validation images; keep the calibration code/results, not derived pixels.
+data/processed/grading_forecast/berry_v3/phase3_quality_challenges/
 
 # Flutter/Dart
 .dart_tool/
@@ -67,7 +97,6 @@ coverage/
 *.iml
 *.ipr
 *.iws
-.vscode/
 
 # OS
 .DS_Store
@@ -77,4 +106,12 @@ coverage/
 /android/app/profile
 /android/app/release
 
-.env
+
+# Local source snapshot supplied by other team members. It is retained for
+# comparison only; the integrated application lives under mobile/.
+other members components - mobile/
+
+
+Thesis/
+config.bat
+node_modules

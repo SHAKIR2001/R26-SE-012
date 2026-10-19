@@ -1,0 +1,373 @@
+{
+  "experiment_id": "BERRY-V3-YOLO11N-001",
+  "split": "TEST",
+  "checkpoint": "ml\\grading_forecast\\berry_grading\\models\\v3_yolo\\best.pt",
+  "confidence_threshold": 0.05,
+  "image_level_grade_metrics": {
+    "images": 120,
+    "accepted": 120,
+    "rejected": 0,
+    "coverage": 1.0,
+    "accuracy": 0.9583333333333334,
+    "balanced_accuracy": 0.960972850678733,
+    "macro_f1": 0.9578385215374885,
+    "weighted_f1": 0.9584475206708358,
+    "per_class": {
+      "V3 Grade 1": {
+        "precision": 0.9846153846153847,
+        "recall": 0.9411764705882353,
+        "f1": 0.9624060150375939,
+        "support": 68
+      },
+      "V3 Grade 2": {
+        "precision": 0.9272727272727272,
+        "recall": 0.9807692307692307,
+        "f1": 0.9532710280373832,
+        "support": 52
+      }
+    },
+    "confusion_matrix": {
+      "rows": [
+        "V3 Grade 1",
+        "V3 Grade 2"
+      ],
+      "columns": [
+        "V3 Grade 1",
+        "V3 Grade 2",
+        "REJECT"
+      ],
+      "values": [
+        [
+          64,
+          4,
+          0
+        ],
+        [
+          1,
+          51,
+          0
+        ]
+      ]
+    }
+  },
+  "detection_metrics": {
+    "precision": 0.9401988486742232,
+    "recall": 0.9551634506182587,
+    "map50": 0.9791066964193336,
+    "map50_95": 0.8504778698988433,
+    "per_class_map50_95": {
+      "V3 Grade 1": 0.8809888149667264,
+      "V3 Grade 2": 0.8199669248309606
+    }
+  },
+  "physical_sample_level": {
+    "groups": 30,
+    "unanimous_samples": 26,
+    "conflicting_samples": 4,
+    "majority_vote": {
+      "images": 30,
+      "accepted": 30,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 17
+        },
+        "V3 Grade 2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 13
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            17,
+            0,
+            0
+          ],
+          [
+            0,
+            13,
+            0
+          ]
+        ]
+      }
+    },
+    "confidence_weighted": {
+      "images": 30,
+      "accepted": 30,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 17
+        },
+        "V3 Grade 2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 13
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            17,
+            0,
+            0
+          ],
+          [
+            0,
+            13,
+            0
+          ]
+        ]
+      }
+    }
+  },
+  "camera_resolution_diagnostic": {
+    "camera_model": {
+      "Galaxy A06": {
+        "images": 24,
+        "accepted": 24,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 1.0,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.5,
+        "weighted_f1": 1.0,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 24
+          },
+          "V3 Grade 2": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "SM-A127F": {
+        "images": 96,
+        "accepted": 96,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 0.9479166666666666,
+        "balanced_accuracy": 0.9449300699300699,
+        "macro_f1": 0.9472237493128093,
+        "weighted_f1": 0.9477276892065236,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 0.975609756097561,
+            "recall": 0.9090909090909091,
+            "f1": 0.9411764705882353,
+            "support": 44
+          },
+          "V3 Grade 2": {
+            "precision": 0.9272727272727272,
+            "recall": 0.9807692307692307,
+            "f1": 0.9532710280373832,
+            "support": 52
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              40,
+              4,
+              0
+            ],
+            [
+              1,
+              51,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    "resolution": {
+      "4000x3000": {
+        "images": 96,
+        "accepted": 96,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 0.9479166666666666,
+        "balanced_accuracy": 0.9449300699300699,
+        "macro_f1": 0.9472237493128093,
+        "weighted_f1": 0.9477276892065236,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 0.975609756097561,
+            "recall": 0.9090909090909091,
+            "f1": 0.9411764705882353,
+            "support": 44
+          },
+          "V3 Grade 2": {
+            "precision": 0.9272727272727272,
+            "recall": 0.9807692307692307,
+            "f1": 0.9532710280373832,
+            "support": 52
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              40,
+              4,
+              0
+            ],
+            [
+              1,
+              51,
+              0
+            ]
+          ]
+        }
+      },
+      "4080x3060": {
+        "images": 24,
+        "accepted": 24,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 1.0,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.5,
+        "weighted_f1": 1.0,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 24
+          },
+          "V3 Grade 2": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "operational": {
+    "ultralytics_reported_inference_ms_mean": 7.122879166369482,
+    "ultralytics_reported_inference_ms_median": 7.122879166369482,
+    "end_to_end_prediction_seconds": 44.26836909999838,
+    "model_size_bytes": 5461466,
+    "parameter_count": 2590230,
+    "input_resolution": 640,
+    "batch_size": 4,
+    "python": "3.13.14",
+    "torch": "2.14.1+cu130",
+    "ultralytics": "8.4.174",
+    "device": "NVIDIA GeForce RTX 2050",
+    "cuda_runtime": "13.0"
+  },
+  "prediction_rule": "highest-confidence YOLO detection; reject when absent or below frozen threshold",
+  "no_detection_state_supported": true,
+  "non_pepper_rejection_accuracy_claimed": false
+}

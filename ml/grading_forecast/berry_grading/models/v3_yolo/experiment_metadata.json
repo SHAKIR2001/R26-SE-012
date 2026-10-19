@@ -1,0 +1,82 @@
+{
+  "experiment": {
+    "experiment_id": "BERRY-V3-YOLO11N-001",
+    "phase": 2,
+    "task": "harvested_pepper_sample_detection_and_grade_classification",
+    "dataset_version": "berry_v3",
+    "split_manifest": "data/processed/grading_forecast/berry_v3/v3_image_sample_manifest.csv",
+    "group_manifest": "data/processed/grading_forecast/berry_v3/v3_group_split_manifest.csv",
+    "generated_dataset_dir": "data/processed/grading_forecast/berry_v3/yolo_phase2",
+    "model": "yolo11n.pt",
+    "pretrained": true,
+    "image_size": 640,
+    "batch_size": 4,
+    "epochs": 75,
+    "patience": 12,
+    "seed": 42,
+    "device": 0,
+    "workers": 2,
+    "optimizer": "AdamW",
+    "learning_rate_initial": 0.001,
+    "learning_rate_final_fraction": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3.0,
+    "augmentations": {
+      "hsv_h": 0.015,
+      "hsv_s": 0.5,
+      "hsv_v": 0.3,
+      "degrees": 5.0,
+      "translate": 0.05,
+      "scale": 0.1,
+      "shear": 0.0,
+      "perspective": 0.0,
+      "flip_up_down": 0.0,
+      "flip_left_right": 0.5,
+      "mosaic": 0.0,
+      "mixup": 0.0,
+      "cutmix": 0.0,
+      "copy_paste": 0.0
+    },
+    "baseline_confidence_threshold": 0.25,
+    "calibration": {
+      "source": "VALIDATION only",
+      "candidate_min": 0.05,
+      "candidate_max": 0.9,
+      "candidate_step": 0.01,
+      "objective": "image_level_macro_f1_with_rejections_counted_as_errors",
+      "tie_break": "lowest_threshold"
+    },
+    "classes": {
+      "0": "V3 Grade 1",
+      "1": "V3 Grade 2"
+    }
+  },
+  "data_yaml": "data\\processed\\grading_forecast\\berry_v3\\yolo_phase2\\data.yaml",
+  "environment": {
+    "executed_at_utc": "2026-10-06T18:50:03.990522+00:00",
+    "python": "3.13.14",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "torch": "2.14.1+cu130",
+    "torch_cuda": "13.0",
+    "ultralytics": "8.4.174",
+    "device": "NVIDIA GeForce RTX 2050",
+    "device_memory_bytes": 4294443008,
+    "git_sha": "6b03e1627ff00770f5675ec90a9d8e7746fe5bea"
+  },
+  "training": {
+    "duration_seconds": 4829.926951800007,
+    "best_checkpoint": "ml\\grading_forecast\\berry_grading\\models\\v3_yolo\\best.pt",
+    "last_checkpoint": "ml\\grading_forecast\\berry_grading\\models\\v3_yolo\\last.pt",
+    "run_directory": "ml\\grading_forecast\\berry_grading\\models\\v3_yolo\\training_run",
+    "test_partition_accessed": false
+  },
+  "evaluation": {
+    "validation_completed": true,
+    "threshold_frozen_before_test": true,
+    "selected_confidence_threshold": 0.05,
+    "sealed_test_completed_once": true,
+    "post_test_retraining": false,
+    "post_test_threshold_change": false
+  }
+}

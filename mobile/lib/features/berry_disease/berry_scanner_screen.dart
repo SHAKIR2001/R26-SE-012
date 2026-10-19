@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../shared/models/scanner_model_config.dart';
 import '../../shared/widgets/scanner_view.dart';
 
@@ -16,9 +17,9 @@ class BerryScannerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ScannerView(
+    return ScannerView(
       modelConfig: _berryConfig,
-      title: 'Berry Scan',
+      title: AppLocalizations.of(context).homeBerryScan,
     );
   }
 }

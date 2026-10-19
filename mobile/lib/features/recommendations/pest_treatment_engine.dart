@@ -1,14 +1,36 @@
+// Imports the pest analysis model that contains the AI detection result.
 import 'pest_analysis.dart';
 import 'remediation_engine.dart' show Market, TreatmentOption;
 
-/// Treatment advice for a pest analysis + market, built on IPM principles.
+/// Represents the final treatment recommendation generated
+/// from the pest analysis result.
+///
+/// This model stores:
+/// - Main recommended action
+/// - Whether the economic treatment threshold is exceeded
+/// - Available treatment options
+/// - Safety/export warnings
+/// - Additional treatment or export notes
 class PestTreatment {
   final String action; // headline
+
+  /// Indicates whether the pest infestation has crossed
+  /// the economic treatment threshold.
+  ///
+  /// false = monitoring/prevention only.
+  /// true = treatment may be required.
   final bool aboveThreshold; // false → monitoring only (below the ETL)
-  final List<TreatmentOption> options; // ordered: cultural → biological → chemical
+
+  /// Ordered list of treatment options.
+  ///
+  /// IPM principle is followed where possible:
+  /// cultural → biological/botanical → chemical.
+  final List<TreatmentOption>
+  options; // ordered: cultural → biological → chemical
   final List<String> warnings;
   final String note; // ETL / export / traceability note
 
+  /// Creates a pest treatment recommendation.
   const PestTreatment({
     required this.action,
     required this.aboveThreshold,
@@ -45,6 +67,9 @@ class PestTreatmentEngine {
     isChemical: false,
   );
 
+  /// This is a non-chemical approach and is generally the
+  /// first step when the infestation is low.
+
   static const _cultural = TreatmentOption(
     name: 'Remove infested parts + field hygiene',
     method:
@@ -66,6 +91,7 @@ class PestTreatmentEngine {
     isChemical: false,
   );
 
+  /// Market restrictions are applied later using [_marketFiltered].
   static const _fipronilBase = TreatmentOption(
     name: 'Fipronil',
     mix: '5 ml per 10 L water',
@@ -74,6 +100,7 @@ class PestTreatmentEngine {
     phi: _confirmPhi,
   );
 
+  /// Acetamiprid chemical treatment option.
   static const _acetamiprid = TreatmentOption(
     name: 'Acetamiprid',
     mix: '25 ml per 10 L water',
@@ -82,6 +109,7 @@ class PestTreatmentEngine {
     phi: _confirmPhi,
   );
 
+  /// Finally, it returns the appropriate [PestTreatment].
   static PestTreatment forAnalysis(PestAnalysis a, Market market) {
     if (!a.isPepperPlant) {
       return const PestTreatment(
@@ -93,13 +121,28 @@ class PestTreatmentEngine {
       );
     }
 
+    if (a.isUncertain) {
+      return const PestTreatment(
+        action: 'Pest identity is uncertain — confirm before treatment.',
+        aboveThreshold: false,
+        options: [_sticky],
+        warnings: [
+          'Do not apply a chemical treatment until the pest is confirmed.',
+        ],
+        note:
+            'Retake a closer photo in good light or ask a local agronomist to '
+            'inspect the affected plant.',
+      );
+    }
+
     if (a.healthy || a.severityBand == 'none') {
       return const PestTreatment(
         action: 'No pests detected — keep monitoring.',
         aboveThreshold: false,
         options: [_sticky],
         warnings: [],
-        note: 'Scout weekly; treat only if the population crosses the threshold.',
+        note:
+            'Scout weekly; treat only if the population crosses the threshold.',
       );
     }
 
@@ -118,13 +161,20 @@ class PestTreatmentEngine {
             'is region-specific — confirm it with your agri authority.',
       );
     }
-
+    // -----------------------------------------------------------------------
+    // CASE 4: MODERATE INFESTATION
+    // -----------------------------------------------------------------------
     // Moderate → IPM: cultural + biological first, chemical optional.
     if (a.severityBand == 'moderate') {
       return PestTreatment(
         action: 'Moderate infestation — start with IPM controls.',
         aboveThreshold: true,
-        options: [_cultural, _neem, _marketFiltered(_fipronilBase, market), _acetamiprid],
+        options: [
+          _cultural,
+          _neem,
+          _marketFiltered(_fipronilBase, market),
+          _acetamiprid,
+        ],
         warnings: _chemWarnings(market),
         note: _exportNote(a, market),
       );
@@ -133,8 +183,13 @@ class PestTreatmentEngine {
     // Severe → chemical treatment warranted, still market-filtered + IPM.
     return PestTreatment(
       action: 'Severe infestation — targeted chemical treatment is warranted.',
+      // Moderate infestation is considered above the treatment threshold.
       aboveThreshold: true,
-      options: [_marketFiltered(_fipronilBase, market), _acetamiprid, _cultural],
+      options: [
+        _marketFiltered(_fipronilBase, market),
+        _acetamiprid,
+        _cultural,
+      ],
       warnings: _chemWarnings(market),
       note: _exportNote(a, market),
     );
@@ -157,13 +212,13 @@ class PestTreatmentEngine {
   }
 
   static List<String> _chemWarnings(Market market) => [
-        'Wear protective equipment (gloves, mask) when mixing and spraying.',
-        'Spray in the evening and avoid flowering to protect pollinators and '
-            'natural enemies.',
-        if (market == Market.eu)
-          'For EU export use Acetamiprid, neem or cultural control only — '
-              'Fipronil residues will fail EU limits.',
-      ];
+    'Wear protective equipment (gloves, mask) when mixing and spraying.',
+    'Spray in the evening and avoid flowering to protect pollinators and '
+        'natural enemies.',
+    if (market == Market.eu)
+      'For EU export use Acetamiprid, neem or cultural control only — '
+          'Fipronil residues will fail EU limits.',
+  ];
 
   static String _exportNote(PestAnalysis a, Market market) =>
       'Grading for ${market.label}: ~${a.pestCount} pests / '

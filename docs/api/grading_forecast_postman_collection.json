@@ -1,117 +1,249 @@
 {
   "info": {
-    "name": "Pepper AI - Grading Forecast API",
+    "name": "Pepper AI - Phase 7 Grading and Price Decision API",
     "_postman_id": "7b1d7c3a-0cbe-4e3d-9f19-2f8c7a0a3c5c",
-    "description": "Postman collection for the Berry Grading and Export Price Forecasting FastAPI endpoints.\n\nNote: `sample_black_pepper_prices.csv` is sample-only data for pipeline testing (not official).",
+    "description": "Postman collection for the current Phase 7 FastAPI integration. The active workflow accepts one pepper image, runs the frozen ONNX grading runtime, selects the matching frozen Phase 5 price evidence, and returns the Phase 6 decision-support schema. It does not train or export models per request.\n\nStart the backend from the repository root before using this collection:\n.\\.venv\\Scripts\\python.exe -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port 8000\n\nPOST /analyze requires a JPEG, PNG, or WEBP image. The encoded upload limit is 10 MB; animated images and images beyond the decoded-dimension safety limits are rejected. The legacy /grade-only, /price-forecast, and /recommend endpoints are retired and return HTTP 410.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
       "key": "base_url",
-      "value": "http://127.0.0.1:8000"
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
     }
   ],
   "item": [
     {
-      "name": "Health",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": "{{base_url}}/api/v1/grading-forecast/health",
-        "description": "Quick availability check. Returns status and component name."
-      }
-    },
-    {
-      "name": "Price Forecast (GET)",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": "{{base_url}}/api/v1/grading-forecast/price-forecast",
-        "description": "Runs price forecasting. If real model artifacts are missing, a safe baseline is used."
-      }
-    },
-    {
-      "name": "Analyze (POST multipart/form-data)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
+      "name": "Runtime checks",
+      "item": [
+        {
+          "name": "Health - liveness",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/v1/grading-forecast/health",
+            "description": "Liveness check only. A successful response does not claim that the ONNX model and frozen forecast evidence are ready."
+          },
+          "event": [
             {
-              "key": "image",
-              "type": "file",
-              "src": []
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Health returns HTTP 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Health identifies the Phase 7 component\", function () {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.status).to.eql(\"ok\");",
+                  "  pm.expect(body.component).to.eql(\"phase7_grade_price_decision_support\");",
+                  "});"
+                ]
+              }
             }
           ]
         },
-        "url": "{{base_url}}/api/v1/grading-forecast/analyze",
-        "description": "Full pipeline: grading + price forecast + recommendation + storage. If you don't attach an image, the backend returns a safe demo response."
-      }
-    },
-    {
-      "name": "Analyze Demo (POST no file)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": "{{base_url}}/api/v1/grading-forecast/analyze",
-        "description": "Sends no body. The backend returns a safe demo response."
-      }
-    },
-    {
-      "name": "Grade Only (POST multipart/form-data)",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
+        {
+          "name": "Ready - model and forecast evidence",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/v1/grading-forecast/ready",
+            "description": "Checks both the frozen ONNX grading runtime and frozen Phase 5 forecast records. Returns HTTP 200 with status=ready, or HTTP 503 with status=not_ready."
+          },
+          "event": [
             {
-              "key": "image",
-              "type": "file",
-              "src": []
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Readiness uses an expected status code\", function () {",
+                  "  pm.expect([200, 503]).to.include(pm.response.code);",
+                  "});",
+                  "pm.test(\"Readiness reports the current runtime strategy\", function () {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect([\"ready\", \"not_ready\"]).to.include(body.status);",
+                  "  pm.expect(body.component).to.eql(\"phase7_grade_price_decision_support\");",
+                  "  pm.expect(body.runtime).to.eql(\"backend_onnx_runtime\");",
+                  "  pm.expect(body.price_strategy).to.eql(\"frozen_phase5_forecast_records\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Current Phase 7 workflow",
+      "item": [
+        {
+          "name": "Analyze image",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": [],
+                  "description": "Select one JPEG, PNG, or WEBP image no larger than 10 MB."
+                }
+              ]
+            },
+            "url": "{{base_url}}/api/v1/grading-forecast/analyze",
+            "description": "Runs the rejection-first Phase 7 workflow. Rejected or uncertain grading stops before market output. Accepted grading routes only to matching Grade 1 or Grade 2 frozen price evidence. The response schema version is phase6_decision_support_v1."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Analysis returns HTTP 200\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Analysis preserves the frozen decision-support schema\", function () {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.schema_version).to.eql(\"phase6_decision_support_v1\");",
+                  "  pm.expect(body).to.have.property(\"grading\");",
+                  "  pm.expect(body).to.have.property(\"market\");",
+                  "  pm.expect(body).to.have.property(\"decision_support\");",
+                  "  pm.expect(body).to.have.property(\"trace\");",
+                  "  pm.expect(body).to.have.property(\"runtime\");",
+                  "});"
+                ]
+              }
             }
           ]
         },
-        "url": "{{base_url}}/api/v1/grading-forecast/grade-only",
-        "description": "Runs berry grading only. If no image is attached, a demo response is returned."
-      }
+        {
+          "name": "Analyze without image - expect 400",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/v1/grading-forecast/analyze",
+            "description": "Negative validation check. Phase 7 does not generate a demo response when the image is missing."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Missing image is rejected\", function () {",
+                  "  pm.response.to.have.status(400);",
+                  "  pm.expect(pm.response.json().detail).to.eql(\"Image upload is required.\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
     },
     {
-      "name": "Recommend (POST JSON)",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
+      "name": "Retired legacy endpoints - expect 410",
+      "description": "These requests document the intentional Phase 7 compatibility boundary. Applications must use POST /analyze instead.",
+      "item": [
+        {
+          "name": "Grade only - retired",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/v1/grading-forecast/grade-only"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Legacy endpoint is retired\", function () {",
+                  "  pm.response.to.have.status(410);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Price forecast - retired",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/api/v1/grading-forecast/price-forecast"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Legacy endpoint is retired\", function () {",
+                  "  pm.response.to.have.status(410);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Recommendation - retired",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": "{{base_url}}/api/v1/grading-forecast/recommend"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Legacy endpoint is retired\", function () {",
+                  "  pm.response.to.have.status(410);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "API documentation",
+      "item": [
+        {
+          "name": "OpenAPI JSON",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/openapi.json",
+            "description": "Machine-readable OpenAPI specification for the running backend."
           }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"grade\": \"Grade 2\",\n  \"trend\": \"upward\",\n  \"quality_score\": 70.8,\n  \"current_price_lkr_per_kg\": 2027,\n  \"predicted_price_lkr_per_kg\": 2068\n}"
         },
-        "url": "{{base_url}}/api/v1/grading-forecast/recommend",
-        "description": "Use when you already have grade and trend. Optional fields: quality_score, current_price_lkr_per_kg, predicted_price_lkr_per_kg."
-      }
-    },
-    {
-      "name": "OpenAPI JSON (GET)",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": "{{base_url}}/openapi.json",
-        "description": "Raw OpenAPI spec."
-      }
-    },
-    {
-      "name": "Swagger UI (GET)",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": "{{base_url}}/docs",
-        "description": "Interactive Swagger UI."
-      }
+        {
+          "name": "Swagger UI",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/docs",
+            "description": "Interactive API documentation for the running backend."
+          }
+        }
+      ]
     }
   ]
 }

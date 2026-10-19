@@ -1,0 +1,420 @@
+{
+  "experiment_id": "BERRY-V3-YOLO11N-001",
+  "split": "VALIDATION",
+  "checkpoint": "ml\\grading_forecast\\berry_grading\\models\\v3_yolo\\best.pt",
+  "confidence_threshold": 0.05,
+  "image_level_grade_metrics": {
+    "images": 116,
+    "accepted": 116,
+    "rejected": 0,
+    "coverage": 1.0,
+    "accuracy": 0.9568965517241379,
+    "balanced_accuracy": 0.9632352941176471,
+    "macro_f1": 0.9561635552868264,
+    "weighted_f1": 0.9571408838699084,
+    "per_class": {
+      "V3 Grade 1": {
+        "precision": 1.0,
+        "recall": 0.9264705882352942,
+        "f1": 0.9618320610687023,
+        "support": 68
+      },
+      "V3 Grade 2": {
+        "precision": 0.9056603773584906,
+        "recall": 1.0,
+        "f1": 0.9504950495049505,
+        "support": 48
+      }
+    },
+    "confusion_matrix": {
+      "rows": [
+        "V3 Grade 1",
+        "V3 Grade 2"
+      ],
+      "columns": [
+        "V3 Grade 1",
+        "V3 Grade 2",
+        "REJECT"
+      ],
+      "values": [
+        [
+          63,
+          5,
+          0
+        ],
+        [
+          0,
+          48,
+          0
+        ]
+      ]
+    }
+  },
+  "detection_metrics": {
+    "precision": 0.9479376849281379,
+    "recall": 0.9682061214778059,
+    "map50": 0.9878954468339409,
+    "map50_95": 0.8616776531885708,
+    "per_class_map50_95": {
+      "V3 Grade 1": 0.8763003352498231,
+      "V3 Grade 2": 0.8470549711273186
+    }
+  },
+  "physical_sample_level": {
+    "groups": 29,
+    "unanimous_samples": 25,
+    "conflicting_samples": 4,
+    "majority_vote": {
+      "images": 29,
+      "accepted": 29,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 17
+        },
+        "V3 Grade 2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 12
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            17,
+            0,
+            0
+          ],
+          [
+            0,
+            12,
+            0
+          ]
+        ]
+      }
+    },
+    "confidence_weighted": {
+      "images": 29,
+      "accepted": 29,
+      "rejected": 0,
+      "coverage": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "per_class": {
+        "V3 Grade 1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 17
+        },
+        "V3 Grade 2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 12
+        }
+      },
+      "confusion_matrix": {
+        "rows": [
+          "V3 Grade 1",
+          "V3 Grade 2"
+        ],
+        "columns": [
+          "V3 Grade 1",
+          "V3 Grade 2",
+          "REJECT"
+        ],
+        "values": [
+          [
+            17,
+            0,
+            0
+          ],
+          [
+            0,
+            12,
+            0
+          ]
+        ]
+      }
+    }
+  },
+  "camera_resolution_diagnostic": {
+    "camera_model": {
+      "Galaxy A06": {
+        "images": 25,
+        "accepted": 25,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 24
+          },
+          "V3 Grade 2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              24,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      "SM-A127F": {
+        "images": 91,
+        "accepted": 91,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 0.945054945054945,
+        "balanced_accuracy": 0.9431818181818181,
+        "macro_f1": 0.9446269928197639,
+        "weighted_f1": 0.9447874749079569,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 1.0,
+            "recall": 0.8863636363636364,
+            "f1": 0.9397590361445783,
+            "support": 44
+          },
+          "V3 Grade 2": {
+            "precision": 0.9038461538461539,
+            "recall": 1.0,
+            "f1": 0.9494949494949495,
+            "support": 47
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              39,
+              5,
+              0
+            ],
+            [
+              0,
+              47,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    "resolution": {
+      "4000x3000": {
+        "images": 91,
+        "accepted": 91,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 0.945054945054945,
+        "balanced_accuracy": 0.9431818181818181,
+        "macro_f1": 0.9446269928197639,
+        "weighted_f1": 0.9447874749079569,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 1.0,
+            "recall": 0.8863636363636364,
+            "f1": 0.9397590361445783,
+            "support": 44
+          },
+          "V3 Grade 2": {
+            "precision": 0.9038461538461539,
+            "recall": 1.0,
+            "f1": 0.9494949494949495,
+            "support": 47
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              39,
+              5,
+              0
+            ],
+            [
+              0,
+              47,
+              0
+            ]
+          ]
+        }
+      },
+      "4080x3060": {
+        "images": 21,
+        "accepted": 21,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 1.0,
+        "balanced_accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 20
+          },
+          "V3 Grade 2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 1
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ]
+          ]
+        }
+      },
+      "8160x6120": {
+        "images": 4,
+        "accepted": 4,
+        "rejected": 0,
+        "coverage": 1.0,
+        "accuracy": 1.0,
+        "balanced_accuracy": 0.5,
+        "macro_f1": 0.5,
+        "weighted_f1": 1.0,
+        "per_class": {
+          "V3 Grade 1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 4
+          },
+          "V3 Grade 2": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "support": 0
+          }
+        },
+        "confusion_matrix": {
+          "rows": [
+            "V3 Grade 1",
+            "V3 Grade 2"
+          ],
+          "columns": [
+            "V3 Grade 1",
+            "V3 Grade 2",
+            "REJECT"
+          ],
+          "values": [
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "operational": {
+    "ultralytics_reported_inference_ms_mean": 7.013222413912319,
+    "ultralytics_reported_inference_ms_median": 7.013222413912319,
+    "end_to_end_prediction_seconds": 102.12517499999376,
+    "model_size_bytes": 5461466,
+    "parameter_count": 2590230,
+    "input_resolution": 640,
+    "batch_size": 4,
+    "python": "3.13.14",
+    "torch": "2.14.1+cu130",
+    "ultralytics": "8.4.174",
+    "device": "NVIDIA GeForce RTX 2050",
+    "cuda_runtime": "13.0"
+  },
+  "prediction_rule": "highest-confidence YOLO detection; reject when absent or below frozen threshold",
+  "no_detection_state_supported": true,
+  "non_pepper_rejection_accuracy_claimed": false
+}

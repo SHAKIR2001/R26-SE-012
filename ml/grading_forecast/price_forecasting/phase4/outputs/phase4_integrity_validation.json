@@ -1,0 +1,71 @@
+{
+  "phase": 4,
+  "validated_on": "2026-10-07",
+  "passed": true,
+  "checks": [
+    {
+      "check": "no_duplicate_canonical_observations",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "canonical_values_identical_to_normalized_raw_extraction",
+      "passed": true,
+      "details": "rows=16903"
+    },
+    {
+      "check": "no_fabricated_observation_status",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "expected_grades_only",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "all_targets_strictly_after_feature_date",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "target_return_matches_next_observed_price",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "lag_features_are_backward_looking",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "no_random_temporal_split",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "test_not_used_for_selection",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "external_not_used_for_selection",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "newest_observations_isolated_after_old_cutoff",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "broken_source_links_explicitly_recorded",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "latest_source_date": "2026-09-29",
+  "latest_g1_date": "2026-09-29",
+  "latest_g2_date": "2026-09-29",
+  "scope": "Focused data, temporal, feature, and evaluation-protocol validation; no backend/mobile integration tests."
+}

@@ -1,10 +1,21 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:pepper_care/l10n/app_localizations.dart';
 
+import '../../../core/theme/app_theme.dart';
+import '../../../shared/widgets/farmer_ui.dart';
+import '../../recommendations/analysis_ui.dart' show FadeSlideIn;
+import '../grading_forecast_localizations.dart';
 import '../models/grading_forecast_result.dart';
 import 'price_forecast_screen.dart';
 
+/// Presents the farmer-facing grading outcome without exposing internal
+/// research trace fields as the primary result.
+///
+/// Rejected and uncertain outcomes intentionally have no price action. Only an
+/// accepted response with available, grade-matched market evidence can open the
+/// price-outlook screen.
 class BerryQualityResultScreen extends StatelessWidget {
   const BerryQualityResultScreen({
     super.key,
@@ -15,279 +26,138 @@ class BerryQualityResultScreen extends StatelessWidget {
   final Uint8List imageBytes;
   final GradingForecastResult result;
 
-  static const _requiredLimitationNote =
-      'Camera-based visual estimate only. Chemical requirements and bulk density are not measured.';
-
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final grading = result.grading;
-    final visual = grading.visualFeatures;
-    final explanation = _explanationLines(grading.explanation);
-    final limitation = _requiredLimitationNote;
+    final status = AppStatusColors.of(context);
+    final accepted = result.grading.status == 'ACCEPTED';
+    final rejected = result.grading.status == 'REJECTED';
+    final accent = accepted
+        ? status.success
+        : rejected
+        ? status.danger
+        : status.warning;
+    final icon = accepted
+        ? Icons.workspace_premium_rounded
+        : rejected
+        ? Icons.image_not_supported_outlined
+        : Icons.help_outline_rounded;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Berry Quality Result')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          SizedBox(
-            height: 240,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(22),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.memory(imageBytes, fit: BoxFit.cover),
-                  Positioned(
-                    left: 16,
-                    bottom: 16,
-                    child: _gradeBadge(
-                      context,
-                      grade: grading.predictedGrade,
-                      background: colorScheme.primary,
-                      foreground: colorScheme.onPrimary,
-                    ),
-                  ),
-                ],
+      appBar: AppBar(
+        title: Text(t.berryQualityResult),
+        actions: [
+          IconButton(
+            tooltip: t.backToHome,
+            onPressed: () => popToHome(context),
+            icon: const Icon(Icons.home_outlined),
+          ),
+        ],
+      ),
+      body: SafeArea(
+        top: false,
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
+          children: [
+            FadeSlideIn(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(kCardRadius),
+                child: AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Image.memory(imageBytes, fit: BoxFit.cover),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 12),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text('Predicted Grade', style: theme.textTheme.titleMedium),
-                  const SizedBox(height: 8),
-                  Row(
+            const SizedBox(height: 20),
+            FadeSlideIn(
+              delayMs: 70,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: Text(
-                          grading.predictedGrade,
-                          style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700),
+                      Container(
+                        width: 68,
+                        height: 68,
+                        decoration: BoxDecoration(
+                          color: accent.withValues(
+                            alpha: theme.brightness == Brightness.dark
+                                ? 0.20
+                                : 0.12,
+                          ),
+                          shape: BoxShape.circle,
                         ),
+                        child: Icon(icon, color: accent, size: 34),
                       ),
-                      _pill(
-                        context,
-                        label: 'Confidence',
-                        value: '${(grading.confidence * 100).toStringAsFixed(0)}%',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Text('Quality Score', style: theme.textTheme.titleMedium),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _roundedProgress(
-                          value: (grading.qualityScore / 100.0).clamp(0.0, 1.0).toDouble(),
-                          color: colorScheme.primary,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
+                      const SizedBox(height: 18),
                       Text(
-                        '${grading.qualityScore.toStringAsFixed(1)}/100',
-                        style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+                        farmerResultTitle(t, result),
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                          color: accent,
+                          fontWeight: FontWeight.w900,
+                          height: 1.15,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        farmerResultExplanation(t, result),
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                          height: 1.45,
+                        ),
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 12),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text('Explanation', style: theme.textTheme.titleMedium),
-                  const SizedBox(height: 8),
-                  ...explanation.map(_bulletLine),
-                ],
+            const SizedBox(height: 18),
+            if (!accepted)
+              FadeSlideIn(
+                delayMs: 140,
+                child: FarmerNoticeCard(
+                  icon: Icons.photo_camera_outlined,
+                  message: farmerRetakeGuidance(t, result),
+                  color: accent,
+                ),
+              )
+            else
+              FadeSlideIn(
+                delayMs: 140,
+                child: FarmerNoticeCard(
+                  icon: Icons.verified_user_outlined,
+                  message: t.farmerGradeNotice,
+                ),
               ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text('Visual Factors Detected', style: theme.textTheme.titleMedium),
-                  const SizedBox(height: 12),
-                  _featureSummaryRow(context, label: 'Color uniformity', value: visual.colorUniformityScore),
-                  _featureSummaryRow(context, label: 'Dark berry ratio', value: visual.darkBerryRatio),
-                  _featureSummaryRow(context, label: 'Light berry ratio', value: visual.lightBerryRatio),
-                  _featureSummaryRow(context, label: 'Texture score', value: visual.textureScore),
-                  _featureSummaryRow(
-                    context,
-                    label: 'Defect ratio',
-                    value: visual.defectRatio,
-                    colorOverride: colorScheme.error,
-                  ),
-                  _featureSummaryRow(context, label: 'Cleanliness score', value: visual.cleanlinessScore),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(Icons.info_outline, color: colorScheme.primary),
-                  const SizedBox(width: 12),
-                  Expanded(child: Text(limitation, style: theme.textTheme.bodyMedium)),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          SizedBox(
-            width: double.infinity,
-            child: FilledButton(
-              onPressed: () {
-                Navigator.of(context).push(
+            const SizedBox(height: 22),
+            if (result.market.isAvailable)
+              FilledButton.icon(
+                onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute<void>(
-                        builder: (_) => PriceForecastScreen(imageBytes: imageBytes, result: result),
+                    builder: (_) => PriceForecastScreen(result: result),
                   ),
-                );
-              },
-              child: const Text('View Price Forecast'),
+                ),
+                icon: const Icon(Icons.trending_up_rounded),
+                label: Text(t.farmerViewPriceOutlook),
+              ),
+            if (result.market.isAvailable) const SizedBox(height: 10),
+            OutlinedButton.icon(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.refresh_rounded),
+              label: Text(t.farmerAnalyzeAnother),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  static Widget _gradeBadge(
-    BuildContext context, {
-    required String grade,
-    required Color background,
-    required Color foreground,
-  }) {
-    final theme = Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'QUALITY GRADE',
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: foreground.withAlpha(220),
-              letterSpacing: 1.2,
-              fontWeight: FontWeight.w600,
+            const SizedBox(height: 4),
+            TextButton.icon(
+              onPressed: () => popToHome(context),
+              icon: const Icon(Icons.home_outlined),
+              label: Text(t.backToHome),
             ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            grade,
-            style: theme.textTheme.headlineSmall?.copyWith(
-              color: foreground,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
-  }
-
-  static Widget _pill(BuildContext context, {required String label, required String value}) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(label, style: theme.textTheme.labelSmall),
-          Text(value, style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700)),
-        ],
-      ),
-    );
-  }
-
-  static Widget _roundedProgress({required double value, required Color color}) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(999),
-      child: LinearProgressIndicator(
-        value: value,
-        minHeight: 10,
-        color: color,
-      ),
-    );
-  }
-
-  static Widget _featureSummaryRow(
-    BuildContext context, {
-    required String label,
-    required double value,
-    Color? colorOverride,
-  }) {
-    final theme = Theme.of(context);
-    final normalized = value.clamp(0.0, 1.0).toDouble();
-    final percent = (normalized * 100).round();
-    final color = colorOverride ?? theme.colorScheme.primary;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(child: Text(label)),
-              Text('$percent%', style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
-            ],
-          ),
-          const SizedBox(height: 6),
-          _roundedProgress(value: normalized, color: color),
-        ],
-      ),
-    );
-  }
-
-  static Widget _bulletLine(String line) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 2),
-            child: Icon(Icons.circle, size: 6),
-          ),
-          const SizedBox(width: 10),
-          Expanded(child: Text(line)),
-        ],
-      ),
-    );
-  }
-
-  static List<String> _explanationLines(List<String> raw) {
-    final cleaned = raw.map((e) => e.trim()).where((e) => e.isNotEmpty).toList();
-    if (cleaned.isNotEmpty) return cleaned;
-    return const ['No additional explanation available.'];
   }
 }

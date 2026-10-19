@@ -1,0 +1,157 @@
+experiment:
+  id: PRICE-EAC-PHASE5-001
+  phase: 5
+  seed: 42
+  dataset_version: eac_reconstructed_v1
+  dataset_path: data/processed/grading_forecast/price/eac_reconstructed_v1/eac_pepper_price_canonical.csv
+  output_dir: ml/grading_forecast/price_forecasting/phase5/outputs
+  minimum_training_observations: 50
+
+protected_phase4:
+  canonical_sha256: ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6
+  results_report_sha256: 1ff3db4bb51736cbf708b6bc7940c839f51e7cc94efe2afcbb84da3e555b69e0
+  audit_report_sha256: f06e7ae88511c98335f41cc164a3ec4e0b7ccde469af689a1ec9f080c80ff668
+
+series:
+  market: National
+  price_type: average
+  grades: [Grade 1, Grade 2]
+
+targets:
+  simple_return:
+    column: target_simple_return
+    conversion: current_price * (1 + predicted_target)
+  log_return:
+    column: target_log_return
+    conversion: current_price * exp(predicted_target)
+  price_delta:
+    column: target_price_delta
+    conversion: current_price + predicted_target
+
+horizon:
+  primary: next actual DEA/EAC observation
+  resampling: none
+  fixed_calendar_horizon: not evaluated because observations are irregular and no interpolation is permitted
+
+splits:
+  train_last_target_date: '2023-09-19'
+  validation_last_target_date: '2025-02-25'
+  test_last_target_date: '2026-08-18'
+  external_start_target_date: '2026-08-25'
+  external_last_target_date: '2026-09-29'
+
+feature_groups:
+  A_return_lags:
+    - return_lag_1
+    - return_lag_2
+    - return_lag_3
+    - return_lag_4
+    - days_since_previous_observation
+  B_technical:
+    - return_lag_1
+    - return_lag_2
+    - return_lag_3
+    - return_lag_4
+    - days_since_previous_observation
+    - current_price
+    - rolling_return_mean_3
+    - rolling_return_mean_5
+    - rolling_return_mean_10
+    - rolling_return_std_5
+    - rolling_return_std_10
+    - momentum_3
+    - momentum_5
+    - trend_vs_mean_5
+    - trend_vs_mean_10
+  C_technical_calendar:
+    - return_lag_1
+    - return_lag_2
+    - return_lag_3
+    - return_lag_4
+    - days_since_previous_observation
+    - current_price
+    - rolling_return_mean_3
+    - rolling_return_mean_5
+    - rolling_return_mean_10
+    - rolling_return_std_5
+    - rolling_return_std_10
+    - momentum_3
+    - momentum_5
+    - trend_vs_mean_5
+    - trend_vs_mean_10
+    - day_of_year_sin
+    - day_of_year_cos
+    - month_sin
+    - month_cos
+  D_relationship:
+    - return_lag_1
+    - return_lag_2
+    - return_lag_3
+    - return_lag_4
+    - days_since_previous_observation
+    - current_price
+    - rolling_return_mean_3
+    - rolling_return_mean_5
+    - rolling_return_mean_10
+    - rolling_return_std_5
+    - rolling_return_std_10
+    - momentum_3
+    - momentum_5
+    - trend_vs_mean_5
+    - trend_vs_mean_10
+    - day_of_year_sin
+    - day_of_year_cos
+    - month_sin
+    - month_cos
+    - same_date_spread
+    - same_date_ratio
+    - other_grade_return_lag_1
+
+baselines:
+  - persistence_zero_return
+  - last_observed_return
+  - expanding_mean_return
+  - historical_price_drift
+
+statistical_models:
+  simple_exponential_smoothing:
+    alphas: [0.2, 0.5]
+  autoregressive:
+    orders: [1, 2]
+  seasonal_naive:
+    status: not_applicable
+    reason: Irregular observations and sparse Grade 2 dates do not provide a defensible fixed seasonal lag without resampling.
+
+ml_models:
+  ridge:
+    alpha: 1.0
+    scaling: StandardScaler fitted inside each expanding training window
+  random_forest:
+    n_estimators: 100
+    max_depth: 5
+    min_samples_leaf: 5
+    n_jobs: 1
+  gradient_boosting:
+    n_estimators: 100
+    learning_rate: 0.05
+    max_depth: 2
+    min_samples_leaf: 5
+
+selection:
+  stage_1_feature_groups: [A_return_lags, B_technical, C_technical_calendar]
+  relationship_experiment: supplementary_common_cohort_only
+  primary_metric: macro_grade_return_rmse
+  secondary_metric: macro_grade_return_mae
+  final_test_used_for_selection: false
+  external_used_for_selection: false
+
+direction:
+  actual_flat_rule: exact equality in source-published price
+  predicted_flat_rule: derived price equals reference after rounding both to 0.01 LKR
+  labels: [DOWN, FLAT, UP]
+
+prediction_intervals:
+  method: grade-specific symmetric empirical absolute-return residual quantile from validation predictions
+  nominal_coverage: 0.90
+  calibration_partition: VALIDATION
+  test_or_external_used_for_calibration: false

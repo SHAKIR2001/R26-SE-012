@@ -34,6 +34,16 @@ RUNTIME_NAIVE_METRICS_RELATIVE_PATH = (
     / "v2"
     / "naive_persistence_metrics.json"
 )
+GRADE_PRICE_GAP_SOURCE_RELATIVE_PATH = (
+    Path("data")
+    / "processed"
+    / "grading_forecast"
+    / "price_v2"
+    / "cleaned_price_data_v2.csv"
+)
+GRADE_2_DEFAULT_DISCOUNT_LKR_PER_KG = 113
+GRADE_2_ADJUSTED_FORECAST_MODEL_ID = "naive_persistence_grade2_gap_adjusted"
+GRADE_3_UNAVAILABLE_FORECAST_MODEL_ID = "price_unavailable_grade3"
 
 
 @dataclass(frozen=True)
@@ -67,6 +77,10 @@ def _runtime_naive_metrics_path(*, repo_root: Path) -> Path:
         return artifacts.forecast_metrics_path
 
     return repo_root / RUNTIME_NAIVE_METRICS_RELATIVE_PATH
+
+
+def _grade_price_gap_source_csv(*, repo_root: Path) -> Path:
+    return repo_root / GRADE_PRICE_GAP_SOURCE_RELATIVE_PATH
 
 
 def _default_output_path(*, repo_root: Path) -> Path:
@@ -425,9 +439,89 @@ def _unavailable_forecast() -> ForecastResult:
     )
 
 
+def _normalize_grade(grade: object | None) -> str:
+    value = getattr(grade, "value", grade)
+    return str(value or "Grade 1").strip()
+
+
+def _round_to_nearest_50(value: float) -> int:
+    return int(round(value / 50.0) * 50)
+
+
+@lru_cache(maxsize=4)
+def _grade_2_discount_lkr_per_kg(source_csv: Path) -> int:
+    """
+    Derive a simple Grade 2 discount from observed National average Grade 1 vs
+    Grade 2 rows. The latest overlapping date is used, then rounded for display.
+    """
+
+    if not source_csv.is_file():
+        return GRADE_2_DEFAULT_DISCOUNT_LKR_PER_KG
+
+    try:
+        rows = _load_csv_rows(source_csv)
+    except Exception:
+        return GRADE_2_DEFAULT_DISCOUNT_LKR_PER_KG
+
+    grade_1: dict[dt.date, float] = {}
+    grade_2: dict[dt.date, float] = {}
+    for row in rows:
+        if (row.get("district") or "").strip().lower() != "national":
+            continue
+        if (row.get("price_type") or "").strip().lower() != "average":
+            continue
+
+        date = _parse_date(row.get("date"))
+        price = _parse_price(row.get("price_lkr_per_kg"))
+        if date is None or price is None:
+            continue
+
+        grade_value = (row.get("grade") or "").strip()
+        if grade_value == "Grade 1":
+            grade_1[date] = price
+        elif grade_value == "Grade 2":
+            grade_2[date] = price
+
+    for date in sorted(set(grade_1).intersection(grade_2), reverse=True):
+        gap = grade_1[date] - grade_2[date]
+        if math.isfinite(gap) and gap > 0:
+            rounded = _round_to_nearest_50(gap)
+            return max(50, rounded)
+
+    return GRADE_2_DEFAULT_DISCOUNT_LKR_PER_KG
+
+
+def _apply_grade_price_adjustment(
+    *,
+    base_price_lkr_per_kg: int,
+    grade: object | None,
+    repo_root: Path,
+) -> tuple[str, int, ForecastMetrics]:
+    normalized = _normalize_grade(grade)
+    if normalized == "Grade 2":
+        discount = _grade_2_discount_lkr_per_kg(_grade_price_gap_source_csv(repo_root=repo_root))
+        return (
+            GRADE_2_ADJUSTED_FORECAST_MODEL_ID,
+            max(0, int(base_price_lkr_per_kg) - discount),
+            ForecastMetrics(mae=None, rmse=None),
+        )
+    if normalized == "Grade 3":
+        return (
+            GRADE_3_UNAVAILABLE_FORECAST_MODEL_ID,
+            0,
+            ForecastMetrics(mae=None, rmse=None),
+        )
+    return (
+        RUNTIME_FORECAST_MODEL_ID,
+        int(base_price_lkr_per_kg),
+        _load_runtime_naive_metrics(repo_root),
+    )
+
+
 def build_price_forecast(
     seed_hint: str | None,
     *,
+    grade: object | None = None,
     csv_path_override: Path | None = None,
     cleaned_output_path_override: Path | None = None,
     models_dir_override: Path | None = None,
@@ -436,6 +530,9 @@ def build_price_forecast(
     Build the runtime price forecast from the selected research-backed method.
 
     - Uses the V2 National Grade 1 average weekly target by default.
+    - Applies a documented Grade 2 discount when the predicted grade is Grade 2.
+    - Returns a grade-specific unavailable marker for Grade 3 because no Grade 3
+      historical price series is available.
     - Uses Naive Persistence because it is the strongest validated V2 forecasting method.
     - Never raises; data/configuration problems return an explicit unavailable state.
     """
@@ -453,14 +550,17 @@ def build_price_forecast(
         if not points:
             return _unavailable_forecast()
 
-        current = int(points[-1].price_lkr_per_kg)
-        predicted = current
-        metrics = _load_runtime_naive_metrics(root)
+        base_price = int(points[-1].price_lkr_per_kg)
+        model_id, predicted, metrics = _apply_grade_price_adjustment(
+            base_price_lkr_per_kg=base_price,
+            grade=grade,
+            repo_root=root,
+        )
         return ForecastResult(
-            model=RUNTIME_FORECAST_MODEL_ID,
-            current_price_lkr_per_kg=int(current),
+            model=model_id,
+            current_price_lkr_per_kg=int(max(0, predicted)),
             predicted_price_lkr_per_kg=int(max(0, predicted)),
-            trend=_trend(int(current), int(max(0, predicted))),
+            trend=TrendEnum.stable,
             forecast_period="next_period",
             metrics=metrics,
         )

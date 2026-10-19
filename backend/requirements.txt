@@ -5,6 +5,7 @@ python-multipart>=0.0.9
 numpy>=2.0
 opencv-python-headless>=4.10
 Pillow>=10.0
+PyYAML>=6.0
 onnxruntime>=1.25.0
 scikit-learn>=1.8.0
 joblib>=1.5.0

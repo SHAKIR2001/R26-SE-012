@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../../l10n/app_localizations.dart';
 import 'ai_leaf_service.dart' show LeafAnalysisException;
 
 /// Logs the real, detailed error for developers only (console / logcat). This
@@ -13,7 +14,7 @@ void logAiError(String where, Object error, [StackTrace? stack]) {
 /// Maps any AI/analysis error to a short, friendly, user-safe message. Never
 /// leaks stack traces, provider names (Gemini/Claude), status codes or raw
 /// server payloads to the client.
-String friendlyAiMessage(Object error) {
+String friendlyAiMessage(Object error, AppLocalizations t) {
   final raw =
       (error is LeafAnalysisException ? error.message : error.toString())
           .toLowerCase();
@@ -25,7 +26,7 @@ String friendlyAiMessage(Object error) {
       raw.contains('permission') ||
       raw.contains('401') ||
       raw.contains('403')) {
-    return "The scanner isn't set up correctly. Please contact support.";
+    return t.errSetup;
   }
   // Offline / no network.
   if (raw.contains('socketexception') ||
@@ -34,7 +35,7 @@ String friendlyAiMessage(Object error) {
       raw.contains('no address associated') ||
       raw.contains('network') ||
       raw.contains('connection')) {
-    return 'No internet connection. Check your network and try again.';
+    return t.errOffline;
   }
   // Service busy / overloaded / timed out (503, UNAVAILABLE, deadline, 429).
   if (raw.contains('503') ||
@@ -47,14 +48,14 @@ String friendlyAiMessage(Object error) {
       raw.contains('rate limit') ||
       raw.contains('500') ||
       raw.contains('502')) {
-    return 'The scanner is busy right now. Please try again in a moment.';
+    return t.errBusy;
   }
   // Photo couldn't be read.
   if (raw.contains('could not read') ||
       raw.contains('could not decode') ||
       raw.contains('decode')) {
-    return "That photo couldn't be read. Please try another photo.";
+    return t.couldNotReadImage;
   }
   // Anything else.
-  return 'Something went wrong. Please try again.';
+  return t.errGeneric;
 }

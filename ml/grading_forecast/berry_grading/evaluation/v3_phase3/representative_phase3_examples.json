@@ -1,0 +1,257 @@
+[
+  {
+    "example_type": "confident_valid",
+    "image_id": "20260508_154024_jpg.rf.eG7zzKXe4ZtWzBWDSULS.jpg",
+    "source_path": "data/raw/Pepper Berry Grading V3.yolov8/train/images/20260508_154024_jpg.rf.eG7zzKXe4ZtWzBWDSULS.jpg",
+    "kind": "VALID_PEPPER",
+    "true_class": 0,
+    "physical_sample_id": "grade_1/sample_007",
+    "negative_category": "",
+    "negative_partition": "",
+    "raw_prediction": 0,
+    "top_confidence": 0.9593963027000427,
+    "runner_up_confidence": 0.0,
+    "class_margin": 0.9593963027000427,
+    "box_xyxy": [
+      172.83010864257812,
+      25.703811645507812,
+      2752.7802734375,
+      3935.333984375
+    ],
+    "box_area_ratio": 0.840554250701721,
+    "quality": {
+      "width": 3000,
+      "height": 4000,
+      "minimum_dimension": 3000,
+      "brightness": 141.35235625,
+      "blur_laplacian_variance": 59.265870912495664
+    },
+    "inference_ms": 7.635318965687224,
+    "decision": "GRADE_1",
+    "message": "Pepper sample detected: Grade 1.",
+    "grade": "V3 Grade 1",
+    "model_confidence": 0.9593963027000427,
+    "detection_confidence": 0.9593963027000427,
+    "quality_scores": {
+      "width": 3000,
+      "height": 4000,
+      "minimum_dimension": 3000,
+      "brightness": 141.35235625,
+      "blur_laplacian_variance": 59.265870912495664
+    },
+    "rejection_reason": null,
+    "bbox_xyxy": [
+      172.83010864257812,
+      25.703811645507812,
+      2752.7802734375,
+      3935.333984375
+    ],
+    "thresholds": {
+      "minimum_blur_variance": 10,
+      "minimum_brightness": 50,
+      "minimum_dimension": 320,
+      "minimum_box_area_ratio": 0.2,
+      "detection_confidence": 0.55,
+      "grade_confidence": 0.05,
+      "grade_margin": 0.3
+    }
+  },
+  {
+    "example_type": "uncertain_valid",
+    "image_id": "20260815_072653_jpg.rf.t5n38iiDROOsNmKeGeM7.jpg",
+    "source_path": "data/raw/Pepper Berry Grading V3.yolov8/train/images/20260815_072653_jpg.rf.t5n38iiDROOsNmKeGeM7.jpg",
+    "kind": "VALID_PEPPER",
+    "true_class": 1,
+    "physical_sample_id": "grade_2/sample_045",
+    "negative_category": "",
+    "negative_partition": "",
+    "raw_prediction": 1,
+    "top_confidence": 0.6382293105125427,
+    "runner_up_confidence": 0.44386428594589233,
+    "class_margin": 0.1943650245666504,
+    "box_xyxy": [
+      27.905654907226562,
+      118.6279296875,
+      2521.560302734375,
+      3951.699462890625
+    ],
+    "box_area_ratio": 0.7965297203521589,
+    "quality": {
+      "width": 3000,
+      "height": 4000,
+      "minimum_dimension": 3000,
+      "brightness": 141.159649,
+      "blur_laplacian_variance": 38.61217958185749
+    },
+    "inference_ms": 7.635318965687224,
+    "decision": "UNCERTAIN_GRADE",
+    "message": "The pepper sample was detected, but the grade is uncertain. Please retake the photo.",
+    "grade": null,
+    "model_confidence": 0.6382293105125427,
+    "detection_confidence": 0.6382293105125427,
+    "quality_scores": {
+      "width": 3000,
+      "height": 4000,
+      "minimum_dimension": 3000,
+      "brightness": 141.159649,
+      "blur_laplacian_variance": 38.61217958185749
+    },
+    "rejection_reason": "grade_margin_below_minimum",
+    "bbox_xyxy": [
+      27.905654907226562,
+      118.6279296875,
+      2521.560302734375,
+      3951.699462890625
+    ],
+    "thresholds": {
+      "minimum_blur_variance": 10,
+      "minimum_brightness": 50,
+      "minimum_dimension": 320,
+      "minimum_box_area_ratio": 0.2,
+      "detection_confidence": 0.55,
+      "grade_confidence": 0.05,
+      "grade_margin": 0.3
+    }
+  },
+  {
+    "example_type": "rejected_negative",
+    "image_id": "people_008",
+    "source_path": "data/external/phase3_rejection/non_pepper/people/people_008.jpg",
+    "kind": "NON_PEPPER",
+    "true_class": null,
+    "physical_sample_id": "",
+    "negative_category": "people",
+    "negative_partition": "CALIBRATION",
+    "raw_prediction": 1,
+    "top_confidence": 0.5269094109535217,
+    "runner_up_confidence": 0.0,
+    "class_margin": 0.5269094109535217,
+    "box_xyxy": [
+      40.942134857177734,
+      0.0,
+      905.896240234375,
+      631.6826782226562
+    ],
+    "box_area_ratio": 0.9342404709436843,
+    "quality": {
+      "width": 921,
+      "height": 635,
+      "minimum_dimension": 635,
+      "brightness": 86.60696606735233,
+      "blur_laplacian_variance": 859.8368617058594
+    },
+    "inference_ms": 7.278045000566635,
+    "decision": "NO_PEPPER",
+    "message": "No valid pepper sample was detected. Please photograph the harvested pepper sample.",
+    "grade": null,
+    "model_confidence": 0.5269094109535217,
+    "detection_confidence": 0.5269094109535217,
+    "quality_scores": {
+      "width": 921,
+      "height": 635,
+      "minimum_dimension": 635,
+      "brightness": 86.60696606735233,
+      "blur_laplacian_variance": 859.8368617058594
+    },
+    "rejection_reason": "no_detection_above_threshold",
+    "bbox_xyxy": [
+      40.942134857177734,
+      0.0,
+      905.896240234375,
+      631.6826782226562
+    ],
+    "thresholds": {
+      "minimum_blur_variance": 10,
+      "minimum_brightness": 50,
+      "minimum_dimension": 320,
+      "minimum_box_area_ratio": 0.2,
+      "detection_confidence": 0.55,
+      "grade_confidence": 0.05,
+      "grade_margin": 0.3
+    }
+  },
+  {
+    "example_type": "false_accept_negative",
+    "image_id": "other_crops_001",
+    "source_path": "data/external/phase3_rejection/non_pepper/other_crops/other_crops_001.jpg",
+    "kind": "NON_PEPPER",
+    "true_class": null,
+    "physical_sample_id": "",
+    "negative_category": "other_crops",
+    "negative_partition": "EVALUATION",
+    "raw_prediction": 0,
+    "top_confidence": 0.9428362250328064,
+    "runner_up_confidence": 0.0,
+    "class_margin": 0.9428362250328064,
+    "box_xyxy": [
+      0.0,
+      0.0,
+      960.0,
+      920.0
+    ],
+    "box_area_ratio": 1.0,
+    "quality": {
+      "width": 960,
+      "height": 920,
+      "minimum_dimension": 920,
+      "brightness": 129.25988903985507,
+      "blur_laplacian_variance": 7684.490625106393
+    },
+    "inference_ms": 7.278045000566635,
+    "decision": "GRADE_1",
+    "message": "Pepper sample detected: Grade 1.",
+    "grade": "V3 Grade 1",
+    "model_confidence": 0.9428362250328064,
+    "detection_confidence": 0.9428362250328064,
+    "quality_scores": {
+      "width": 960,
+      "height": 920,
+      "minimum_dimension": 920,
+      "brightness": 129.25988903985507,
+      "blur_laplacian_variance": 7684.490625106393
+    },
+    "rejection_reason": null,
+    "bbox_xyxy": [
+      0.0,
+      0.0,
+      960.0,
+      920.0
+    ],
+    "thresholds": {
+      "minimum_blur_variance": 10,
+      "minimum_brightness": 50,
+      "minimum_dimension": 320,
+      "minimum_box_area_ratio": 0.2,
+      "detection_confidence": 0.55,
+      "grade_confidence": 0.05,
+      "grade_margin": 0.3
+    }
+  },
+  {
+    "example_type": "controlled_blur",
+    "source_path": "data/processed/grading_forecast/berry_v3/phase3_quality_challenges/blur/20260508_155333_jpg.rf.suL4Z71rXLELHAJA9cDs.jpg",
+    "image_id": "20260508_155333_jpg.rf.suL4Z71rXLELHAJA9cDs.jpg",
+    "decision": "POOR_IMAGE",
+    "rejection_reason": "controlled_blur",
+    "top_confidence": null,
+    "box_xyxy": null
+  },
+  {
+    "example_type": "controlled_dark",
+    "source_path": "data/processed/grading_forecast/berry_v3/phase3_quality_challenges/dark/20260508_155333_jpg.rf.suL4Z71rXLELHAJA9cDs.jpg",
+    "image_id": "20260508_155333_jpg.rf.suL4Z71rXLELHAJA9cDs.jpg",
+    "decision": "POOR_IMAGE",
+    "rejection_reason": "controlled_dark",
+    "top_confidence": null,
+    "box_xyxy": null
+  },
+  {
+    "example_type": "controlled_low_resolution",
+    "source_path": "data/processed/grading_forecast/berry_v3/phase3_quality_challenges/low_resolution/20260508_155333_jpg.rf.suL4Z71rXLELHAJA9cDs.jpg",
+    "image_id": "20260508_155333_jpg.rf.suL4Z71rXLELHAJA9cDs.jpg",
+    "decision": "POOR_IMAGE",
+    "rejection_reason": "controlled_low_resolution",
+    "top_confidence": null,
+    "box_xyxy": null
+  }
+]
