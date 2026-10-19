@@ -1,8 +1,10 @@
+import 'dart:isolate';
 import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart' show visibleForTesting;
+import 'package:flutter/foundation.dart' show kIsWeb, visibleForTesting;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:image/image.dart' as img;
 import 'package:tflite_flutter/tflite_flutter.dart';
 
@@ -93,6 +95,11 @@ class YoloDetector {
   Interpreter? _interpreter;
   ScannerModelConfig? _config;
 
+  /// Raw model bytes, cached so [detectJpeg] can rebuild an interpreter inside a
+  /// background isolate (a native [Interpreter] handle can't be sent across
+  /// isolates, but the bytes can).
+  Uint8List? _modelBytes;
+
   /// Score a class must beat for a detection to be reported normally.
   double confThreshold;
 
@@ -129,8 +136,13 @@ class YoloDetector {
   Future<void> load(ScannerModelConfig config) async {
     await dispose();
 
-    final interpreter = await Interpreter.fromAsset(
+    // Load the bytes once: used to validate on the main isolate here, and cached
+    // so each scan can spin up a short-lived interpreter in a background isolate.
+    final bytes = (await rootBundle.load(
       config.assetPath,
+    )).buffer.asUint8List();
+    final interpreter = Interpreter.fromBuffer(
+      bytes,
       options: InterpreterOptions()..threads = 4,
     );
 
@@ -160,13 +172,51 @@ class YoloDetector {
     interpreter.allocateTensors();
 
     _interpreter = interpreter;
+    _modelBytes = bytes;
     _config = config;
   }
 
   Future<void> dispose() async {
     _interpreter?.close();
     _interpreter = null;
+    _modelBytes = null;
     _config = null;
+  }
+
+  /// Decodes [jpegBytes] and runs the full detection pipeline **in a background
+  /// isolate**, so the heavy pixel loop and native invoke() never block the UI
+  /// thread (a one-shot scan would otherwise freeze the app for a second or more).
+  ///
+  /// Spins up a short-lived interpreter from the cached model bytes for each
+  /// scan. That's a few ms of load cost, traded for a responsive UI.
+  // ponytail: fresh interpreter per scan; use a persistent worker isolate if
+  // scan throughput ever matters.
+  Future<DetectionResult> detectJpeg(
+    Uint8List jpegBytes,
+    int sensorOrientation,
+  ) {
+    final cfg = _config;
+    final bytes = _modelBytes;
+    if (cfg == null || bytes == null) {
+      return Future.value(const DetectionResult([], Size.zero, 0));
+    }
+    // Copy into locals so the isolate closure captures only sendable data, never
+    // `this` (which holds a non-sendable native interpreter handle).
+    final args = _DetectArgs(
+      modelBytes: bytes,
+      config: cfg,
+      jpegBytes: jpegBytes,
+      sensorOrientation: sensorOrientation,
+      conf: confThreshold,
+      iou: iouThreshold,
+      fallback: fallbackConfThreshold,
+    );
+    // Flutter web does not provide worker-isolate semantics compatible with
+    // this native interpreter path. Keep the same inference implementation but
+    // execute it directly so the existing browser grading flow still builds.
+    return kIsWeb
+        ? _detectInIsolate(args)
+        : Isolate.run(() => _detectInIsolate(args));
   }
 
   /// Runs detection on one already-decoded RGB frame.
@@ -178,10 +228,7 @@ class YoloDetector {
   /// The reported duration covers the **whole** pipeline, not just invoke():
   /// rotation and YUV conversion typically dominate, so timing invoke() alone
   /// would badly understate real per-frame cost.
-  Future<DetectionResult> detect(
-    img.Image frame,
-    int sensorOrientation,
-  ) async {
+  Future<DetectionResult> detect(img.Image frame, int sensorOrientation) async {
     final cfg = _config;
     final interpreter = _interpreter;
     if (cfg == null || interpreter == null) {
@@ -277,8 +324,14 @@ class YoloDetector {
       );
     }
 
-    final relaxed =
-        decode(out, cfg, uw, uh, box, threshold: fallbackConfThreshold);
+    final relaxed = decode(
+      out,
+      cfg,
+      uw,
+      uh,
+      box,
+      threshold: fallbackConfThreshold,
+    );
     if (relaxed.isEmpty) {
       return (
         detections: relaxed,
@@ -342,18 +395,20 @@ class YoloDetector {
       final h = bh / box.scale;
 
       // normalize to 0..1 of the upright frame
-      final left = (x / uw).clamp(0.0, 1.0).toDouble();
-      final top = (y / uh).clamp(0.0, 1.0).toDouble();
-      final right = ((x + w) / uw).clamp(0.0, 1.0).toDouble();
-      final bottom = ((y + h) / uh).clamp(0.0, 1.0).toDouble();
+      final left = (x / uw).clamp(0.0, 1.0);
+      final top = (y / uh).clamp(0.0, 1.0);
+      final right = ((x + w) / uw).clamp(0.0, 1.0);
+      final bottom = ((y + h) / uh).clamp(0.0, 1.0);
 
-      raw.add(Detection(
-        classId: bestCls,
-        className: cfg.classNames[bestCls],
-        score: bestScore,
-        rect: Rect.fromLTRB(left, top, right, bottom),
-        color: cfg.colorFor(bestCls),
-      ));
+      raw.add(
+        Detection(
+          classId: bestCls,
+          className: cfg.classNames[bestCls],
+          score: bestScore,
+          rect: Rect.fromLTRB(left, top, right, bottom),
+          color: cfg.colorFor(bestCls),
+        ),
+      );
     }
     return nms(raw, iouThreshold);
   }
@@ -389,6 +444,60 @@ class YoloDetector {
     final inter = math.max(0.0, x2 - x1) * math.max(0.0, y2 - y1);
     final union = a.width * a.height + b.width * b.height - inter;
     return union <= 0 ? 0 : inter / union;
+  }
+}
+
+/// Arguments bundled for [_detectInIsolate] — every field is sendable so the
+/// whole thing can cross the isolate boundary.
+class _DetectArgs {
+  final Uint8List modelBytes;
+  final ScannerModelConfig config;
+  final Uint8List jpegBytes;
+  final int sensorOrientation;
+  final double conf;
+  final double iou;
+  final double fallback;
+  const _DetectArgs({
+    required this.modelBytes,
+    required this.config,
+    required this.jpegBytes,
+    required this.sensorOrientation,
+    required this.conf,
+    required this.iou,
+    required this.fallback,
+  });
+}
+
+/// Runs the full decode → letterbox → invoke → NMS pipeline on a background
+/// isolate, then closes its interpreter. Reuses [YoloDetector.detect] so there's
+/// a single source of truth for the detection logic.
+Future<DetectionResult> _detectInIsolate(_DetectArgs a) async {
+  final decoded = img.decodeImage(a.jpegBytes);
+  if (decoded == null) return const DetectionResult([], Size.zero, 0);
+  final upright = img.bakeOrientation(decoded);
+
+  final det = YoloDetector(
+    confThreshold: a.conf,
+    iouThreshold: a.iou,
+    fallbackConfThreshold: a.fallback,
+  );
+  final interpreter = Interpreter.fromBuffer(
+    a.modelBytes,
+    options: InterpreterOptions()..threads = 4,
+  );
+  interpreter.resizeInputTensor(0, [
+    1,
+    3,
+    YoloDetector.inputSize,
+    YoloDetector.inputSize,
+  ]);
+  interpreter.allocateTensors();
+  det._interpreter = interpreter;
+  det._config = a.config;
+  try {
+    return await det.detect(upright, a.sensorOrientation);
+  } finally {
+    interpreter.close();
   }
 }
 

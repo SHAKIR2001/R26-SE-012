@@ -1,0 +1,138 @@
+{
+  "selected_threshold": 0.55,
+  "candidates": [
+    {
+      "threshold": 0.05,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 11,
+      "calibration_negative_false_acceptance_rate": 0.275
+    },
+    {
+      "threshold": 0.1,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 10,
+      "calibration_negative_false_acceptance_rate": 0.25
+    },
+    {
+      "threshold": 0.15,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 10,
+      "calibration_negative_false_acceptance_rate": 0.25
+    },
+    {
+      "threshold": 0.2,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 8,
+      "calibration_negative_false_acceptance_rate": 0.2
+    },
+    {
+      "threshold": 0.25,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 8,
+      "calibration_negative_false_acceptance_rate": 0.2
+    },
+    {
+      "threshold": 0.3,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 8,
+      "calibration_negative_false_acceptance_rate": 0.2
+    },
+    {
+      "threshold": 0.35,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 8,
+      "calibration_negative_false_acceptance_rate": 0.2
+    },
+    {
+      "threshold": 0.4,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 8,
+      "calibration_negative_false_acceptance_rate": 0.2
+    },
+    {
+      "threshold": 0.45,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 7,
+      "calibration_negative_false_acceptance_rate": 0.175
+    },
+    {
+      "threshold": 0.5,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 7,
+      "calibration_negative_false_acceptance_rate": 0.175
+    },
+    {
+      "threshold": 0.55,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 6,
+      "calibration_negative_false_acceptance_rate": 0.15
+    },
+    {
+      "threshold": 0.6,
+      "positive_retained": 116,
+      "positive_retention": 1.0,
+      "calibration_negative_false_accepts": 6,
+      "calibration_negative_false_acceptance_rate": 0.15
+    },
+    {
+      "threshold": 0.65,
+      "positive_retained": 115,
+      "positive_retention": 0.9913793103448276,
+      "calibration_negative_false_accepts": 6,
+      "calibration_negative_false_acceptance_rate": 0.15
+    },
+    {
+      "threshold": 0.7,
+      "positive_retained": 112,
+      "positive_retention": 0.9655172413793104,
+      "calibration_negative_false_accepts": 6,
+      "calibration_negative_false_acceptance_rate": 0.15
+    },
+    {
+      "threshold": 0.75,
+      "positive_retained": 109,
+      "positive_retention": 0.9396551724137931,
+      "calibration_negative_false_accepts": 5,
+      "calibration_negative_false_acceptance_rate": 0.125
+    },
+    {
+      "threshold": 0.8,
+      "positive_retained": 99,
+      "positive_retention": 0.853448275862069,
+      "calibration_negative_false_accepts": 4,
+      "calibration_negative_false_acceptance_rate": 0.1
+    },
+    {
+      "threshold": 0.85,
+      "positive_retained": 94,
+      "positive_retention": 0.8103448275862069,
+      "calibration_negative_false_accepts": 1,
+      "calibration_negative_false_acceptance_rate": 0.025
+    },
+    {
+      "threshold": 0.9,
+      "positive_retained": 71,
+      "positive_retention": 0.6120689655172413,
+      "calibration_negative_false_accepts": 0,
+      "calibration_negative_false_acceptance_rate": 0.0
+    },
+    {
+      "threshold": 0.95,
+      "positive_retained": 4,
+      "positive_retention": 0.034482758620689655,
+      "calibration_negative_false_accepts": 0,
+      "calibration_negative_false_acceptance_rate": 0.0
+    }
+  ]
+}

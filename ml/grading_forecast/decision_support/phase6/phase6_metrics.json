@@ -1,0 +1,296 @@
+{
+  "consistency": {
+    "no_composite_score": true,
+    "no_fabricated_empirical_values": true,
+    "no_wrong_series_routing": true,
+    "scenario_expectations_failed": 0,
+    "scenario_expectations_passed": 28
+  },
+  "coverage": {
+    "empirical_inputs": 13,
+    "market_outlook_count": 10,
+    "market_outlook_rate": 0.7692307692307693,
+    "rejected_count": 2,
+    "rejected_rate": 0.15384615384615385,
+    "uncertain_count": 1,
+    "uncertain_rate": 0.07692307692307693
+  },
+  "decision_categories": {
+    "CONFLICTING_SAMPLE_VIEWS": 1,
+    "DOWNWARD_PRICE_OUTLOOK": 2,
+    "ERROR_GRADE_PRICE_MISMATCH": 1,
+    "FLAT_PRICE_OUTLOOK": 1,
+    "FORECAST_UNAVAILABLE": 1,
+    "HIGH_UNCERTAINTY_OUTLOOK": 11,
+    "PRICE_DATA_UNAVAILABLE": 1,
+    "REJECT": 4,
+    "UNCERTAIN_GRADE": 2,
+    "UPWARD_PRICE_OUTLOOK": 4
+  },
+  "evaluation_type": "HISTORICAL_COMPOSITIONAL_EVALUATION",
+  "experiment_id": "PHASE6-GRADE-PRICE-DECISION-001",
+  "explainability": {
+    "all_have_category": true,
+    "all_have_explanation": true,
+    "all_have_model_or_fail_closed_provenance": true,
+    "traces": 28
+  },
+  "forecast_evidence_preserved": {
+    "persistence_external": {
+      "direction_confusion_matrix": [
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          7,
+          0
+        ]
+      ],
+      "direction_labels": [
+        "DOWN",
+        "FLAT",
+        "UP"
+      ],
+      "direction_per_class": {
+        "DOWN": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        "FLAT": {
+          "f1": 0.18181818181818182,
+          "precision": 0.1,
+          "recall": 1.0,
+          "support": 1
+        },
+        "UP": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 7
+        }
+      },
+      "directional_accuracy": 0.1,
+      "nonflat_directional_accuracy": 0.0,
+      "observations": 10,
+      "price_mae_lkr_per_kg": 42.32899999999999,
+      "price_mape_percent": 2.2404248782227896,
+      "price_rmse_lkr_per_kg": 58.21789544461394,
+      "return_mae": 0.02304583358028751,
+      "return_mape": null,
+      "return_mape_reason": "Omitted because returns include and approach zero.",
+      "return_r2": -0.13460980596331873,
+      "return_rmse": 0.03258764636202077
+    },
+    "persistence_final_test": {
+      "direction_confusion_matrix": [
+        [
+          0,
+          65,
+          0
+        ],
+        [
+          0,
+          15,
+          0
+        ],
+        [
+          0,
+          67,
+          0
+        ]
+      ],
+      "direction_labels": [
+        "DOWN",
+        "FLAT",
+        "UP"
+      ],
+      "direction_per_class": {
+        "DOWN": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 65
+        },
+        "FLAT": {
+          "f1": 0.18518518518518517,
+          "precision": 0.10204081632653061,
+          "recall": 1.0,
+          "support": 15
+        },
+        "UP": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 67
+        }
+      },
+      "directional_accuracy": 0.10204081632653061,
+      "nonflat_directional_accuracy": 0.0,
+      "observations": 147,
+      "price_mae_lkr_per_kg": 34.621700680272106,
+      "price_mape_percent": 1.8525540234982503,
+      "price_rmse_lkr_per_kg": 58.118743221145465,
+      "return_mae": 0.018575679388190405,
+      "return_mape": null,
+      "return_mape_reason": "Omitted because returns include and approach zero.",
+      "return_r2": -0.000986705689886902,
+      "return_rmse": 0.03186657164336775
+    },
+    "phase5_verdict": "MIXED",
+    "phase6_improvement_claim": false,
+    "selected_external": {
+      "direction_confusion_matrix": [
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          5
+        ]
+      ],
+      "direction_labels": [
+        "DOWN",
+        "FLAT",
+        "UP"
+      ],
+      "direction_per_class": {
+        "DOWN": {
+          "f1": 0.5714285714285714,
+          "precision": 0.4,
+          "recall": 1.0,
+          "support": 2
+        },
+        "FLAT": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "UP": {
+          "f1": 0.8333333333333334,
+          "precision": 1.0,
+          "recall": 0.7142857142857143,
+          "support": 7
+        }
+      },
+      "directional_accuracy": 0.7,
+      "nonflat_directional_accuracy": 0.7777777777777778,
+      "observations": 10,
+      "price_mae_lkr_per_kg": 42.829699991542114,
+      "price_mape_percent": 2.263902092189219,
+      "price_rmse_lkr_per_kg": 58.53594841519778,
+      "return_mae": 0.023301120984636638,
+      "return_mape": null,
+      "return_mape_reason": "Omitted because returns include and approach zero.",
+      "return_r2": -0.13496089743074768,
+      "return_rmse": 0.03259268790122171
+    },
+    "selected_final_test": {
+      "direction_confusion_matrix": [
+        [
+          30,
+          0,
+          35
+        ],
+        [
+          11,
+          0,
+          4
+        ],
+        [
+          20,
+          0,
+          47
+        ]
+      ],
+      "direction_labels": [
+        "DOWN",
+        "FLAT",
+        "UP"
+      ],
+      "direction_per_class": {
+        "DOWN": {
+          "f1": 0.47619047619047616,
+          "precision": 0.4918032786885246,
+          "recall": 0.46153846153846156,
+          "support": 65
+        },
+        "FLAT": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 15
+        },
+        "UP": {
+          "f1": 0.6143790849673203,
+          "precision": 0.5465116279069767,
+          "recall": 0.7014925373134329,
+          "support": 67
+        }
+      },
+      "directional_accuracy": 0.5238095238095238,
+      "nonflat_directional_accuracy": 0.5833333333333334,
+      "observations": 147,
+      "price_mae_lkr_per_kg": 33.99559232861706,
+      "price_mape_percent": 1.8148129878389092,
+      "price_rmse_lkr_per_kg": 54.72820798078264,
+      "return_mae": 0.018197208500795016,
+      "return_mape": null,
+      "return_mape_reason": "Omitted because returns include and approach zero.",
+      "return_r2": 0.12150659591283985,
+      "return_rmse": 0.029853169052188752
+    }
+  },
+  "limitations": [
+    "Grading and price evidence were collected separately; this is not an independent end-to-end test.",
+    "Synthetic logic scenarios validate branches but provide no empirical predictive evidence.",
+    "Phase 5 has limited/mixed signal and did not beat persistence on the newest external error metrics.",
+    "V3 grades are project-specific and field/device generalization remains unmeasured."
+  ],
+  "new_predictive_model": false,
+  "phase7_readiness": "READY_WITH_LIMITATIONS_FOR_SEPARATELY_AUTHORIZED_INTEGRATION_SPECIFICATION_ONLY",
+  "phase8_field_validation": "NOT_STARTED; use the preserved prospective field protocol later",
+  "reproducibility": {
+    "scenario_csv_sha256": "7f1505070848d393c295e3d8aa49366c725a402b21fdc9b9725e27a51e10373d",
+    "timestamps_fixed_by_config": true,
+    "trace_csv_sha256": "75f93026c3cd2c209b4fa14db3cb4702e9295c98c98c53ebde28b789f390d0bc",
+    "two_in_memory_runs_identical": true
+  },
+  "routing_correctness": {
+    "grade1_checks": 12,
+    "grade1_correct": 12,
+    "grade2_checks": 7,
+    "grade2_correct": 7,
+    "invalid_mismatch_failed_closed": true,
+    "rejection_block_checks": 4,
+    "rejection_block_correct": 4,
+    "rejection_uncertainty_block_checks": 7,
+    "rejection_uncertainty_block_correct": 7,
+    "uncertainty_block_checks": 3,
+    "uncertainty_block_correct": 3
+  },
+  "scenario_counts": {
+    "empirical_compositional": 13,
+    "logic_test": 15,
+    "total": 28
+  },
+  "status": "COMPLETE_WITH_LIMITATIONS"
+}

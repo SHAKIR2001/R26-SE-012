@@ -9,23 +9,33 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  anthropic_sdk_dart: ^0.2.0
+  flutter_localizations:
+    sdk: flutter
+  anthropic_sdk_dart: ^7.0.0
   camera: ^0.11.0+2
   cupertino_icons: ^1.0.6
   google_generative_ai: ^0.4.6
   http: ^1.2.2
   iconly: ^1.0.1
-  image: ^4.2.0
+  image: ^4.3.0
   image_picker: ^1.1.2
+  intl: any
+  path: ^1.9.1
+  path_provider: ^2.1.6
+  shared_preferences: ^2.3.2
+  sqflite: ^2.4.2+1
   tflite_flutter: ^0.12.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.2
+  sqflite_common_ffi: ^2.4.0+3
 
 flutter:
   uses-material-design: true
+  generate: true
   assets:
     - assets/models/
     - assets/data/
+    - assets/images/

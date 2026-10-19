@@ -1,0 +1,227 @@
+{
+  "phase": 3,
+  "status": "COMPLETE",
+  "checkpoint_sha256": "c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4",
+  "inputs": {
+    "validation_images": 116,
+    "external_negatives": 80,
+    "negative_calibration": 40,
+    "negative_evaluation": 40,
+    "external_negative_visual_audit": "80/80 confirmed non-pepper from contact sheet"
+  },
+  "baseline_negative_thresholds": {
+    "0.05": {
+      "images": 80,
+      "rejected": 58,
+      "false_accepts": 22,
+      "rejection_rate": 0.725,
+      "false_acceptance_rate": 0.275,
+      "predicted_grade_1": 6,
+      "predicted_grade_2": 16,
+      "by_category": {
+        "buildings_indoor": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        },
+        "containers": {
+          "images": 8,
+          "false_accepts": 2,
+          "false_acceptance_rate": 0.25
+        },
+        "empty_background": {
+          "images": 8,
+          "false_accepts": 3,
+          "false_acceptance_rate": 0.375
+        },
+        "leaves_plants": {
+          "images": 8,
+          "false_accepts": 6,
+          "false_acceptance_rate": 0.75
+        },
+        "other_crops": {
+          "images": 8,
+          "false_accepts": 4,
+          "false_acceptance_rate": 0.5
+        },
+        "other_spices_food": {
+          "images": 8,
+          "false_accepts": 2,
+          "false_acceptance_rate": 0.25
+        },
+        "people": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        },
+        "random_objects": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        },
+        "soil_ground": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        },
+        "vehicles": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        }
+      }
+    },
+    "0.25": {
+      "images": 80,
+      "rejected": 65,
+      "false_accepts": 15,
+      "rejection_rate": 0.8125,
+      "false_acceptance_rate": 0.1875,
+      "predicted_grade_1": 6,
+      "predicted_grade_2": 9,
+      "by_category": {
+        "buildings_indoor": {
+          "images": 8,
+          "false_accepts": 0,
+          "false_acceptance_rate": 0.0
+        },
+        "containers": {
+          "images": 8,
+          "false_accepts": 0,
+          "false_acceptance_rate": 0.0
+        },
+        "empty_background": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        },
+        "leaves_plants": {
+          "images": 8,
+          "false_accepts": 6,
+          "false_acceptance_rate": 0.75
+        },
+        "other_crops": {
+          "images": 8,
+          "false_accepts": 4,
+          "false_acceptance_rate": 0.5
+        },
+        "other_spices_food": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        },
+        "people": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        },
+        "random_objects": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        },
+        "soil_ground": {
+          "images": 8,
+          "false_accepts": 0,
+          "false_acceptance_rate": 0.0
+        },
+        "vehicles": {
+          "images": 8,
+          "false_accepts": 1,
+          "false_acceptance_rate": 0.125
+        }
+      }
+    }
+  },
+  "frozen_thresholds": {
+    "minimum_blur_variance": 10,
+    "minimum_brightness": 50,
+    "minimum_dimension": 320,
+    "minimum_box_area_ratio": 0.2,
+    "detection_confidence": 0.55,
+    "grade_confidence": 0.05,
+    "grade_margin": 0.3
+  },
+  "consolidated": {
+    "matrix": {
+      "rows": [
+        "VALID_PEPPER",
+        "NON_PEPPER"
+      ],
+      "columns": [
+        "GRADE_1",
+        "GRADE_2",
+        "POOR_IMAGE",
+        "NO_PEPPER",
+        "UNCERTAIN_GRADE"
+      ],
+      "values": [
+        [
+          61,
+          50,
+          0,
+          0,
+          5
+        ],
+        [
+          3,
+          2,
+          2,
+          33,
+          0
+        ]
+      ]
+    },
+    "valid_pepper": {
+      "images": 116,
+      "accepted_for_grading": 111,
+      "coverage": 0.9568965517241379,
+      "false_rejections": 5,
+      "false_rejection_rate": 0.04310344827586207,
+      "accepted_accuracy": 0.972972972972973,
+      "accepted_macro_f1": 0.9725360824742268,
+      "decision_counts": {
+        "GRADE_1": 61,
+        "GRADE_2": 50,
+        "UNCERTAIN_GRADE": 5
+      },
+      "grade_confusion_matrix_accepted": [
+        [
+          61,
+          3
+        ],
+        [
+          0,
+          47
+        ]
+      ]
+    },
+    "held_out_non_pepper": {
+      "images": 40,
+      "rejected": 35,
+      "false_accepts": 5,
+      "rejection_rate": 0.875,
+      "false_acceptance_rate": 0.125,
+      "decision_counts": {
+        "NO_PEPPER": 33,
+        "POOR_IMAGE": 2,
+        "GRADE_1": 3,
+        "GRADE_2": 2
+      }
+    }
+  },
+  "runtime": {
+    "validation_wall_seconds": 94.91446529998211,
+    "negative_wall_seconds": 3.215691599994898,
+    "mean_model_inference_ms": 7.489492857474739
+  },
+  "integrity": {
+    "phase2_checkpoint_unchanged": true,
+    "sealed_phase2_test_accessed": false
+  },
+  "limits": [
+    "External negatives are a bounded Wikimedia Commons set, not deployment-distribution field data.",
+    "Confidence/margin thresholds are validation-tuned abstention heuristics, not calibrated probabilities.",
+    "Quality challenges are controlled perturbations and do not replace natural poor-quality field collection."
+  ]
+}

@@ -1,0 +1,3 @@
+error_type,image_id,physical_sample_id,true_grade,category,source,model_confidence,predicted_grade,detection_box,reason,notes
+valid_pepper_false_rejection,20260814_163149_jpg.rf.akYgyVxsjFSkI9lbWxrt.jpg,grade_2/sample_040,V3 Grade 2,,V3,0.7029590010643005,UNCERTAIN_GRADE,"[457.0821838378906, 372.793212890625, 2649.208251953125, 3827.930419921875]",grade_margin_below_minimum,Cause not visually assigned; cause uncertain
+valid_pepper_false_rejection,20260905_174826_jpg.rf.S9GTNG7xGJkv1Wu6c45a.jpg,grade_2/sample_058,V3 Grade 2,,V3,0.9186877012252808,UNCERTAIN_GRADE,"[119.6075439453125, 0.0, 3359.18798828125, 2349.855712890625]",grade_margin_below_minimum,Cause not visually assigned; cause uncertain

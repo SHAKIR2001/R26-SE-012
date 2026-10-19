@@ -1,0 +1,11 @@
+{
+  "android_debug_build": "INCOMPLETE_STALLED_IN_GRADLE_AND_STOPPED",
+  "backend_api": "IMPLEMENTED",
+  "device_or_emulator": "NOT_EXECUTED",
+  "flutter_api_consumption": "IMPLEMENTED_STATICALLY_VERIFIED",
+  "onnx_backend": "IMPLEMENTED_AND_VERIFIED",
+  "onnx_runtime_mobile": "NOT_SELECTED",
+  "pytorch_backend": "REFERENCE_ONLY",
+  "selected_mobile_runtime": "BACKEND_ONNX_RUNTIME",
+  "tflite_v3": "NOT_PRODUCED_OR_CLAIMED"
+}

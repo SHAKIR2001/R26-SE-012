@@ -1,0 +1,121 @@
+{
+  "boundary": "Deployment equivalence and integration evidence only; no Phase 8 or new predictive claim.",
+  "checks": [
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt",
+      "detail": "expected=e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca; actual=e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json",
+      "detail": "expected=39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8; actual=39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:data/processed/grading_forecast/price/eac_reconstructed_v1/eac_pepper_price_canonical.csv",
+      "detail": "expected=ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6; actual=ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/price_forecasting/phase5/outputs/external_reality_check_selected.csv",
+      "detail": "expected=0b3e5a4ede8f6839f831f008a4655114413c6369a1b9549dca240cc685288c4a; actual=0b3e5a4ede8f6839f831f008a4655114413c6369a1b9549dca240cc685288c4a",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/price_forecasting/phase5/outputs/phase5_integrity_validation.json",
+      "detail": "expected=085faac5e47a47780dc875effb8e313f5394fe27743bbb8ee277502facbb6d74; actual=085faac5e47a47780dc875effb8e313f5394fe27743bbb8ee277502facbb6d74",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen:ml/grading_forecast/decision_support/phase6/phase6_config.yaml",
+      "detail": "expected=679c5f15689a073bf849b7a518f7d8314bcc92ee08a132d67cd67e6874ee9355; actual=679c5f15689a073bf849b7a518f7d8314bcc92ee08a132d67cd67e6874ee9355",
+      "status": "PASS"
+    },
+    {
+      "check": "phase6_authoritative:decision_engine.py",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "phase6_authoritative:grading_adapter.py",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "phase6_authoritative:price_router.py",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "phase6_authoritative:decision_rules.py",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "onnx_hash_recorded",
+      "detail": "f8bb36b3ce9c354fd0707f555dbff88bc4f24606b4b93be99a74b03e6db54d38",
+      "status": "PASS"
+    },
+    {
+      "check": "onnx_graph_valid",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "pt_not_replaced",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "onnx_equivalence",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "routing_integrity",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection_first_integrity",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "verification_reproducible",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "phase6_schema_preserved",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "tflite_not_falsely_claimed",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "backend_runtime_selected",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "price_runtime_is_frozen_records",
+      "detail": "",
+      "status": "PASS"
+    },
+    {
+      "check": "no_composite_or_trading_logic",
+      "detail": "",
+      "status": "PASS"
+    }
+  ],
+  "experiment_id": "PHASE7-ONNX-BACKEND-MOBILE-001",
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 22
+  }
+}

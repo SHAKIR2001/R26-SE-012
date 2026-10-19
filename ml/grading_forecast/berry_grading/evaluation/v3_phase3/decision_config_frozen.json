@@ -1,0 +1,22 @@
+{
+  "status": "FROZEN_AFTER_VALIDATION_BEFORE_EXTERNAL_EVALUATION_SUMMARY",
+  "checkpoint": "ml/grading_forecast/berry_grading/models/v3_yolo/best.pt",
+  "checkpoint_sha256": "c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4",
+  "thresholds": {
+    "minimum_blur_variance": 10,
+    "minimum_brightness": 50,
+    "minimum_dimension": 320,
+    "minimum_box_area_ratio": 0.2,
+    "detection_confidence": 0.55,
+    "grade_confidence": 0.05,
+    "grade_margin": 0.3
+  },
+  "decision_order": [
+    "pre_detection_quality",
+    "pepper_detection",
+    "detected_box_quality",
+    "grade_uncertainty",
+    "grade"
+  ],
+  "sealed_phase2_test_accessed": false
+}

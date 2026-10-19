@@ -1,0 +1,11 @@
+{
+  "source": "data/processed/grading_forecast/price_v2/cleaned_price_data_v2.csv",
+  "method": "Latest overlapping National average Grade 1 minus Grade 2 gap, rounded for app display",
+  "overlapping_national_average_dates": 161,
+  "latest_overlap_date": "2026-08-18",
+  "latest_grade_1_average_lkr_per_kg": 1886.14,
+  "latest_grade_2_average_lkr_per_kg": 1800.0,
+  "latest_gap_lkr_per_kg": 86.14,
+  "grade_2_discount_lkr_per_kg": 113,
+  "grade_3_price_available": false
+}

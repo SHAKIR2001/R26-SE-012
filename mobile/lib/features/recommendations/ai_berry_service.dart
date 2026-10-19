@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:google_generative_ai/google_generative_ai.dart';
 
+import '../../core/locale/app_locale.dart';
 import 'berry_analysis.dart';
 import 'ai_config.dart';
 import 'ai_leaf_service.dart' show LeafAnalysisException;
@@ -41,7 +42,11 @@ class AiBerryService {
     try {
       res = await _model.generateContent([
         Content.multi([
-          TextPart(_taskPrompt),
+          TextPart(
+            '$_taskPrompt\n\nWrite summary and affected_regions in '
+            '${currentPromptLanguage()}. Keep problem_type exactly as the '
+            'allowed English values.',
+          ),
           DataPart('image/jpeg', jpegBytes),
         ]),
       ]);
@@ -94,7 +99,8 @@ Rules:
   static final Schema _schema = Schema.object(
     properties: {
       'is_berry_cluster': Schema.boolean(
-        description: 'True only if the image clearly shows a pepper berry spike.',
+        description:
+            'True only if the image clearly shows a pepper berry spike.',
       ),
       'healthy': Schema.boolean(description: 'True if the spike looks clean.'),
       'problem_type': Schema.enumString(
@@ -110,7 +116,9 @@ Rules:
       'affected_regions': Schema.string(
         description: 'Short description of the damage seen.',
       ),
-      'summary': Schema.string(description: 'One plain sentence for the farmer.'),
+      'summary': Schema.string(
+        description: 'One plain sentence for the farmer.',
+      ),
     },
     requiredProperties: [
       'is_berry_cluster',

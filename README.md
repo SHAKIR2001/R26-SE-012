@@ -119,6 +119,18 @@ multimodal-pepper-ai-decision-support/
 
 This component focuses on berry quality grading, export price forecasting, and decision support. It is based on the responsibilities defined in the project proposal and implemented across the backend, ML pipeline, and mobile app.
 
+### Current Authoritative Workflow
+
+The current research workflow uses V3 YOLO11 berry grading with the frozen
+Phase 3 follow-up model, the selected Phase 5 grade-specific forecasting
+specification and saved forecast records, the Phase 6 decision engine, and the
+Phase 7 backend ONNX integration used by Flutter. Older MobileNetV2, V1, and V2
+files are retained as historical evidence or backend fallback artifacts; they
+must not be mistaken for the selected V3 research workflow.
+
+See [Repository Inventory](docs/guides/repository_inventory.md) for the active,
+historical, generated, ignored-local, and protected artifact boundaries.
+
 ### Key Implementation Areas
 
 - backend/app/api/routes/grading_forecast.py (API endpoints)

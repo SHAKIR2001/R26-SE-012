@@ -9,6 +9,9 @@ from typing import Iterator
 
 from app.services.grading_forecast.price_forecast_service import (
     EVAL_MIN_RECORDS,
+    GRADE_2_ADJUSTED_FORECAST_MODEL_ID,
+    GRADE_2_DEFAULT_DISCOUNT_LKR_PER_KG,
+    GRADE_3_UNAVAILABLE_FORECAST_MODEL_ID,
     TrendEnum,
     build_price_forecast,
     clean_price_csv,
@@ -26,7 +29,7 @@ def _repo_root() -> Path:
 
 @contextmanager
 def _temp_dir() -> Iterator[Path]:
-    base = _repo_root() / "data" / "_tmp_tests"
+    base = Path(os.getenv("PYTEST_TMPDIR", r"C:\tmp")) / "pepper-tests"
     base.mkdir(parents=True, exist_ok=True)
     d = base / f"price-forecast-{uuid.uuid4().hex}"
     d.mkdir(parents=True, exist_ok=False)
@@ -73,7 +76,7 @@ def test_clean_price_csv_sorts_dedupes_fills_and_writes() -> None:
         assert points[-1].price_lkr_per_kg == points[-2].price_lkr_per_kg
 
 
-def test_forecast_model_selection_naive_for_single_point() -> None:
+def test_runtime_forecast_uses_grade_1_naive_persistence() -> None:
     os.environ["GRADING_FORECAST_DISABLE_REAL_MODELS"] = "1"
     with _temp_dir() as tmp_dir:
         raw = tmp_dir / "one.csv"
@@ -90,14 +93,16 @@ def test_forecast_model_selection_naive_for_single_point() -> None:
 
         forecast = build_price_forecast(
             seed_hint="x",
+            grade="Grade 1",
             csv_path_override=raw,
             cleaned_output_path_override=(tmp_dir / "cleaned.csv"),
         )
-        assert forecast.model == "naive_baseline"
+        assert forecast.model == "naive_persistence"
         assert forecast.predicted_price_lkr_per_kg == forecast.current_price_lkr_per_kg
+        assert forecast.predicted_price_lkr_per_kg == 1500
 
 
-def test_forecast_model_selection_moving_average_for_multiple_points() -> None:
+def test_runtime_forecast_applies_grade_2_gap_adjustment() -> None:
     os.environ["GRADING_FORECAST_DISABLE_REAL_MODELS"] = "1"
     with _temp_dir() as tmp_dir:
         raw = tmp_dir / "multi.csv"
@@ -116,12 +121,43 @@ def test_forecast_model_selection_moving_average_for_multiple_points() -> None:
 
         forecast = build_price_forecast(
             seed_hint="x",
+            grade="Grade 2",
             csv_path_override=raw,
             cleaned_output_path_override=(tmp_dir / "cleaned.csv"),
         )
-        assert forecast.model == "moving_average_baseline"
-        assert forecast.current_price_lkr_per_kg == 1200
-        assert forecast.predicted_price_lkr_per_kg == 1100
+        assert forecast.model == GRADE_2_ADJUSTED_FORECAST_MODEL_ID
+        assert forecast.current_price_lkr_per_kg == 1200 - GRADE_2_DEFAULT_DISCOUNT_LKR_PER_KG
+        assert forecast.predicted_price_lkr_per_kg == forecast.current_price_lkr_per_kg
+        assert forecast.trend == TrendEnum.stable
+
+
+def test_runtime_forecast_marks_grade_3_price_unavailable() -> None:
+    os.environ["GRADING_FORECAST_DISABLE_REAL_MODELS"] = "1"
+    with _temp_dir() as tmp_dir:
+        raw = tmp_dir / "multi.csv"
+        _write_csv(
+            raw,
+            "\n".join(
+                [
+                    "date,price_lkr_per_kg",
+                    "2024-01-01,1000",
+                    "2024-01-08,1100",
+                    "2024-01-15,1200",
+                    "",
+                ]
+            ),
+        )
+
+        forecast = build_price_forecast(
+            seed_hint="x",
+            grade="Grade 3",
+            csv_path_override=raw,
+            cleaned_output_path_override=(tmp_dir / "cleaned.csv"),
+        )
+        assert forecast.model == GRADE_3_UNAVAILABLE_FORECAST_MODEL_ID
+        assert forecast.current_price_lkr_per_kg == 0
+        assert forecast.predicted_price_lkr_per_kg == 0
+        assert forecast.trend == TrendEnum.stable
 
 
 def test_metrics_are_null_when_insufficient_records() -> None:
@@ -156,7 +192,7 @@ def test_metrics_are_floats_when_enough_records() -> None:
         assert metrics.rmse >= 0.0
 
 
-def test_demo_fallback_when_override_path_missing() -> None:
+def test_unavailable_when_override_path_missing() -> None:
     os.environ["GRADING_FORECAST_DISABLE_REAL_MODELS"] = "1"
     with _temp_dir() as tmp_dir:
         missing = tmp_dir / "does_not_exist.csv"
@@ -165,21 +201,13 @@ def test_demo_fallback_when_override_path_missing() -> None:
             csv_path_override=missing,
             cleaned_output_path_override=(tmp_dir / "cleaned.csv"),
         )
-        assert forecast.model == "demo_baseline"
+        assert forecast.model == "forecast_unavailable"
 
 
-def test_real_forecast_model_path_when_artifacts_provided() -> None:
-    # Enable real model inference for this test.
+def test_runtime_prefers_naive_persistence_even_when_model_override_is_provided() -> None:
     os.environ.pop("GRADING_FORECAST_DISABLE_REAL_MODELS", None)
 
-    import json
-
-    import joblib
-    import numpy as np
-    from sklearn.ensemble import RandomForestRegressor
-
     with _temp_dir() as tmp_dir:
-        # Synthetic weekly series
         raw = tmp_dir / "series.csv"
         rows = ["date,price_lkr_per_kg"]
         base = 1000
@@ -192,66 +220,17 @@ def test_real_forecast_model_path_when_artifacts_provided() -> None:
 
         models_dir = tmp_dir / "models"
         models_dir.mkdir(parents=True, exist_ok=True)
-
-        spec = {
-            "lags": [1, 2, 3],
-            "rolling_windows": [3, 5],
-            "eps": 1.0,
-            "feature_names": [
-                "lag_1",
-                "lag_2",
-                "lag_3",
-                "rolling_mean_3",
-                "rolling_std_3",
-                "rolling_mean_5",
-                "rolling_std_5",
-                "month",
-                "week_of_year",
-                "price_change_1w",
-                "price_change_pct_1w",
-            ],
-        }
-        (models_dir / "forecast_features.json").write_text(json.dumps(spec, indent=2), encoding="utf-8")
-
-        # Train a tiny RF on engineered features (mirror backend feature logic).
-        def std(vals: list[float]) -> float:
-            m = sum(vals) / len(vals)
-            return float(np.sqrt(sum((v - m) ** 2 for v in vals) / len(vals)))
-
-        X = []
-        y = []
-        prices = [float(p.price_lkr_per_kg) for p in points]
-        dates = [p.date for p in points]
-        for t in range(6, len(points) - 1):
-            cur = prices[t]
-            lag1 = prices[t - 1]
-            feats = [
-                prices[t - 1],
-                prices[t - 2],
-                prices[t - 3],
-                sum(prices[t - 3 : t]) / 3.0,
-                std(prices[t - 3 : t]),
-                sum(prices[t - 5 : t]) / 5.0,
-                std(prices[t - 5 : t]),
-                float(dates[t].month),
-                float(dates[t].isocalendar().week),
-                cur - lag1,
-                (cur - lag1) / max(lag1, 1.0),
-            ]
-            X.append(feats)
-            y.append(prices[t + 1])
-
-        model = RandomForestRegressor(n_estimators=50, random_state=42)
-        model.fit(np.asarray(X, dtype=float), np.asarray(y, dtype=float))
-        joblib.dump(model, models_dir / "forecast_model.joblib")
+        (models_dir / "forecast_model.joblib").write_text("unused", encoding="utf-8")
+        (models_dir / "forecast_features.json").write_text("{}", encoding="utf-8")
 
         forecast = build_price_forecast(
             seed_hint="x",
+            grade="Grade 1",
             csv_path_override=raw,
             cleaned_output_path_override=(tmp_dir / "cleaned2.csv"),
             models_dir_override=models_dir,
         )
-        assert forecast.model == "random_forest_regressor_v1"
+        assert forecast.model == "naive_persistence"
         assert forecast.current_price_lkr_per_kg > 0
         assert forecast.predicted_price_lkr_per_kg > 0
         assert forecast.trend in {TrendEnum.upward, TrendEnum.downward, TrendEnum.stable}

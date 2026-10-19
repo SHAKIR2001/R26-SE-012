@@ -25,10 +25,16 @@ class AiConfig {
   // higher fine-grained accuracy. If this key is absent the app transparently
   // uses Gemini's own labels, so Claude is a pure accuracy upgrade, never a
   // hard dependency.
-  static const String claudeApiKey =
-      String.fromEnvironment('ANTHROPIC_API_KEY');
+  static const String claudeApiKey = String.fromEnvironment(
+    'ANTHROPIC_API_KEY',
+  );
 
-  static const String claudeModel = 'claude-opus-5';
+  // Opus for the crop classifier: the Leaf Blight vs Quick Wilt call is a hard
+  // fine-grained visual discrimination, and Opus is the most accurate at it.
+  // MUST run with NO `thinking` param (budgetTokens:/enabled 400s on this model —
+  // see claude_classifier_service). Switch to 'claude-sonnet-5-5' (also valid
+  // with no thinking) if you want it cheaper/faster.
+  static const String claudeModel = 'claude-opus-5-5';
 
   static bool get hasClaudeKey => claudeApiKey.isNotEmpty;
 }

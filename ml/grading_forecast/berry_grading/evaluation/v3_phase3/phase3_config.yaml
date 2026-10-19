@@ -1,0 +1,56 @@
+phase: 3
+seed: 42
+checkpoint: ml/grading_forecast/berry_grading/models/v3_yolo/best.pt
+image_size: 640
+batch_size: 4
+device: 0
+raw_prediction_confidence: 0.001
+iou_threshold: 0.7
+
+# Fixed before Phase 3 inference. These two values reproduce the requested
+# frozen-model operating-point comparison; neither is selected on test data.
+negative_baseline_thresholds: [0.05, 0.25]
+
+# The final detector threshold is calibrated on the 116 V3 validation images
+# plus the 40 CALIBRATION negatives. The 40 EVALUATION negatives are held out.
+detection_threshold_candidates: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95]
+minimum_valid_detection_retention: 0.95
+detection_selection_rule: >-
+  Among thresholds retaining at least 95% of natural validation pepper images,
+  minimize calibration-negative false acceptance; then maximize positive
+  retention; then select the lowest threshold.
+
+# Simple quality features only. At most one of 116 natural validation images
+# may be rejected by any individual quality threshold during calibration.
+quality:
+  blur_laplacian_variance_candidates: [10, 20, 30, 50, 75, 100, 150, 200]
+  minimum_brightness_candidates: [10, 15, 20, 25, 30, 35, 40, 50]
+  minimum_dimension_candidates: [96, 128, 160, 224, 320]
+  minimum_box_area_ratio_candidates: [0.01, 0.025, 0.05, 0.10, 0.15, 0.20]
+  max_validation_false_rejections_per_gate: 1
+  controlled_challenge_images_per_class: 6
+  challenge_blur_kernel: 41
+  challenge_dark_factor: 0.12
+  challenge_low_resolution_dimension: 128
+  selection_rule: >-
+    Select the strongest candidate that rejects the corresponding controlled
+    challenge while rejecting at most one natural validation image; break ties
+    by fewer natural false rejections. Box-area gating uses natural validation
+    only and selects the strongest candidate within the same false-rejection cap.
+
+# Uncertainty is a heuristic confidence/margin rule, not probability calibration.
+uncertainty:
+  top_confidence_candidates: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.50, 0.60, 0.70, 0.80, 0.85, 0.90]
+  class_margin_candidates: [0.00, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30]
+  minimum_coverage: 0.90
+  selection_rule: >-
+    On validation only, among pairs with at least 90% coverage and both grades
+    accepted, maximize macro F1 among accepted predictions, then accepted
+    accuracy, then coverage, then choose lower confidence and margin thresholds.
+
+final_decision_order:
+  - pre_detection_quality
+  - pepper_detection
+  - detected_box_quality
+  - grade_uncertainty
+  - grade

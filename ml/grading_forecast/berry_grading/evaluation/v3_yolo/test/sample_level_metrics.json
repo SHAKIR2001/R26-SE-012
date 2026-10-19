@@ -1,0 +1,26 @@
+{
+  "partition": "TEST",
+  "physical_samples": 30,
+  "aggregation_rule": "majority vote; ties resolved by summed confidence",
+  "majority_vote": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "confusion_matrix": {
+      "rows": ["V3 Grade 1", "V3 Grade 2"],
+      "columns": ["V3 Grade 1", "V3 Grade 2", "REJECT"],
+      "values": [[17, 0, 0], [0, 13, 0]]
+    }
+  },
+  "confidence_weighted": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "confusion_matrix": {
+      "rows": ["V3 Grade 1", "V3 Grade 2"],
+      "columns": ["V3 Grade 1", "V3 Grade 2", "REJECT"],
+      "values": [[17, 0, 0], [0, 13, 0]]
+    }
+  },
+  "unanimous_samples": 26,
+  "conflicting_samples": 4,
+  "rejected_samples": 0
+}

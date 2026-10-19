@@ -73,6 +73,7 @@ _URGENCY_BY_DECISION: dict[DecisionEnum, UrgencyLevelEnum] = {
     DecisionEnum.monitor: UrgencyLevelEnum.low,
 }
 
+
 def build_recommendation(
     *,
     grade: GradeEnum,
@@ -101,12 +102,15 @@ def build_recommendation(
         and len(explanation) < 4
     ):
         delta = int(predicted_price_lkr_per_kg) - int(current_price_lkr_per_kg)
-        explanation.append(
-            "Current: "
-            f"{int(current_price_lkr_per_kg)} LKR/kg → "
-            f"Predicted: {int(predicted_price_lkr_per_kg)} LKR/kg "
-            f"({delta:+d})."
-        )
+        if delta == 0:
+            explanation.append(f"Predicted market price: {int(predicted_price_lkr_per_kg)} LKR/kg.")
+        else:
+            explanation.append(
+                "Current: "
+                f"{int(current_price_lkr_per_kg)} LKR/kg -> "
+                f"Predicted market price: {int(predicted_price_lkr_per_kg)} LKR/kg "
+                f"({delta:+d})."
+            )
 
     return RecommendationResult(
         decision=decision,

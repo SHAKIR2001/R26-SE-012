@@ -1,0 +1,82 @@
+[
+  {
+    "category": "correct_grade_1",
+    "image_id": "20260508_154024_jpg.rf.eG7zzKXe4ZtWzBWDSULS.jpg",
+    "physical_sample_id": "grade_1/sample_007",
+    "true_class": "V3 Grade 1",
+    "predicted_class": "V3 Grade 1",
+    "confidence": 0.9594309329986572,
+    "box_xyxy": [
+      172.36671447753906,
+      25.742340087890625,
+      2752.7919921875,
+      3935.69482421875
+    ],
+    "box_iou": 0.843644437146642,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "incorrect_grade_1",
+    "image_id": "20260728_175134_jpg.rf.2YpvkRPafsBXkXm7yW3V.jpg",
+    "physical_sample_id": "grade_1/sample_048",
+    "true_class": "V3 Grade 1",
+    "predicted_class": "V3 Grade 2",
+    "confidence": 0.8943818807601929,
+    "box_xyxy": [
+      47.28288650512695,
+      817.3038330078125,
+      3000.0,
+      3710.03271484375
+    ],
+    "box_iou": 0.924236375284107,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "correct_grade_2",
+    "image_id": "20260815_072932_jpg.rf.9gDo1AFeEZA8XhT16cHM.jpg",
+    "physical_sample_id": "grade_2/sample_045",
+    "true_class": "V3 Grade 2",
+    "predicted_class": "V3 Grade 2",
+    "confidence": 0.9568693041801453,
+    "box_xyxy": [
+      304.0565490722656,
+      201.52587890625,
+      3446.33251953125,
+      2858.41748046875
+    ],
+    "box_iou": 0.938585650349571,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "low_confidence",
+    "image_id": "20260815_072653_jpg.rf.t5n38iiDROOsNmKeGeM7.jpg",
+    "physical_sample_id": "grade_2/sample_045",
+    "true_class": "V3 Grade 2",
+    "predicted_class": "V3 Grade 2",
+    "confidence": 0.6451690793037415,
+    "box_xyxy": [
+      27.809906005859375,
+      118.81561279296875,
+      2521.693359375,
+      3952.013427734375
+    ],
+    "box_iou": 0.9747683098396,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  },
+  {
+    "category": "conflicting_physical_sample",
+    "image_id": "20260814_151415_jpg.rf.yZFI4EEsZUL7VgXdmcNL.jpg",
+    "physical_sample_id": "grade_1/sample_032",
+    "true_class": "V3 Grade 1",
+    "predicted_class": "V3 Grade 2",
+    "confidence": 0.6945550441741943,
+    "box_xyxy": [
+      148.3623504638672,
+      305.3459167480469,
+      2977.79833984375,
+      3543.087890625
+    ],
+    "box_iou": 0.941120081359174,
+    "interpretation": "predicted box substantially overlaps annotated pepper sample"
+  }
+]

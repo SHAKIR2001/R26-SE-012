@@ -1,0 +1,33 @@
+{
+  "exported_at": "2026-08-31T15:52:25+00:00",
+  "git_sha": "73302fd78dd15e46d5ff45bd4d1d4715ae984e5a",
+  "keras_model_path": "D:\\work\\Year - 4\\pepper\\project\\multimodal-pepper-ai-decision-support\\ml\\grading_forecast\\berry_grading\\models\\v2\\berry_mobilenetv2_v2_best.keras",
+  "tflite_model_path": "D:\\work\\Year - 4\\pepper\\project\\multimodal-pepper-ai-decision-support\\mobile\\assets\\models\\berry_mobilenetv2_v2_best.tflite",
+  "optimize": true,
+  "inputs": [
+    {
+      "dtype": "float32",
+      "shape": [
+        1,
+        224,
+        224,
+        3
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "dtype": "float32",
+      "shape": [
+        1,
+        3
+      ]
+    }
+  ],
+  "classes": [
+    "Grade 1",
+    "Grade 2",
+    "Grade 3"
+  ],
+  "preprocessing": "RGB float32 pixels in the 0..255 range; MobileNetV2 preprocessing is inside the model."
+}

@@ -1,0 +1,38 @@
+{
+  "dataset_version": "berry_v3_phase3_followup_negatives_v1",
+  "seed": 42,
+  "total_requested": 250,
+  "total_downloaded": 254,
+  "total_usable": 250,
+  "total_rejected": 4,
+  "total_duplicate": 0,
+  "total_failed": 199,
+  "download_attempt_log_entries": 222,
+  "unique_failed_or_rejected_candidates": 203,
+  "category_counts": {
+    "aerial_crop_imagery": 11,
+    "agricultural_crops": 75,
+    "agricultural_materials": 27,
+    "background_scenes": 13,
+    "ordinary_objects": 10,
+    "other_spices_food": 24,
+    "vegetation_leaves": 90
+  },
+  "split_counts": {
+    "NEGATIVE_FINAL_HOLDOUT": 49,
+    "NEGATIVE_TRAIN": 152,
+    "NEGATIVE_VALIDATION": 49
+  },
+  "source_counts": {
+    "Wikimedia Commons": 250
+  },
+  "source_group_count": 172,
+  "hash_duplicate_count": 0,
+  "validation": {
+    "unique_hashes": 250,
+    "source_group_leaks": 0,
+    "manifest_image_consistency": true,
+    "all_categories_present_in_all_partitions": true
+  },
+  "final_holdout_policy": "sealed until model and threshold freeze"
+}

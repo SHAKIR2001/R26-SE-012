@@ -1,0 +1,97 @@
+experiment:
+  id: PHASE6-GRADE-PRICE-DECISION-001
+  phase: 6
+  objective: deterministic_grade_price_decision_support_fusion
+  evaluation_type: HISTORICAL_COMPOSITIONAL_EVALUATION
+  deterministic_timestamp_utc: '2026-10-07T15:00:00+00:00'
+  no_new_predictive_model: true
+
+frozen_grading:
+  model_path: ml/grading_forecast/berry_grading/models/v3_phase3_followup/best.pt
+  model_sha256: e825278e0cf8eaff64cd05a2941cf96794e573027823a0ccd308bbc3f1a418ca
+  phase2_baseline_path: ml/grading_forecast/berry_grading/models/v3_yolo/best.pt
+  phase2_baseline_sha256: c35cc40515adcb6130a4bc93e8ad3de161dcf46b263a9d7df8286a5b4239a9c4
+  decision_config_path: ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/decision_config_frozen.json
+  decision_config_sha256: 39ca99a7e0049fb620a141cde80d539700945b2f812cc6cf7b15f289f8e158b8
+  accepted_decisions: [GRADE_1, GRADE_2]
+  rejected_decisions: [NO_PEPPER, POOR_IMAGE]
+  uncertain_decisions: [UNCERTAIN_GRADE, CONFLICTING_SAMPLE_VIEWS]
+
+frozen_price:
+  canonical_dataset_path: data/processed/grading_forecast/price/eac_reconstructed_v1/eac_pepper_price_canonical.csv
+  canonical_dataset_sha256: ea800ea576817f07ad54d50317dbd68254fc5dc824447380e58688b6b711c0f6
+  phase5_config_path: ml/grading_forecast/price_forecasting/phase5/phase5_config.yaml
+  phase5_config_sha256: 039b6eb3b7e394ba16a69cd72ad3e847b451741624f9324b4701ff19ec081046
+  selected_model_spec_path: ml/grading_forecast/price_forecasting/phase5/models/selected_model_spec.json
+  selected_model_spec_sha256: e98277d6ced450d47ee67e987217a45a1b2a717b0f467c3ac70b1607677e14f9
+  predictions_path: ml/grading_forecast/price_forecasting/phase5/outputs/walk_forward_predictions.csv
+  predictions_sha256: d06f8c195a475e30eb78b5aeede55658dcfaaa0f5d09fecfda6de0f435b19e93
+  external_predictions_path: ml/grading_forecast/price_forecasting/phase5/outputs/external_reality_check_selected.csv
+  external_predictions_sha256: 0b3e5a4ede8f6839f831f008a4655114413c6369a1b9549dca240cc685288c4a
+  metrics_path: ml/grading_forecast/price_forecasting/phase5/outputs/phase5_forecasting_metrics.json
+  metrics_sha256: aa25b60f75d3b5bdfbfcdf37f126d3d826e77818241a68f16d00ed6292ed5e2c
+  integrity_path: ml/grading_forecast/price_forecasting/phase5/outputs/phase5_integrity_validation.json
+  price_source_label: EAC farm-gate reference price
+  price_source_organization: Department of Export Agriculture, Sri Lanka - Economic Research Unit
+  unit: LKR/kg
+  selected_method: separate grade-specific Ridge over next-observation log return
+  evidence_verdict: MIXED
+  persistence_role: required comparator and transparent fallback baseline
+
+grade_routing:
+  V3 Grade 1: {price_grade: Grade 1, model_scope: separate_grade_1_ridge}
+  V3 Grade 2: {price_grade: Grade 2, model_scope: separate_grade_2_ridge}
+
+direction_rule:
+  source: frozen Phase 5 rule
+  method: round reference price and forecast price to 0.01 LKR; UP if forecast is greater, DOWN if lower, FLAT if equal
+  price_resolution_lkr: 0.01
+  near_flat_band: null
+  labels: [DOWN, FLAT, UP]
+
+signal_rule:
+  default: LIMITED_SIGNAL
+  high_uncertainty: validation-derived interval includes prices on both sides of the reference price
+  relative_support: Ridge is documented as better than persistence for the supplied evaluation context and the interval does not cross the reference price
+  persistence_better: always LIMITED_SIGNAL unless the interval-crossing rule produces HIGH_UNCERTAINTY
+  numeric_confidence_probability: prohibited
+
+decision_categories:
+  reject: REJECT
+  uncertain_grade: UNCERTAIN_GRADE
+  conflicting_views: CONFLICTING_SAMPLE_VIEWS
+  price_unavailable: PRICE_DATA_UNAVAILABLE
+  forecast_unavailable: FORECAST_UNAVAILABLE
+  upward: UPWARD_PRICE_OUTLOOK
+  downward: DOWNWARD_PRICE_OUTLOOK
+  flat: FLAT_PRICE_OUTLOOK
+  high_uncertainty: HIGH_UNCERTAINTY_OUTLOOK
+
+uncertainty_handling:
+  rejected_has_market_output: false
+  uncertain_has_market_output: false
+  interval_label: validation-derived forecast interval
+  interval_is_probability_claim: false
+  confidence_is_probability: false
+
+aggregation:
+  methods: [majority_vote, confidence_weighted]
+  route_only_when: at least one accepted view exists, all accepted views have one grade, and majority and confidence-weighted grades agree
+  conflict_state: CONFLICTING_SAMPLE_VIEWS
+  rejected_views_are_preserved: true
+
+historical_scenarios:
+  positive_decisions_path: ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/phase2_positive_test_decisions.csv
+  positive_decisions_sha256: 349e981d862952e39c034a2ed083b7a67627acc056de82f9b71d1f0c120c80de
+  negative_decisions_path: ml/grading_forecast/berry_grading/evaluation/v3_phase3_followup/final_new_negative_decisions.csv
+  negative_decisions_sha256: c04097e17b053366c602b78410b01fb682cd45f993c3e8303b938a9f57ca6455
+  interpretation: separately evaluated frozen component outputs composed to test deterministic routing; not an independent end-to-end evaluation
+
+provenance:
+  research_only: true
+  production_ready: false
+  autonomous_trading: false
+  official_grade_equivalence: false
+  latest_price_is_forecast: false
+  phase7_started: false
+  field_validation_stage: later external validation using the separately documented field protocol

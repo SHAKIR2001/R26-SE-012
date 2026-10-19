@@ -1,0 +1,29 @@
+{
+  "policy": "shared chronological target-date boundaries; newest dates after old local cutoff reserved externally",
+  "old_local_cutoff": "2026-08-18",
+  "train_last_target_date": "2023-09-19",
+  "validation_last_target_date": "2025-02-25",
+  "test_last_target_date": "2026-08-18",
+  "rows_by_partition_and_grade": {
+    "EXTERNAL_NEWEST": {
+      "Grade 1": 5,
+      "Grade 2": 5
+    },
+    "NO_TARGET": {
+      "Grade 1": 1,
+      "Grade 2": 1
+    },
+    "TEST": {
+      "Grade 1": 74,
+      "Grade 2": 73
+    },
+    "TRAIN": {
+      "Grade 1": 340,
+      "Grade 2": 213
+    },
+    "VALIDATION": {
+      "Grade 1": 73,
+      "Grade 2": 66
+    }
+  }
+}

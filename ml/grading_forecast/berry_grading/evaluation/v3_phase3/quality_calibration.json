@@ -1,0 +1,185 @@
+{
+  "source": "V3 VALIDATION only plus controlled perturbations derived from validation; sealed TEST not accessed",
+  "selected_thresholds": {
+    "minimum_blur_variance": 10,
+    "minimum_brightness": 50,
+    "minimum_dimension": 320,
+    "minimum_box_area_ratio": 0.2
+  },
+  "challenge_summary": {
+    "selected_originals": 12,
+    "derived_images": 36,
+    "images_per_variant": {
+      "blur": 12,
+      "dark": 12,
+      "low_resolution": 12
+    }
+  },
+  "natural_validation_combined_quality_rejections": 0,
+  "audit": {
+    "minimum_blur_variance": {
+      "selected": {
+        "threshold": 10,
+        "natural_validation_rejections": 0,
+        "controlled_challenge_rejections": 12
+      },
+      "candidates": [
+        {
+          "threshold": 10,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 20,
+          "natural_validation_rejections": 1,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 30,
+          "natural_validation_rejections": 4,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 50,
+          "natural_validation_rejections": 42,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 75,
+          "natural_validation_rejections": 65,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 100,
+          "natural_validation_rejections": 76,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 150,
+          "natural_validation_rejections": 99,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 200,
+          "natural_validation_rejections": 102,
+          "controlled_challenge_rejections": 12
+        }
+      ]
+    },
+    "minimum_brightness": {
+      "selected": {
+        "threshold": 50,
+        "natural_validation_rejections": 0,
+        "controlled_challenge_rejections": 12
+      },
+      "candidates": [
+        {
+          "threshold": 10,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 0
+        },
+        {
+          "threshold": 15,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 4
+        },
+        {
+          "threshold": 20,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 11
+        },
+        {
+          "threshold": 25,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 30,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 35,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 40,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 50,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        }
+      ]
+    },
+    "minimum_dimension": {
+      "selected": {
+        "threshold": 320,
+        "natural_validation_rejections": 0,
+        "controlled_challenge_rejections": 12
+      },
+      "candidates": [
+        {
+          "threshold": 96,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 0
+        },
+        {
+          "threshold": 128,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 0
+        },
+        {
+          "threshold": 160,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 224,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        },
+        {
+          "threshold": 320,
+          "natural_validation_rejections": 0,
+          "controlled_challenge_rejections": 12
+        }
+      ]
+    },
+    "minimum_box_area_ratio": {
+      "selected": {
+        "threshold": 0.2,
+        "natural_validation_rejections": 0
+      },
+      "candidates": [
+        {
+          "threshold": 0.01,
+          "natural_validation_rejections": 0
+        },
+        {
+          "threshold": 0.025,
+          "natural_validation_rejections": 0
+        },
+        {
+          "threshold": 0.05,
+          "natural_validation_rejections": 0
+        },
+        {
+          "threshold": 0.1,
+          "natural_validation_rejections": 0
+        },
+        {
+          "threshold": 0.15,
+          "natural_validation_rejections": 0
+        },
+        {
+          "threshold": 0.2,
+          "natural_validation_rejections": 0
+        }
+      ]
+    }
+  }
+}

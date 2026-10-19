@@ -51,7 +51,7 @@
   "export_formats_present": {
     "keras": true,
     "onnx": true,
-    "tflite": false
+    "tflite": true
   },
   "git_sha": "9db62a702c670b314cda0f0bea3c9f5ad4b00334"
 }

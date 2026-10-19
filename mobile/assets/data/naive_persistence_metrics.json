@@ -1,0 +1,15 @@
+{
+  "evaluated_at": "2026-08-27T11:58:40+00:00",
+  "split_name": "test",
+  "definition": "prediction(t+1) = observed price(t)",
+  "target_csv": "data\\processed\\grading_forecast\\price_v2\\national_grade1_average_weekly.csv",
+  "test_csv": "data\\processed\\grading_forecast\\price_v2\\forecast_test.csv",
+  "prediction_rows": 36,
+  "same_test_timestamps": true,
+  "metrics": {
+    "mae": 16.4094,
+    "rmse": 22.5208,
+    "mape": 0.8539,
+    "r2": 0.9045
+  }
+}

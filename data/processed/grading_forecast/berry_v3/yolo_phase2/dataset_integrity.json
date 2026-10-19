@@ -1,0 +1,47 @@
+{
+  "canonical_dataset": "data/raw/Pepper Berry Grading V3.yolov8",
+  "image_manifest": "data/processed/grading_forecast/berry_v3/v3_image_sample_manifest.csv",
+  "group_manifest": "data/processed/grading_forecast/berry_v3/v3_group_split_manifest.csv",
+  "identity": "SHA-256 exact match",
+  "images_copied": true,
+  "annotations_copied": true,
+  "copy_reason": "Ultralytics may repair JPEG end markers during scanning; materialization prevents writes to the canonical Roboflow export.",
+  "materialized_root": "data/processed/grading_forecast/berry_v3/yolo_phase2/materialized",
+  "classes": {
+    "0": "V3 Grade 1",
+    "1": "V3 Grade 2"
+  },
+  "partitions": {
+    "TRAIN": {
+      "images": 539,
+      "groups": 135,
+      "images_by_grade": {
+        "V3 Grade 1": 312,
+        "V3 Grade 2": 227
+      }
+    },
+    "VALIDATION": {
+      "images": 116,
+      "groups": 29,
+      "images_by_grade": {
+        "V3 Grade 1": 68,
+        "V3 Grade 2": 48
+      }
+    },
+    "TEST": {
+      "images": 120,
+      "groups": 30,
+      "images_by_grade": {
+        "V3 Grade 1": 68,
+        "V3 Grade 2": 52
+      }
+    }
+  },
+  "checks": {
+    "all_current_hashes_match": true,
+    "one_annotation_per_image": true,
+    "class_ids_match_manifest": true,
+    "pairwise_group_intersections_empty": true,
+    "all_775_images_exactly_once": true
+  }
+}

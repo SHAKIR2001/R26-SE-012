@@ -1,0 +1,24 @@
+{
+  "retrieval_date": "2026-10-07",
+  "index_url": "https://exagri.info/mkt/index.html",
+  "index_sha256": "29f5c5a656177c9e83518233cbd7eeff3d78d6dc5cf1b7aaf4e12c041cb681b5",
+  "dated_pages": 495,
+  "pages_with_pepper_observations": 493,
+  "pages_without_pepper_observations": 0,
+  "broken_index_links": 2,
+  "broken_index_link_dates": [
+    "2023-04-25",
+    "2026-06-23"
+  ],
+  "page_errors": 0,
+  "raw_observations": 16903,
+  "canonical_unique_observations": 16903,
+  "exact_duplicate_observations_removed": 0,
+  "conflicting_duplicates": 0,
+  "date_range": {
+    "start": "2016-10-04",
+    "end": "2026-09-29"
+  },
+  "raw_csv": "data/raw/market_prices/eac_phase4/dea_eac_pepper_observations_retrieved_2026-10-07.csv",
+  "source_manifest": "data/processed/grading_forecast/price/eac_reconstructed_v1/eac_pepper_price_source_manifest.csv"
+}
