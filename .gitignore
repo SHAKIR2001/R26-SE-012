@@ -97,7 +97,6 @@ coverage/
 *.iml
 *.ipr
 *.iws
-.vscode/
 
 # OS
 .DS_Store
@@ -107,7 +106,6 @@ coverage/
 /android/app/profile
 /android/app/release
 
-.env
 
 # Local source snapshot supplied by other team members. It is retained for
 # comparison only; the integrated application lives under mobile/.
@@ -115,3 +113,5 @@ other members components - mobile/
 
 
 Thesis/
+config.bat
+node_modules
