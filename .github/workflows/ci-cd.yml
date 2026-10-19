@@ -42,7 +42,7 @@ jobs:
 
       - name: Run focused Phase 7 tests
         run: |
-          python -m pytest -q \
+          python -m pytest -q -ra \
             --basetemp=./backend/pytest-cache-files-phase7 \
             backend/tests/test_main_startup.py \
             backend/tests/test_phase7_integration.py \
