@@ -74,6 +74,7 @@ def decide(
             "latest_observed_return": market.latest_observed_return, "persistence_price": market.persistence_price,
         }
     else:
+        # Stop if the accepted grade and selected market record do not match.
         route = validate_route(grading.grade, market, config)
         direction = forecast_direction(market.reference_price, market.forecast_price)
         signal = signal_classification(

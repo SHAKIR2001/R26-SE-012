@@ -96,6 +96,7 @@ class BerryQualityResultScreen extends StatelessWidget {
                         child: Icon(icon, color: accent, size: 34),
                       ),
                       const SizedBox(height: 18),
+                      // Show the grade or rejection title returned by the backend.
                       Text(
                         farmerResultTitle(t, result),
                         textAlign: TextAlign.center,
@@ -106,6 +107,7 @@ class BerryQualityResultScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 12),
+                      // Explain the backend result in simple farmer-facing text.
                       Text(
                         farmerResultExplanation(t, result),
                         textAlign: TextAlign.center,
@@ -138,6 +140,7 @@ class BerryQualityResultScreen extends StatelessWidget {
                 ),
               ),
             const SizedBox(height: 22),
+            // Show the price button only when matching market data is available.
             if (result.market.isAvailable)
               FilledButton.icon(
                 onPressed: () => Navigator.of(context).push(

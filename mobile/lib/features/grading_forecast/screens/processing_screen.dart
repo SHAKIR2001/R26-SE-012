@@ -61,8 +61,8 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
     });
 
     try {
-      // The service performs upload validation and parses the frozen Phase 6
-      // contract. No client-side prediction or price calculation is performed.
+      // Pass the selected image and file name to the service that sends them
+      // to the backend.
       final result = await _analysisService.analyzeBytes(
         widget.imageBytes,
         widget.imageName,
@@ -71,6 +71,7 @@ class _ProcessingScreenState extends State<ProcessingScreen> {
       // History is best-effort persistence; failure to save must not turn a
       // valid analysis into a fabricated error or alter the displayed result.
       unawaited(_saveHistory(result));
+      // Pass the backend result to the frontend result screen for display.
       Navigator.of(context).pushReplacement(
         MaterialPageRoute<void>(
           builder: (_) => BerryQualityResultScreen(

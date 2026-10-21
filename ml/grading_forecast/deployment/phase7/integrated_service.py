@@ -14,7 +14,8 @@ from .grading_runtime import grade_image
 
 
 def _complete(grading, *, timestamp_utc: str | None = None) -> dict:
-    # Route grading through the matching frozen forecast and decision rules.
+    # Load market data only for an accepted grade; rejected results get none.
+    # Grade 1 uses Grade 1 data, and Grade 2 uses Grade 2 data.
     market = latest_frozen_forecast(grading.grade) if grading.status == "ACCEPTED" else None
     result = decide(grading, market, timestamp_utc=timestamp_utc)
     result["runtime"] = {"grading": "ONNX_RUNTIME_CPU", "price": "FROZEN_PHASE5_FORECAST_RECORD",
