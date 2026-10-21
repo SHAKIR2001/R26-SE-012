@@ -21,7 +21,10 @@ class GradingForecastAnalysisService {
   Future<GradingForecastResult> analyzeBytes(
     Uint8List bytes,
     String filename,
-  ) => _apiService.analyzeBytes(bytes, filename);
+  ) {
+    // Forward the image data to the API client for upload to the backend.
+    return _apiService.analyzeBytes(bytes, filename);
+  }
   // Release controllers, listeners, and other owned resources.
   Future<void> dispose() async => _apiService.close();
 }

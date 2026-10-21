@@ -68,7 +68,7 @@ def _decode(image_bytes: bytes) -> np.ndarray:
 
 
 def _quality(rgb: np.ndarray) -> dict:
-    # Calculate image quality measurements used by the frozen decision rules.
+    # Measure resolution, brightness, and blur for the image-quality checks.
     gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
     height, width = gray.shape
     return {"width": int(width), "height": int(height), "minimum_dimension": int(min(width, height)),
@@ -140,6 +140,7 @@ def infer_raw(image_bytes: bytes) -> dict:
 def grade_image(image_bytes: bytes, input_id: str) -> tuple[GradingResult, dict]:
     # Grade image with the frozen model and thresholds.
     raw = infer_raw(image_bytes)
+    # Reject poor-quality images before accepting the predicted grade.
     outcome = decide(raw, _thresholds())
     result = GradingResult(input_id=input_id, decision=outcome["decision"], grade=outcome["grade"],
         model_confidence=outcome["model_confidence"], detection_confidence=outcome["detection_confidence"],
