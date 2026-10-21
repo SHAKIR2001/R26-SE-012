@@ -28,6 +28,7 @@ class PriceForecastScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final status = AppStatusColors.of(context);
+    // Read the grade-matched market result returned by the backend.
     final market = result.market;
     final direction = market.forecastDirection;
     final directionColor = switch (direction) {
@@ -77,6 +78,7 @@ class PriceForecastScreen extends StatelessWidget {
                     const SizedBox(height: 14),
                     FittedBox(
                       fit: BoxFit.scaleDown,
+                      // Show the forecast price for the accepted grade only.
                       child: Text(
                         _price(t, market.forecastPrice),
                         style: theme.textTheme.displaySmall?.copyWith(

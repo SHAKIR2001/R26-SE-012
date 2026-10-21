@@ -32,7 +32,7 @@ class MarketForecast:
 
 
 def route_for_grade(v3_grade: str, config: dict | None = None) -> dict:
-    # Route for grade through the matching grade-specific path.
+    # Select the Grade 1 or Grade 2 market route for the accepted V3 grade.
     config = config or load_config()
     routing = config["grade_routing"]
     if v3_grade not in routing:

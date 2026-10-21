@@ -33,10 +33,11 @@ def validate_frozen_forecast_source() -> Path:
 
 
 def latest_frozen_forecast(v3_grade: str) -> MarketForecast | None:
-    # Return the newest validated frozen forecast for the accepted grade.
+    # Map the accepted V3 grade to its matching market grade.
     route = route_for_grade(v3_grade)
     source = validate_frozen_forecast_source()
     with source.open(newline="", encoding="utf-8-sig") as handle:
+        # Keep only the selected grade so Grade 1 and Grade 2 are never mixed.
         rows = [row for row in csv.DictReader(handle) if row["grade"] == route["price_grade"]]
     if not rows:
         return None

@@ -66,10 +66,11 @@ def quality_scores(path: str | Path) -> dict:
 
 
 def decide(record: dict, thresholds: FrozenThresholds) -> dict:
-    # Apply the fixed decision rules to the supplied grading and market evidence.
+    # Apply the frozen image-quality and grading rules.
     quality = record["quality"]
     reason = None
     decision = None
+    # Reject images that are too small, too dark, or too blurry.
     if quality["minimum_dimension"] < thresholds.minimum_dimension:
         decision, reason = Decision.POOR_IMAGE, "resolution_below_minimum"
     elif quality["brightness"] < thresholds.minimum_brightness:

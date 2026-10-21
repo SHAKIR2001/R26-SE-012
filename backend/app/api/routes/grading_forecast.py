@@ -213,6 +213,7 @@ async def analyze(image: UploadFile | None = None) -> Phase7AnalyzeResponse:
     # Validate the upload, run Phase 7, and enforce the final response contract.
     analysis_id = str(uuid.uuid4())
     try:
+        # Check the file size, format, dimensions, and readability before analysis.
         image_bytes, _ = await _read_valid_image_upload(image, analysis_id)
     finally:
         if image is not None:
@@ -224,6 +225,7 @@ async def analyze(image: UploadFile | None = None) -> Phase7AnalyzeResponse:
                     analysis_id,
                     type(exc).__name__,
                 )
+    # Run grading and apply the frozen image-quality rejection rules.
     result = _safe_analysis(image_bytes, analysis_id)
     try:
         validated = Phase7AnalyzeResponse.model_validate(result)
@@ -242,6 +244,7 @@ async def analyze(image: UploadFile | None = None) -> Phase7AnalyzeResponse:
         analysis_id,
         validated.decision_support.category.value,
     )
+    # Send the validated analysis result to the frontend as the API response.
     return validated
 
 
